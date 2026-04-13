@@ -153,7 +153,7 @@
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">2</div>
+    <div>文章</div><div class="sidebar-state-number">3</div>
   </div>
   <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
     <div>分类</div>
@@ -222,14 +222,38 @@
         </blockquote><h1 id="问题">
 <a class="header-anchor" href="#%e9%97%ae%e9%a2%98"></a>
 问题
-</h1><p>我的博客是基于 <a href="https://gohugo.io/">Hugo</a> 框架和 <a href="https://github.com/D-Sketon/hugo-theme-reimu">Reimu</a> 主题搭建的。<br>
+</h1><p>我的博客是基于 
+<a 
+    href="https://gohugo.io/"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    Hugo
+</a>
+ 框架和 
+<a 
+    href="https://github.com/D-Sketon/hugo-theme-reimu"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    Reimu
+</a>
+ 主题搭建的。<br>
 其中 <code>Hugo</code> 使用的是 <code>v0.159.2</code> 版本，每次启动服务时，都能看到提示方法或字段已废弃的警告：</p>
 
   <blockquote class="alert-blockquote warning">
     <p class="alert-heading">
       Warning
     </p>
-    <p><p>WARN  deprecated: .Site.Languages was deprecated in Hugo v0.156.0 and will be removed in a future release. See <a href="https://discourse.gohugo.io/t/56732">https://discourse.gohugo.io/t/56732</a>.<br>
+    <p><p>WARN  deprecated: .Site.Languages was deprecated in Hugo v0.156.0 and will be removed in a future release. See 
+<a 
+    href="https://discourse.gohugo.io/t/56732"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    https://discourse.gohugo.io/t/56732
+</a>
+.<br>
 WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed in a future release. Use hugo.Data instead.</p></p>
   </blockquote>
 
@@ -242,7 +266,15 @@ WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed
 </h2><h3 id="修复">
 <a class="header-anchor" href="#%e4%bf%ae%e5%a4%8d"></a>
 修复
-</h3><p>通过上面的已废弃警告和 <code>.Site.Data</code> 的<a href="https://gohugo.io/methods/site/data/">文档</a>，可以轻松得知：<strong>直接使用 <code>hugo.Data</code> 文本匹配替换</strong> 即可。</p>
+</h3><p>通过上面的已废弃警告和 <code>.Site.Data</code> 的
+<a 
+    href="https://gohugo.io/methods/site/data/"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    文档
+</a>
+，可以轻松得知：<strong>直接使用 <code>hugo.Data</code> 文本匹配替换</strong> 即可。</p>
 <p><img src="/images/fix-hugo-v0.156.0-warnings/data.png" alt=".Site.Data" title=".Site.Data"></p>
 <h2 id="sitelanguages">
 <a class="header-anchor" href="#sitelanguages"></a>
@@ -251,11 +283,35 @@ WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed
 <h3 id="资料查询过程">
 <a class="header-anchor" href="#%e8%b5%84%e6%96%99%e6%9f%a5%e8%af%a2%e8%bf%87%e7%a8%8b"></a>
 资料查询过程
-</h3><p>已废弃警告的提示信息和 <code>.Site.Languages</code> 的<a href="https://gohugo.io/methods/site/languages/">文档</a>，都指向了参考链接 <a href="https://discourse.gohugo.io/t/56732">https://discourse.gohugo.io/t/56732</a>。</p>
+</h3><p>已废弃警告的提示信息和 <code>.Site.Languages</code> 的
+<a 
+    href="https://gohugo.io/methods/site/languages/"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    文档
+</a>
+，都指向了参考链接 
+<a 
+    href="https://discourse.gohugo.io/t/56732"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    https://discourse.gohugo.io/t/56732
+</a>
+。</p>
 <p><img src="/images/fix-hugo-v0.156.0-warnings/languages-doc.png" alt=".Site.Languages" title=".Site.Languages"></p>
 <p>打开链接后，可以看到 <code>Deprecated methods</code> 标题下提供了一张在 <code>Hugo v0.156.0</code> 版本会被开始标记为废弃的方法清单：</p>
 <p><img src="/images/fix-hugo-v0.156.0-warnings/deprecated-methods.png" alt="Deprecated methods" title="Deprecated methods"></p>
-<p>点击 <a href="https://discourse.gohugo.io/t/deprecations-in-v0-156-0/56732#p-184468-example-b-ndash-language-selector-5">Example B</a> 后，可以看到一段示例代码：</p>
+<p>点击 
+<a 
+    href="https://discourse.gohugo.io/t/deprecations-in-v0-156-0/56732#p-184468-example-b-ndash-language-selector-5"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    Example B
+</a>
+ 后，可以看到一段示例代码：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span><span class="w"> </span><span class="nx">with</span><span class="w"> </span><span class="p">.</span><span class="nx">Rotate</span><span class="w"> </span><span class="s">&#34;language&#34;</span><span class="w"> </span><span class="p">}}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">&lt;</span><span class="nx">nav</span><span class="w"> </span><span class="nx">class</span><span class="p">=</span><span class="s">&#34;language-switcher&#34;</span><span class="p">&gt;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">&lt;</span><span class="nx">ul</span><span class="p">&gt;</span><span class="w">
@@ -269,7 +325,15 @@ WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">&lt;</span><span class="o">/</span><span class="nx">ul</span><span class="p">&gt;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">&lt;</span><span class="o">/</span><span class="nx">nav</span><span class="p">&gt;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">{{</span><span class="w"> </span><span class="nx">end</span><span class="w"> </span><span class="p">}}</span><span class="w">
-</span></span></span></code></pre></div><p>示例代码使用了 <a href="https://gohugo.io/methods/page/rotate/">.Rotate</a> 方法，展示了一个简单的语言切换器。<br>
+</span></span></span></code></pre></div><p>示例代码使用了 
+<a 
+    href="https://gohugo.io/methods/page/rotate/"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    .Rotate
+</a>
+ 方法，展示了一个简单的语言切换器。<br>
 しかし、残念です。<br>
 这段示例代码并未展示如何获得原本 <code>.Site.Languages</code> 方法返回的 <code>langs.Languages</code>。</p>
 <h3 id="修复方案">
@@ -277,11 +341,35 @@ WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed
 修复方案
 </h3><p>查询多个 <code>Hugo</code> 的文档后，得到了一个修复方案。</p>
 <ol>
-<li>调用函数 <a href="https://gohugo.io/functions/hugo/sites/">hugo.Sites</a> 得到返回 <code>page.Sites</code>；</li>
+<li>调用函数 
+<a 
+    href="https://gohugo.io/functions/hugo/sites/"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    hugo.Sites
+</a>
+ 得到返回 <code>page.Sites</code>；</li>
 </ol>
 <p><img src="/images/fix-hugo-v0.156.0-warnings/sites.png" alt="hugo.Sites" title="hugo.Sites"></p>
 <ol start="2">
-<li>遍历 <code>page.Sites</code> 后提取每一个 <a href="https://gohugo.io/methods/page/site/">page.siteWrapper</a> 调用 <a href="https://gohugo.io/methods/site/language/">Language</a> 方法得到的 <code>Language</code> 对象。</li>
+<li>遍历 <code>page.Sites</code> 后提取每一个 
+<a 
+    href="https://gohugo.io/methods/page/site/"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    page.siteWrapper
+</a>
+ 调用 
+<a 
+    href="https://gohugo.io/methods/site/language/"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    Language
+</a>
+ 方法得到的 <code>Language</code> 对象。</li>
 </ol>
 <div class="gallery-wall" id="photoWall-058b67d30"></div>
 <script>
@@ -463,7 +551,15 @@ WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed
 从代码可以得知，构造了一个 <code>map</code>（变量名：<code>$i18nMap</code>），然后遍历配置的语言，将每个语言以 <code>{ .Lang: .LanguageName }</code> 这样的键值对存入 <code>$i18nMap</code>。</p>
 <p>执行代码，输出 <code>$i18nMap</code> 的值：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">map</span><span class="p">[</span><span class="s">&#34;de&#34;</span><span class="p">:</span><span class="s">&#34;Deutsch&#34;</span><span class="w"> </span><span class="s">&#34;zh-cn&#34;</span><span class="p">:</span><span class="s">&#34;简体中文&#34;</span><span class="p">]</span><span class="w"> </span><span class="c1">// de 是用来测试代码新添加的配置</span><span class="w">
-</span></span></span></code></pre></div><p>从 <code>Site.Language</code> 的<a href="https://gohugo.io/methods/site/language/#lang">文档</a>中可得知 <code>Lang</code> 和 <code>LanguageName</code> 也已在 <code>Hugo v0.158.0</code> 之后标记为已废弃状态，
+</span></span></span></code></pre></div><p>从 <code>Site.Language</code> 的
+<a 
+    href="https://gohugo.io/methods/site/language/#lang"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    文档
+</a>
+中可得知 <code>Lang</code> 和 <code>LanguageName</code> 也已在 <code>Hugo v0.158.0</code> 之后标记为已废弃状态，
 <img src="/images/fix-hugo-v0.156.0-warnings/language-deprecated.png" alt="Language deprecated" title="Language deprecated"></p>
 <p>所以，顺手将这2个方法的调用也修改掉：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// themes/reimu/layouts/partials/header.html</span><span class="w">
@@ -525,7 +621,15 @@ WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed
 <h1 id="额外的小技巧">
 <a class="header-anchor" href="#%e9%a2%9d%e5%a4%96%e7%9a%84%e5%b0%8f%e6%8a%80%e5%b7%a7"></a>
 额外的小技巧
-</h1><p>使用命令 <a href="https://gohugo.io/commands/hugo_build/">hugo build &ndash;logLevel info</a> 可以显示目前已处于废弃的方法调用或字段。</p>
+</h1><p>使用命令 
+<a 
+    href="https://gohugo.io/commands/hugo_build/"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    hugo build &ndash;logLevel info
+</a>
+ 可以显示目前已处于废弃的方法调用或字段。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ hugo build --logLevel info
 </span></span><span class="line"><span class="cl">INFO  deprecated: project config key languageCode was deprecated in Hugo v0.158.0 and will be removed in a future release. Use locale instead.
 </span></span><span class="line"><span class="cl">INFO  deprecated: project config key languages.zh-cn.languageName was deprecated in Hugo v0.158.0 and will be removed in a future release. Use languages.zh-cn.label instead.
@@ -628,6 +732,18 @@ WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed
         ></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">从零开始的 Qt 应用开发（1）：安装</h3>
+      </div><div class="article-nav-link-wrap right"><img
+              data-src="/images/covers/iuno-2.webp"
+              data-sizes="auto"
+              alt="从零开始的 Qt 应用开发（2）：布局"
+              class="lazyload"
+            /><a
+          href="/posts/202604/re-0-qt-app-2/"
+          aria-label="后一篇:从零开始的 Qt 应用开发（2）：布局"
+          title="后一篇:从零开始的 Qt 应用开发（2）：布局"
+        ></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">从零开始的 Qt 应用开发（2）：布局</h3>
       </div></nav></article><section id="comments" data-aos="fade-up">
 <div class="comment-header"><h2 class="comment-title">万物，皆可为引</h2>
   <div class="comment-selector">
@@ -664,10 +780,10 @@ WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed
         >
       </div><div>
         <span class="icon-brush"
-          >&nbsp;2.9k</span
+          >&nbsp;4.8k</span
         >
         &nbsp;|&nbsp;
-        <span class="icon-coffee">&nbsp;00:06</span>
+        <span class="icon-coffee">&nbsp;00:10</span>
       </div><div>
         <span class="icon-eye"></span>
         <span id="busuanzi_container_site_pv">
@@ -724,7 +840,7 @@ WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">2</div>
+    <div>文章</div><div class="sidebar-state-number">3</div>
   </div>
   <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
     <div>分类</div>

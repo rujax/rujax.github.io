@@ -33,14 +33,38 @@
           <h1 id="问题">
 <a class="header-anchor" href="#%e9%97%ae%e9%a2%98"></a>
 问题
-</h1><p>我的博客是基于 <a href="https://gohugo.io/">Hugo</a> 框架和 <a href="https://github.com/D-Sketon/hugo-theme-reimu">Reimu</a> 主题搭建的。<br>
+</h1><p>我的博客是基于 
+<a 
+    href="https://gohugo.io/"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    Hugo
+</a>
+ 框架和 
+<a 
+    href="https://github.com/D-Sketon/hugo-theme-reimu"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    Reimu
+</a>
+ 主题搭建的。<br>
 其中 <code>Hugo</code> 使用的是 <code>v0.159.2</code> 版本，每次启动服务时，都能看到提示方法或字段已废弃的警告：</p>
 
   <blockquote class="alert-blockquote warning">
     <p class="alert-heading">
       Warning
     </p>
-    <p><p>WARN  deprecated: .Site.Languages was deprecated in Hugo v0.156.0 and will be removed in a future release. See <a href="https://discourse.gohugo.io/t/56732">https://discourse.gohugo.io/t/56732</a>.<br>
+    <p><p>WARN  deprecated: .Site.Languages was deprecated in Hugo v0.156.0 and will be removed in a future release. See 
+<a 
+    href="https://discourse.gohugo.io/t/56732"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    https://discourse.gohugo.io/t/56732
+</a>
+.<br>
 WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed in a future release. Use hugo.Data instead.</p>
         
         <hr><p>本文2026-04-08首发于<a href='https://rujax.github.io/'>Rujax's blog</a>，最后修改于2026-04-08</p>]]>

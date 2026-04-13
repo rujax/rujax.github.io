@@ -12,12 +12,44 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Wed, 08 Apr 2026 15:39:10 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 12 Apr 2026 15:33:17 +0800</lastBuildDate>
     
     
     <atom:link href="https://rujax.github.io/tags/qt/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
+    
+    
+
+    <item>
+      <title>从零开始的 Qt 应用开发（2）：布局</title>
+      <link>https://rujax.github.io/posts/202604/re-0-qt-app-2/</link>
+      <pubDate>Sun, 12 Apr 2026 15:33:17 &#43;0800</pubDate>
+      <author>rujax.c@gmail.com (Rujax)</author>
+      <guid>https://rujax.github.io/posts/202604/re-0-qt-app-2/</guid>
+      <description>
+        <![CDATA[<h1>从零开始的 Qt 应用开发（2）：布局</h1><p>作者：Rujax（rujax.c@gmail.com）</p>
+        
+          <h1 id="到底该做个什么应用呢">
+<a class="header-anchor" href="#%e5%88%b0%e5%ba%95%e8%af%a5%e5%81%9a%e4%b8%aa%e4%bb%80%e4%b9%88%e5%ba%94%e7%94%a8%e5%91%a2"></a>
+到底该做个什么应用呢？
+</h1><p>关于这个问题，我思考了许久。</p>
+<p>原因主要有三：</p>
+<ol>
+<li>我希望应用足够简单</li>
+<li>尽可能多地展示 Qt 组件的使用</li>
+<li>如果还稍微有一点点实用价值就更好了（笑</li>
+</ol>
+<p>在反反复复提出又推翻无数想法后，无意间瞥到博客首页的 RSS 图标。<br>
+一个想法计上心头：不如，就做一个 RSS 阅读器，阅读我自己的博客文章，也算是一种自产自销了。<br>
+哈哈哈。。。</p>
+        
+        <hr><p>本文2026-04-12首发于<a href='https://rujax.github.io/'>Rujax's blog</a>，最后修改于2026-04-12</p>]]>
+      </description>
+      
+        <category>从零开始的 Qt 应用开发</category>
+      
+    </item>
     
     
 

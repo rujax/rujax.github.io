@@ -12,12 +12,47 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Wed, 08 Apr 2026 22:44:37 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 14 Apr 2026 13:38:45 +0800</lastBuildDate>
     
     
     <atom:link href="https://rujax.github.io/tags/go/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
+    
+    
+
+    <item>
+      <title>设置文章中的链接点击默认打开新标签页</title>
+      <link>https://rujax.github.io/posts/202604/hugo-link-default-tab/</link>
+      <pubDate>Tue, 14 Apr 2026 13:38:45 &#43;0800</pubDate>
+      <author>rujax.c@gmail.com (Rujax)</author>
+      <guid>https://rujax.github.io/posts/202604/hugo-link-default-tab/</guid>
+      <description>
+        <![CDATA[<h1>设置文章中的链接点击默认打开新标签页</h1><p>作者：Rujax（rujax.c@gmail.com）</p>
+        
+          <h1 id="问题">
+<a class="header-anchor" href="#%e9%97%ae%e9%a2%98"></a>
+问题
+</h1><p>
+<a 
+    href="https://gohugo.io/"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    Hugo
+</a>
+ 框架下，点击文章中的链接默认行为是：<strong>页面跳转</strong>。<br>
+我个人是不太喜欢这种默认行为，因为极大可能文章还没有读完，只是看到了想了解的内容链接，于是点击进入了新的页面。<br>
+在新的页面又有可能点击更多的链接，进入更多的新的页面，最后想要回到博客文章，要点无数次的后退，<br>
+甚至有可能新的页面点击链接的默认行为是 <strong>打开新标签页</strong>，<br>
+然后不小心关掉了最初跳转的页面，导致后退也退不回博客的情况出现 (⊙﹏⊙)</p>
+        
+        <hr><p>本文2026-04-14首发于<a href='https://rujax.github.io/'>Rujax's blog</a>，最后修改于2026-04-14</p>]]>
+      </description>
+      
+        <category>锚定未知</category>
+      
+    </item>
     
     
 

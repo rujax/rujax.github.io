@@ -238,7 +238,7 @@
 >
     Reimu
 </a>
- 主题搭建的。<br>
+ 主题搭建的。
 其中 <code>Hugo</code> 使用的是 <code>v0.159.2</code> 版本，每次启动服务时，都能看到提示方法或字段已废弃的警告：</p>
 
   <blockquote class="alert-blockquote warning">
@@ -253,12 +253,12 @@
 >
     https://discourse.gohugo.io/t/56732
 </a>
-.<br>
+.
 WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed in a future release. Use hugo.Data instead.</p></p>
   </blockquote>
 
-<p>本人是看到警告都无法忍受的那类人（笑<br>
-其实是没有拖延症，一想到万一哪天更新版本后出现异常报错就难以忍受（<br>
+<p>本人是看到警告都无法忍受的那类人（笑
+其实是没有拖延症，一想到万一哪天更新版本后出现异常报错就难以忍受（
 因此，在博客基本搭建成形后，开始着手解决这2个警告。</p>
 <h2 id="sitedata">
 <a class="header-anchor" href="#sitedata"></a>
@@ -275,7 +275,7 @@ WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed
     文档
 </a>
 ，可以轻松得知：<strong>直接使用 <code>hugo.Data</code> 文本匹配替换</strong> 即可。</p>
-<p><img src="/images/fix-hugo-v0.156.0-warnings/data.webp" alt=".Site.Data" title=".Site.Data"></p>
+<p><img src="/images/202604/fix-hugo-v0.156.0-warnings/data.webp" alt=".Site.Data" title=".Site.Data"></p>
 <h2 id="sitelanguages">
 <a class="header-anchor" href="#sitelanguages"></a>
 .Site.Languages
@@ -300,9 +300,9 @@ WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed
     https://discourse.gohugo.io/t/56732
 </a>
 。</p>
-<p><img src="/images/fix-hugo-v0.156.0-warnings/languages-doc.webp" alt=".Site.Languages" title=".Site.Languages"></p>
+<p><img src="/images/202604/fix-hugo-v0.156.0-warnings/languages-doc.webp" alt=".Site.Languages" title=".Site.Languages"></p>
 <p>打开链接后，可以看到 <code>Deprecated methods</code> 标题下提供了一张在 <code>Hugo v0.156.0</code> 版本会被开始标记为废弃的方法清单：</p>
-<p><img src="/images/fix-hugo-v0.156.0-warnings/deprecated-methods.webp" alt="Deprecated methods" title="Deprecated methods"></p>
+<p><img src="/images/202604/fix-hugo-v0.156.0-warnings/deprecated-methods.webp" alt="Deprecated methods" title="Deprecated methods"></p>
 <p>点击 
 <a 
     href="https://discourse.gohugo.io/t/deprecations-in-v0-156-0/56732#p-184468-example-b-ndash-language-selector-5"
@@ -333,8 +333,8 @@ WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed
 >
     .Rotate
 </a>
- 方法，展示了一个简单的语言切换器。<br>
-しかし、残念です。<br>
+ 方法，展示了一个简单的语言切换器。
+しかし、残念です。
 这段示例代码并未展示如何获得原本 <code>.Site.Languages</code> 方法返回的 <code>langs.Languages</code>。</p>
 <h3 id="修复方案">
 <a class="header-anchor" href="#%e4%bf%ae%e5%a4%8d%e6%96%b9%e6%a1%88"></a>
@@ -351,7 +351,7 @@ WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed
 </a>
  得到返回 <code>page.Sites</code>；</li>
 </ol>
-<p><img src="/images/fix-hugo-v0.156.0-warnings/sites.webp" alt="hugo.Sites" title="hugo.Sites"></p>
+<p><img src="/images/202604/fix-hugo-v0.156.0-warnings/sites.webp" alt="hugo.Sites" title="hugo.Sites"></p>
 <ol start="2">
 <li>遍历 <code>page.Sites</code> 后提取每一个 
 <a 
@@ -371,12 +371,12 @@ WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed
 </a>
  方法得到的 <code>Language</code> 对象。</li>
 </ol>
-<div class="gallery-wall" id="photoWall-6600bba42"></div>
+<div class="gallery-wall" id="photoWall-f59a1d624"></div>
 <script>
   (function() {
-    const imageUrls = JSON.parse("[\"/images/fix-hugo-v0.156.0-warnings/site.webp\",\"/images/fix-hugo-v0.156.0-warnings/language.webp\"]");
+    const imageUrls = JSON.parse("[\"/images/202604/fix-hugo-v0.156.0-warnings/site.webp\",\"/images/202604/fix-hugo-v0.156.0-warnings/language.webp\"]");
     let images = [];
-    const wallId = '#photoWall-6600bba42';
+    const wallId = '#photoWall-f59a1d624';
     let resizeTimer;
     let lastWidth = 0;
     
@@ -547,7 +547,7 @@ WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed
 </span></span></span><span class="line"><span class="cl"><span class="p">{{</span><span class="o">-</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nx">hugo</span><span class="p">.</span><span class="nx">IsMultilingual</span><span class="w"> </span><span class="o">-</span><span class="p">}}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">{{</span><span class="o">-</span><span class="w"> </span><span class="err">$</span><span class="nx">siteConfig</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">merge</span><span class="w"> </span><span class="err">$</span><span class="nf">siteConfig</span><span class="w"> </span><span class="p">(</span><span class="nx">dict</span><span class="w"> </span><span class="s">&#34;i18n_languages&#34;</span><span class="w"> </span><span class="err">$</span><span class="nx">i18n_languages</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="p">}}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">{{</span><span class="o">-</span><span class="w"> </span><span class="nx">end</span><span class="w"> </span><span class="o">-</span><span class="p">}}</span><span class="w">
-</span></span></span></code></pre></div><p>首先解决第1处。<br>
+</span></span></span></code></pre></div><p>首先解决第1处。
 从代码可以得知，构造了一个 <code>map</code>（变量名：<code>$i18nMap</code>），然后遍历配置的语言，将每个语言以 <code>{ .Lang: .LanguageName }</code> 这样的键值对存入 <code>$i18nMap</code>。</p>
 <p>执行代码，输出 <code>$i18nMap</code> 的值：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">map</span><span class="p">[</span><span class="s">&#34;de&#34;</span><span class="p">:</span><span class="s">&#34;Deutsch&#34;</span><span class="w"> </span><span class="s">&#34;zh-cn&#34;</span><span class="p">:</span><span class="s">&#34;简体中文&#34;</span><span class="p">]</span><span class="w"> </span><span class="c1">// de 是用来测试代码新添加的配置</span><span class="w">
@@ -560,7 +560,7 @@ WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed
     文档
 </a>
 中可得知 <code>Lang</code> 和 <code>LanguageName</code> 也已在 <code>Hugo v0.158.0</code> 之后标记为已废弃状态，
-<img src="/images/fix-hugo-v0.156.0-warnings/language-deprecated.webp" alt="Language deprecated" title="Language deprecated"></p>
+<img src="/images/202604/fix-hugo-v0.156.0-warnings/language-deprecated.webp" alt="Language deprecated" title="Language deprecated"></p>
 <p>所以，顺手将这2个方法的调用也修改掉：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// themes/reimu/layouts/partials/header.html</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
@@ -576,8 +576,8 @@ WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">{{</span><span class="o">-</span><span class="w"> </span><span class="err">$</span><span class="nx">i18nMap</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">merge</span><span class="w"> </span><span class="err">$</span><span class="nf">i18nMap</span><span class="w"> </span><span class="p">(</span><span class="nx">dict</span><span class="w"> </span><span class="p">.</span><span class="nx">Language</span><span class="p">.</span><span class="nx">Name</span><span class="w"> </span><span class="p">.</span><span class="nx">Language</span><span class="p">.</span><span class="nx">Label</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="p">}}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">{{</span><span class="o">-</span><span class="w"> </span><span class="nx">end</span><span class="w"> </span><span class="o">-</span><span class="p">}}</span><span class="w">
 </span></span></span></code></pre></div><p>输出 <code>$i18nMap</code> 的值与之前一致。</p>
-<p>接着解决第2处。<br>
-从代码可以得知，最终会将 <code>map[&quot;i18n_languages&quot;]{.Site.Languages}</code> 合并到 <code>map</code> <code>$siteConfig</code> 中。<br>
+<p>接着解决第2处。
+从代码可以得知，最终会将 <code>map[&quot;i18n_languages&quot;]{.Site.Languages}</code> 合并到 <code>map</code> <code>$siteConfig</code> 中。
 接下来，<code>$siteConfig</code> 会在 <code>JavaScript</code> 中使用：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">window</span><span class="p">.</span><span class="nx">siteConfig</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">({{</span> <span class="nx">$siteConfig</span> <span class="o">|</span> <span class="nx">jsonify</span> <span class="p">}});</span>
@@ -615,7 +615,7 @@ WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">{{</span><span class="o">-</span><span class="w"> </span><span class="err">$</span><span class="nx">i18n_languages</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="err">$</span><span class="nx">i18n_languages</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nx">append</span><span class="w"> </span><span class="p">.</span><span class="nx">Language</span><span class="w"> </span><span class="o">-</span><span class="p">}}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">{{</span><span class="o">-</span><span class="w"> </span><span class="nx">end</span><span class="w"> </span><span class="o">-</span><span class="p">}}</span><span class="w">
 </span></span></span></code></pre></div><p>输出修改后的代码，<code>$i18n_languages</code> 的值一致。</p>
-<p>再次全局搜索 <code>i18n_languages</code> 可以看到在 <code>themes/reimu/assets/js/global.d.ts</code> 和 <code>themes/reimu/assets/js/pjax.ts</code> 也有使用。<br>
+<p>再次全局搜索 <code>i18n_languages</code> 可以看到在 <code>themes/reimu/assets/js/global.d.ts</code> 和 <code>themes/reimu/assets/js/pjax.ts</code> 也有使用。
 其中，<code>global.d.ts</code> 中使用的还是旧字段 <code>LanguageName</code> 将其调整为 <code>Label</code>。</p>
 <p>至此，2处调用都修改完毕。</p>
 <h1 id="额外的小技巧">

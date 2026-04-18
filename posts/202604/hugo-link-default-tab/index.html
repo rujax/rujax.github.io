@@ -216,12 +216,12 @@
 >
     Hugo
 </a>
- 框架下，点击文章中的链接默认行为是：<strong>页面跳转</strong>。<br>
-我个人是不太喜欢这种默认行为，因为极大可能文章还没有读完，只是看到了想了解的内容链接，于是点击进入了新的页面。<br>
-在新的页面又有可能点击更多的链接，进入更多的新的页面，最后想要回到博客文章，要点无数次的后退，<br>
-甚至有可能新的页面点击链接的默认行为是 <strong>打开新标签页</strong>，<br>
+ 框架下，点击文章中的链接默认行为是：<strong>页面跳转</strong>。
+我个人是不太喜欢这种默认行为，因为极大可能文章还没有读完，只是看到了想了解的内容链接，于是点击进入了新的页面。
+在新的页面又有可能点击更多的链接，进入更多的新的页面，最后想要回到博客文章，要点无数次的后退，
+甚至有可能新的页面点击链接的默认行为是 <strong>打开新标签页</strong>，
 然后不小心关掉了最初跳转的页面，导致后退也退不回博客的情况出现 (⊙﹏⊙)</p>
-<p>虽然我知道使用 <strong>鼠标中键点击</strong> 和 <strong>按住 CTRL 键鼠标左键点击</strong> 都可以在新标签页打开链接，<br>
+<p>虽然我知道使用 <strong>鼠标中键点击</strong> 和 <strong>按住 CTRL 键鼠标左键点击</strong> 都可以在新标签页打开链接，
 但这对于我而言，这并非习惯的行为，如果能修改点击链接的默认行为那就更好了。</p>
 <h1 id="解决过程">
 <a class="header-anchor" href="#%e8%a7%a3%e5%86%b3%e8%bf%87%e7%a8%8b"></a>
@@ -235,14 +235,14 @@
     文档
 </a>
 ，找到了它在渲染 <code>Markdown</code> 文章中链接的钩子。</p>
-<p><img src="/images/hugo-link-default-tab/render-link-doc.webp" alt="render-link-doc" title="渲染链接的文档"></p>
+<p><img src="/images/202604/hugo-link-default-tab/render-link-doc.webp" alt="render-link-doc" title="渲染链接的文档"></p>
 <p>文档里提到了链接的各部分组件都传递给了渲染钩子模版，通过调用上下文中的属性可以获取到链接的各部分内容。</p>
 <p>同时，在路径 <code>layouts/_markup/render-link.html</code> 文件里可以创建渲染钩子覆盖掉原始的渲染方式。</p>
 <h1 id="解决方案">
 <a class="header-anchor" href="#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88"></a>
 解决方案
 </h1><p>创建文件 <code>layouts/_markup/render-link.html</code>，写入如下内容：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span>
 </span></span><span class="line"><span class="cl">    <span class="na">href</span><span class="o">=</span><span class="s">&#34;{{ .Destination | safeURL }}&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="err">{{</span> <span class="na">with</span> <span class="err">.</span><span class="na">Title</span> <span class="err">}}</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;{{ . }}&#34;</span><span class="err">{{</span> <span class="na">end</span> <span class="err">}}</span>
 </span></span><span class="line"><span class="cl">    <span class="err">{{</span> <span class="na">if</span> <span class="na">strings</span><span class="err">.</span><span class="na">HasPrefix</span> <span class="err">.</span><span class="na">Destination</span> <span class="err">&#34;</span><span class="na">http</span><span class="err">&#34;</span> <span class="err">}}</span> <span class="na">target</span><span class="o">=</span><span class="s">&#34;_blank&#34;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;noopener noreferrer&#34;</span><span class="err">{{</span> <span class="na">end</span> <span class="err">}}</span>
@@ -442,7 +442,7 @@
     aria-label="Article navigation"
     data-aos="fade-up"
   ><div class="article-nav-link-wrap left"><img
-              data-src="/images/covers/iuno-2.webp"
+              data-src="/images/covers/iuno-1.webp"
               data-sizes="auto"
               alt="从零开始的 Qt 应用开发（2）：布局"
               class="lazyload"
@@ -454,7 +454,7 @@
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">从零开始的 Qt 应用开发（2）：布局</h3>
       </div><div class="article-nav-link-wrap right"><img
-              data-src="/images/covers/iuno-21.webp"
+              data-src="/images/covers/iuno-13.webp"
               data-sizes="auto"
               alt="批量将 PNG 图片转变为 WebP 格式"
               class="lazyload"

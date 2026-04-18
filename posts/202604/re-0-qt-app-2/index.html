@@ -36,7 +36,7 @@
   <meta property="article:author" content="Rujax" />
   <meta property="article:published_time" content="2026-04-12T15:33:17&#43;08:00" />
   <meta property="article:modified_time" content="2026-04-12T15:33:17&#43;08:00" /><meta property="article:tag" content="Qt" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://rujax.github.io/images/iuno-main.webp" />
-<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.e5c0930d45fa6acec1c3c3e7efeb1343294930947071d3b39e9c4df063b5ace0.css" /><link
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.824c1743e3271d037beb241be56e9ffa2ccc7eadcb42259cd9518d8c8af9610b.css" /><link
     rel="preload"
     as="style"
     href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
@@ -427,8 +427,8 @@ main.cpp
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">QApplication</span> <span class="n">a</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">MainWindow</span> <span class="n">w</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">w</span><span class="p">.</span><span class="n">show</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">QCoreApplication</span><span class="o">::</span><span class="n">exec</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">w</span><span class="p">.</span><span class="nf">show</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nc">QCoreApplication</span><span class="p">::</span><span class="nf">exec</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>这里，我们稍作调整，调用 
 <a 
@@ -452,9 +452,9 @@ main.cpp
 </span></span><span class="line"><span class="cl">    <span class="p">...</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">MainWindow</span> <span class="n">w</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">w</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">w</span><span class="p">.</span><span class="n">setMinimumSize</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">w</span><span class="p">.</span><span class="n">show</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">w</span><span class="p">.</span><span class="nf">resize</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">w</span><span class="p">.</span><span class="nf">setMinimumSize</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">w</span><span class="p">.</span><span class="nf">show</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="p">...</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -464,11 +464,11 @@ mainwindow.cpp
 </h2><p>打开 <code>mainwindow.cpp</code> 文件，可以看到如下内容：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;mainwindow.h&#34;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">MainWindow</span><span class="o">::</span><span class="n">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="o">:</span> <span class="n">QMainWindow</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nc">MainWindow</span><span class="p">::</span><span class="nf">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">:</span> <span class="nf">QMainWindow</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">MainWindow</span><span class="o">::~</span><span class="n">MainWindow</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nc">MainWindow</span><span class="p">::</span><span class="nf">~MainWindow</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
 </span></span></code></pre></div><p>稍微调整一下 <code>MainWindow::MainWindow()</code> 构造函数的代码结构并使用 
 <a 
     href="https://doc.qt.io/qt-6/qwidget.html#windowTitle-prop"
@@ -480,9 +480,9 @@ mainwindow.cpp
  方法设置窗口的标题：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="p">...</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">MainWindow</span><span class="o">::</span><span class="n">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">)</span> <span class="o">:</span> <span class="n">QMainWindow</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nc">MainWindow</span><span class="p">::</span><span class="nf">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">)</span> <span class="o">:</span> <span class="nf">QMainWindow</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">setWindowTitle</span><span class="p">(</span><span class="s">&#34;RSSReader&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">setWindowTitle</span><span class="p">(</span><span class="s">&#34;RSSReader&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">...</span>
@@ -498,31 +498,31 @@ mainwindow.cpp
 <a class="header-anchor" href="#mainwindowh"></a>
 mainwindow.h
 </h2><p>打开 <code>mainwindow.h</code> 文件，可以看到如下的内容：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="cp">#ifndef MAINWINDOW_H
-</span></span></span><span class="line"><span class="cl"><span class="cp">#define MAINWINDOW_H
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="cp">#ifndef</span> <span class="cpt">MAINWINDOW_H</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define</span> <span class="cpt">MAINWINDOW_H</span><span class="cp">
 </span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;QMainWindow&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MainWindow</span> <span class="o">:</span> <span class="k">public</span> <span class="n">QMainWindow</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MainWindow</span> <span class="o">:</span> <span class="k">public</span> <span class="nc">QMainWindow</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Q_OBJECT</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="k">explicit</span> <span class="n">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">MainWindow</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">explicit</span> <span class="nf">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span> <span class="o">=</span> <span class="kd">nullptr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">~MainWindow</span><span class="p">()</span> <span class="kd">override</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="cp">#endif </span><span class="c1">// MAINWINDOW_H
 </span></span></span></code></pre></div><p>稍微调整一下代码结构，然后在析构函数 <code>~MainWindow() override;</code> 下方添加 <code>private</code> 类访问修饰符和 <code>_buildUI()</code> 的方法申明。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MainWindow</span> <span class="o">:</span> <span class="k">public</span> <span class="n">QMainWindow</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MainWindow</span> <span class="o">:</span> <span class="k">public</span> <span class="nc">QMainWindow</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Q_OBJECT</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="k">explicit</span> <span class="n">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">MainWindow</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">explicit</span> <span class="nf">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span> <span class="o">=</span> <span class="kd">nullptr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">~MainWindow</span><span class="p">()</span> <span class="kd">override</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">_buildUI</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">_buildUI</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></div>
   <blockquote class="alert-blockquote tip">
@@ -542,11 +542,11 @@ MainWindow::MainWindow()
 </h3><p>在构造函数 <code>MainWindow::MainWindow()</code> 中添加对 <code>_buildUI()</code> 方法的调用。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="p">...</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">MainWindow</span><span class="o">::</span><span class="n">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">)</span> <span class="o">:</span> <span class="n">QMainWindow</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nc">MainWindow</span><span class="p">::</span><span class="nf">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">)</span> <span class="o">:</span> <span class="nf">QMainWindow</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">setWindowTitle</span><span class="p">(</span><span class="s">&#34;RSSReader&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">setWindowTitle</span><span class="p">(</span><span class="s">&#34;RSSReader&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="n">_buildUI</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">_buildUI</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">...</span>
@@ -556,9 +556,9 @@ MainWindow::_buildUI()
 </h3><p>然后在 <code>MainWindow::~MainWindow() = default;</code> 下面添加 <code>_buildUI()</code> 方法实现。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="p">...</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">MainWindow</span><span class="o">::~</span><span class="n">MainWindow</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nc">MainWindow</span><span class="p">::</span><span class="nf">~MainWindow</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">MainWindow</span><span class="o">::</span><span class="n">_buildUI</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nc">MainWindow</span><span class="p">::</span><span class="nf">_buildUI</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -604,21 +604,21 @@ MainWindow::_buildUI()
 </span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">...</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">MainWindow</span><span class="o">::</span><span class="n">_buildUI</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nc">MainWindow</span><span class="p">::</span><span class="nf">_buildUI</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">QHBoxLayout</span> <span class="o">*</span><span class="n">topLayout</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QHBoxLayout</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">QHBoxLayout</span> <span class="o">*</span><span class="n">middleLayout</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QHBoxLayout</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">QHBoxLayout</span> <span class="o">*</span><span class="n">bottomLayout</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QHBoxLayout</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QHBoxLayout</span> <span class="o">*</span><span class="n">topLayout</span> <span class="o">=</span> <span class="kr">new</span> <span class="n">QHBoxLayout</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QHBoxLayout</span> <span class="o">*</span><span class="n">middleLayout</span> <span class="o">=</span> <span class="kr">new</span> <span class="n">QHBoxLayout</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QHBoxLayout</span> <span class="o">*</span><span class="n">bottomLayout</span> <span class="o">=</span> <span class="kr">new</span> <span class="n">QHBoxLayout</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="n">QVBoxLayout</span> <span class="o">*</span><span class="n">mainLayout</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QVBoxLayout</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="n">addLayout</span><span class="p">(</span><span class="n">topLayout</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="n">addLayout</span><span class="p">(</span><span class="n">middleLayout</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="n">addLayout</span><span class="p">(</span><span class="n">bottomLayout</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QVBoxLayout</span> <span class="o">*</span><span class="n">mainLayout</span> <span class="o">=</span> <span class="kr">new</span> <span class="n">QVBoxLayout</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="nf">addLayout</span><span class="p">(</span><span class="n">topLayout</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="nf">addLayout</span><span class="p">(</span><span class="n">middleLayout</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="nf">addLayout</span><span class="p">(</span><span class="n">bottomLayout</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="n">QWidget</span> <span class="o">*</span><span class="n">container</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QWidget</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">container</span><span class="o">-&gt;</span><span class="n">setLayout</span><span class="p">(</span><span class="n">mainLayout</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QWidget</span> <span class="o">*</span><span class="n">container</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QWidget</span><span class="p">(</span><span class="kp">this</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">container</span><span class="o">-&gt;</span><span class="nf">setLayout</span><span class="p">(</span><span class="n">mainLayout</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="n">setCentralWidget</span><span class="p">(</span><span class="n">container</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">setCentralWidget</span><span class="p">(</span><span class="n">container</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>上面的代码最后3行，创建了一个组件并且应用主布局，<br>
 最后通过 
@@ -655,38 +655,38 @@ MainWindow::_buildUI()
 </span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">...</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">MainWindow</span><span class="o">::</span><span class="n">_buildUI</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nc">MainWindow</span><span class="p">::</span><span class="nf">_buildUI</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">QLabel</span> <span class="o">*</span><span class="n">topLabel</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QLabel</span><span class="p">(</span><span class="s">&#34;top&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">topLabel</span><span class="o">-&gt;</span><span class="n">setAlignment</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">AlignCenter</span><span class="p">);</span> <span class="c1">// 设置文本居中
-</span></span></span><span class="line"><span class="cl">    <span class="n">topLabel</span><span class="o">-&gt;</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s">&#34;background-color: Aqua; font-size: 24px&#34;</span><span class="p">);</span> <span class="c1">// 设置文本样式
+</span></span><span class="line"><span class="cl">    <span class="n">QLabel</span> <span class="o">*</span><span class="n">topLabel</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QLabel</span><span class="p">(</span><span class="s">&#34;top&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">topLabel</span><span class="o">-&gt;</span><span class="nf">setAlignment</span><span class="p">(</span><span class="nc">Qt</span><span class="p">::</span><span class="n">AlignCenter</span><span class="p">);</span> <span class="c1">// 设置文本居中
+</span></span></span><span class="line"><span class="cl">    <span class="n">topLabel</span><span class="o">-&gt;</span><span class="nf">setStyleSheet</span><span class="p">(</span><span class="s">&#34;background-color: Aqua; font-size: 24px&#34;</span><span class="p">);</span> <span class="c1">// 设置文本样式
 </span></span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">QHBoxLayout</span> <span class="o">*</span><span class="n">topLayout</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QHBoxLayout</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">topLayout</span><span class="o">-&gt;</span><span class="n">addWidget</span><span class="p">(</span><span class="n">topLabel</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QHBoxLayout</span> <span class="o">*</span><span class="n">topLayout</span> <span class="o">=</span> <span class="kr">new</span> <span class="n">QHBoxLayout</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">topLayout</span><span class="o">-&gt;</span><span class="nf">addWidget</span><span class="p">(</span><span class="n">topLabel</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">QLabel</span> <span class="o">*</span><span class="n">middleLabel</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QLabel</span><span class="p">(</span><span class="s">&#34;middle&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">middleLabel</span><span class="o">-&gt;</span><span class="n">setAlignment</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">AlignCenter</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">middleLabel</span><span class="o">-&gt;</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s">&#34;background-color: Violet; font-size: 24px&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QLabel</span> <span class="o">*</span><span class="n">middleLabel</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QLabel</span><span class="p">(</span><span class="s">&#34;middle&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">middleLabel</span><span class="o">-&gt;</span><span class="nf">setAlignment</span><span class="p">(</span><span class="nc">Qt</span><span class="p">::</span><span class="n">AlignCenter</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">middleLabel</span><span class="o">-&gt;</span><span class="nf">setStyleSheet</span><span class="p">(</span><span class="s">&#34;background-color: Violet; font-size: 24px&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">QHBoxLayout</span> <span class="o">*</span><span class="n">middleLayout</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QHBoxLayout</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">middleLayout</span><span class="o">-&gt;</span><span class="n">addWidget</span><span class="p">(</span><span class="n">middleLabel</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QHBoxLayout</span> <span class="o">*</span><span class="n">middleLayout</span> <span class="o">=</span> <span class="kr">new</span> <span class="n">QHBoxLayout</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">middleLayout</span><span class="o">-&gt;</span><span class="nf">addWidget</span><span class="p">(</span><span class="n">middleLabel</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">QLabel</span> <span class="o">*</span><span class="n">bottomLabel</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QLabel</span><span class="p">(</span><span class="s">&#34;bottom&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">bottomLabel</span><span class="o">-&gt;</span><span class="n">setAlignment</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">AlignCenter</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">bottomLabel</span><span class="o">-&gt;</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s">&#34;background-color: SpringGreen; font-size: 24px&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QLabel</span> <span class="o">*</span><span class="n">bottomLabel</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QLabel</span><span class="p">(</span><span class="s">&#34;bottom&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bottomLabel</span><span class="o">-&gt;</span><span class="nf">setAlignment</span><span class="p">(</span><span class="nc">Qt</span><span class="p">::</span><span class="n">AlignCenter</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bottomLabel</span><span class="o">-&gt;</span><span class="nf">setStyleSheet</span><span class="p">(</span><span class="s">&#34;background-color: SpringGreen; font-size: 24px&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">QHBoxLayout</span> <span class="o">*</span><span class="n">bottomLayout</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QHBoxLayout</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">bottomLayout</span><span class="o">-&gt;</span><span class="n">addWidget</span><span class="p">(</span><span class="n">bottomLabel</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QHBoxLayout</span> <span class="o">*</span><span class="n">bottomLayout</span> <span class="o">=</span> <span class="kr">new</span> <span class="n">QHBoxLayout</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bottomLayout</span><span class="o">-&gt;</span><span class="nf">addWidget</span><span class="p">(</span><span class="n">bottomLabel</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="n">QVBoxLayout</span> <span class="o">*</span><span class="n">mainLayout</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QVBoxLayout</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="n">addLayout</span><span class="p">(</span><span class="n">topLayout</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="n">addLayout</span><span class="p">(</span><span class="n">middleLayout</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="n">addLayout</span><span class="p">(</span><span class="n">bottomLayout</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QVBoxLayout</span> <span class="o">*</span><span class="n">mainLayout</span> <span class="o">=</span> <span class="kr">new</span> <span class="n">QVBoxLayout</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="nf">addLayout</span><span class="p">(</span><span class="n">topLayout</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="nf">addLayout</span><span class="p">(</span><span class="n">middleLayout</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="nf">addLayout</span><span class="p">(</span><span class="n">bottomLayout</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="n">QWidget</span> <span class="o">*</span><span class="n">container</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QWidget</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">container</span><span class="o">-&gt;</span><span class="n">setLayout</span><span class="p">(</span><span class="n">mainLayout</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QWidget</span> <span class="o">*</span><span class="n">container</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QWidget</span><span class="p">(</span><span class="kp">this</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">container</span><span class="o">-&gt;</span><span class="nf">setLayout</span><span class="p">(</span><span class="n">mainLayout</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="n">setCentralWidget</span><span class="p">(</span><span class="n">container</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">setCentralWidget</span><span class="p">(</span><span class="n">container</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>为了更清楚地展示布局效果，标签使用了 
 <a 
@@ -719,17 +719,17 @@ MainWindow::_buildUI()
  方法稍作修改：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="p">...</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">MainWindow</span><span class="o">::</span><span class="n">_buildUI</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nc">MainWindow</span><span class="p">::</span><span class="nf">_buildUI</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="p">...</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">QVBoxLayout</span> <span class="o">*</span><span class="n">mainLayout</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QVBoxLayout</span><span class="p">;</span>
-</span></span><span class="line hl"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="n">setSpacing</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-</span></span><span class="line hl"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QVBoxLayout</span> <span class="o">*</span><span class="n">mainLayout</span> <span class="o">=</span> <span class="kr">new</span> <span class="n">QVBoxLayout</span><span class="p">;</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="nf">setSpacing</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="nf">setContentsMargins</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="n">addLayout</span><span class="p">(</span><span class="n">topLayout</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="n">addLayout</span><span class="p">(</span><span class="n">middleLayout</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="n">addLayout</span><span class="p">(</span><span class="n">bottomLayout</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="nf">addLayout</span><span class="p">(</span><span class="n">topLayout</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="nf">addLayout</span><span class="p">(</span><span class="n">middleLayout</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="nf">addLayout</span><span class="p">(</span><span class="n">bottomLayout</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="p">...</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -815,7 +815,7 @@ MainWindow::_buildUI()
     aria-label="Article navigation"
     data-aos="fade-up"
   ><div class="article-nav-link-wrap left"><img
-              data-src="/images/covers/iuno-2.webp"
+              data-src="/images/covers/iuno-14.webp"
               data-sizes="auto"
               alt="修复 Hugo v0.156.0 后开始废弃的方法警告"
               class="lazyload"
@@ -827,7 +827,7 @@ MainWindow::_buildUI()
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">修复 Hugo v0.156.0 后开始废弃的方法警告</h3>
       </div><div class="article-nav-link-wrap right"><img
-              data-src="/images/covers/iuno-15.webp"
+              data-src="/images/covers/iuno-19.webp"
               data-sizes="auto"
               alt="设置文章中的链接点击默认打开新标签页"
               class="lazyload"

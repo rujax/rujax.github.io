@@ -36,7 +36,7 @@
   <meta property="article:author" content="Rujax" />
   <meta property="article:published_time" content="2026-04-12T15:33:17&#43;08:00" />
   <meta property="article:modified_time" content="2026-04-12T15:33:17&#43;08:00" /><meta property="article:tag" content="Qt" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://rujax.github.io/images/iuno-main.webp" />
-<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.824c1743e3271d037beb241be56e9ffa2ccc7eadcb42259cd9518d8c8af9610b.css" /><link
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.882d55c20b1a2743f93905eeee19f0a018e08bfe453e72b7b9a0782f6928002e.css" /><link
     rel="preload"
     as="style"
     href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
@@ -245,8 +245,8 @@
 <li>尽可能多地展示 Qt 组件的使用</li>
 <li>如果还稍微有一点点实用价值就更好了（笑</li>
 </ol>
-<p>在反反复复提出又推翻无数想法后，无意间瞥到博客首页的 RSS 图标。
-一个想法计上心头：不如，就做一个 RSS 阅读器，阅读我自己的博客文章，也算是一种自产自销了。
+<p>在反反复复提出又推翻无数想法后，无意间瞥到博客首页的 RSS 图标。<br>
+一个想法计上心头：不如，就做一个 RSS 阅读器，阅读我自己的博客文章，也算是一种自产自销了。<br>
 哈哈哈。。。</p>
 <p>心动不如行动，那就开干呗！</p>
 <h1 id="先从主界面原型图开始">
@@ -328,9 +328,9 @@
  文件</li>
 <li>在 Qt Widgets Application 中手搓布局</li>
 </ol>
-<p>我从刚开始接触 Web 前端，再到 iOS 应用开发，再到后面的桌面客户端应用开发，全部都是手搓布局，熟能生巧了。
-我并非推荐手搓布局，也并非不推荐。
-主要还是取决于哪一种方式更加顺手，效率更高。
+<p>我从刚开始接触 Web 前端，再到 iOS 应用开发，再到后面的桌面客户端应用开发，全部都是手搓布局，熟能生巧了。<br>
+我并非推荐手搓布局，也并非不推荐。<br>
+主要还是取决于哪一种方式更加顺手，效率更高。<br>
 建议大家多多尝试后再确定下来最适合自己的方式。</p></p>
   </blockquote>
 
@@ -365,7 +365,7 @@
 <p><img src="/images/202604/re-0-qt-app-2/2-9.webp" alt="2-9" title="创建成功"></p>
 <p>对比一下此时 <strong>文件资源管理器</strong> 里项目文件结构：</p>
 <p><img src="/images/202604/re-0-qt-app-2/2-10.webp" alt="2-10" title="项目文件结构"></p>
-<p>可以看到 <strong>Qt Creator</strong> 中根据文件类型进行了分组，而在 <strong>文件资源管理器</strong> 中并没有分组，
+<p>可以看到 <strong>Qt Creator</strong> 中根据文件类型进行了分组，而在 <strong>文件资源管理器</strong> 中并没有分组，<br>
 多了一个 <strong>.qtcreator</strong> 文件夹存放配置和 <strong>build</strong> 文件夹存放构建项目后的结果。</p>
 <h1 id="正式编码前的准备">
 <a class="header-anchor" href="#%e6%ad%a3%e5%bc%8f%e7%bc%96%e7%a0%81%e5%89%8d%e7%9a%84%e5%87%86%e5%a4%87"></a>
@@ -579,7 +579,7 @@ MainWindow::_buildUI()
 >
     QVBoxLayout
 </a>
- 作为主布局，
+ 作为主布局，<br>
 然后自上而下使用 
 <a 
     href="https://doc.qt.io/qt-6/qboxlayout.html#addLayout"
@@ -620,7 +620,7 @@ MainWindow::_buildUI()
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="nf">setCentralWidget</span><span class="p">(</span><span class="n">container</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>上面的代码最后3行，创建了一个组件并且应用主布局，
+</span></span></code></pre></div><p>上面的代码最后3行，创建了一个组件并且应用主布局，<br>
 最后通过 
 <a 
     href="https://doc.qt.io/qt-6/qmainwindow.html#setCentralWidget"
@@ -630,7 +630,7 @@ MainWindow::_buildUI()
     setCentralWidget
 </a>
  函数设置这个组件为主窗口的中心组件。</p>
-<p>但是，此时启动应用的话，依然只能看到一个空白的窗口。
+<p>但是，此时启动应用的话，依然只能看到一个空白的窗口。<br>
 为了能够看到布局的效果，这里我们通过为每个布局使用 
 <a 
     href="https://doc.qt.io/qt-6/qboxlayout.html#addWidget"
@@ -815,7 +815,7 @@ MainWindow::_buildUI()
     aria-label="Article navigation"
     data-aos="fade-up"
   ><div class="article-nav-link-wrap left"><img
-              data-src="/images/covers/posts/iuno-1.webp"
+              data-src="/images/covers/posts/iuno-7.webp"
               data-sizes="auto"
               alt="修复 Hugo v0.156.0 后开始废弃的方法警告"
               class="lazyload"
@@ -827,7 +827,7 @@ MainWindow::_buildUI()
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">修复 Hugo v0.156.0 后开始废弃的方法警告</h3>
       </div><div class="article-nav-link-wrap right"><img
-              data-src="/images/covers/posts/iuno-19.webp"
+              data-src="/images/covers/posts/iuno-16.webp"
               data-sizes="auto"
               alt="设置文章中的链接点击默认打开新标签页"
               class="lazyload"

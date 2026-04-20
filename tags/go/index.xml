@@ -64,7 +64,7 @@
 >
     https://discourse.gohugo.io/t/56732
 </a>
-.
+.<br>
 WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed in a future release. Use hugo.Data instead.</p>
         
         <hr><p>本文2026-04-08首发于<a href='https://rujax.github.io/'>Rujax's blog</a>，最后修改于2026-04-19</p>]]>

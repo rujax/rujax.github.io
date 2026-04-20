@@ -1,0 +1,2270 @@
+<!doctype html>
+<html
+  lang="zh-CN"
+  data-theme-mode="auto"
+  >
+  <head><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  从零开始的 Qt 应用开发（3）：UI | Rujax
+</title>
+<meta name="description" content="从零开始，开发一个基于 Qt6 的简单应用"/>
+    <meta name="keywords" content="Qt,应用,开发,UI" /><script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"https://rujax.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (⊙…⊙)\",\"zh-cn\":\"复制失败 (⊙…⊙)\"},\"success\":{\"en\":\"Copy successfully (★^O^★)\",\"zh-cn\":\"复制成功 (★^O^★)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_a0oqhord1y\",\"outdate\":{\"daysago\":180,\"enable\":true,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\"}}}");
+  
+</script>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><link rel="stylesheet" href="/css/loader.min.065aed82b24a386b4876c1b25a82897328b7a31ce3248eafdd8df0b1bf6548fc.css" /><meta property="og:type" content="website" />
+  <meta property="og:title" content="从零开始的 Qt 应用开发（3）：UI | Rujax" />
+  <meta
+    property="og:description"
+    content="从零开始，开发一个基于 Qt6 的简单应用"
+  />
+  <meta property="og:url" content="https://rujax.github.io/posts/202604/re-0-qt-app-3/" />
+  <meta
+    property="og:site_name"
+    content="Rujax&#39;s blog"
+  />
+  <meta property="og:image" content="https://rujax.github.io/images/iuno-main.webp" />
+  <meta property="article:author" content="Rujax" />
+  <meta property="article:published_time" content="2026-04-19T13:37:20&#43;08:00" />
+  <meta property="article:modified_time" content="2026-04-19T13:37:20&#43;08:00" /><meta property="article:tag" content="Qt, Git" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://rujax.github.io/images/iuno-main.webp" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.882d55c20b1a2743f93905eeee19f0a018e08bfe453e72b7b9a0782f6928002e.css" /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    
+    
+    
+    
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/></head>
+  <body><div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate"><img src="/images/iuno-circle.webp" alt="loading" /></div><div class="loading-word">预见未来中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/"><div class='main-nav-icon icon '><img src="/images/lunar.webp" alt="home icon" class="" style="height: 1em;"></div><span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/archives"><div class='main-nav-icon icon '><img src="/images/lunar.webp" alt="archives icon" class="" style="height: 1em;"></div><span class="main-nav-link">归档</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"></nav></div>
+<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/iuno-main.webp" alt="从零开始的 Qt 应用开发（3）：UI"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">从零开始的 Qt 应用开发（3）：UI</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          class="sidebar-left"
+            ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ol>
+    <li><a href="#开始之前">开始之前</a>
+      <ol>
+        <li><a href="#git">Git</a>
+          <ol>
+            <li><a href="#下载">下载</a></li>
+            <li><a href="#安装">安装</a>
+              <ol>
+                <li><a href="#1-information">1. Information</a></li>
+                <li><a href="#2-select-destination-location">2. Select Destination Location</a></li>
+                <li><a href="#3-select-components">3. Select Components</a></li>
+                <li><a href="#4-select-start-menu-folder">4. Select Start Menu Folder</a></li>
+                <li><a href="#5-choosing-the-default-editor-used-by-git">5. Choosing the default editor used by Git</a></li>
+                <li><a href="#6-adjusting-the-name-of-the-initial-branch-in-new-repositories">6. Adjusting the name of the initial branch in new repositories</a></li>
+                <li><a href="#7-adjusting-your-path-environment">7. Adjusting your PATH environment</a></li>
+                <li><a href="#8-choosing-the-ssh-executable">8. Choosing the SSH executable</a></li>
+                <li><a href="#9-choosing-https-transport-backend">9. Choosing HTTPS transport backend</a></li>
+                <li><a href="#10-configuring-the-line-ending-conversion">10. Configuring the line ending conversion</a></li>
+                <li><a href="#11-configuring-the-terminal-emulator-to-use-with-git-bash">11. Configuring the terminal emulator to use with Git Bash</a></li>
+                <li><a href="#12-choose-the-default-behavior-of-git-pull">12. Choose the default behavior of git pull</a></li>
+                <li><a href="#13-choose-a-credential-helper">13. Choose a credential helper</a></li>
+                <li><a href="#14-configuring-extra-options">14. Configuring extra options</a></li>
+                <li><a href="#15-installing-and-finished">15. Installing and Finished</a></li>
+              </ol>
+            </li>
+            <li><a href="#初始化">初始化</a></li>
+            <li><a href="#查看文件状态">查看文件状态</a></li>
+            <li><a href="#gitignore-文件">.gitignore 文件</a></li>
+            <li><a href="#添加文件">添加文件</a></li>
+            <li><a href="#提交文件">提交文件</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#搭建-ui">搭建 UI</a>
+      <ol>
+        <li><a href="#改造顶部布局">改造顶部布局</a></li>
+        <li><a href="#改造底部布局">改造底部布局</a>
+          <ol>
+            <li><a href="#改造前的准备">改造前的准备</a>
+              <ol>
+                <li><a href="#获取版本号">获取版本号</a></li>
+                <li><a href="#添加图标">添加图标</a></li>
+              </ol>
+            </li>
+            <li><a href="#继续改造底部布局">继续改造底部布局</a></li>
+          </ol>
+        </li>
+        <li><a href="#改造中间布局">改造中间布局</a></li>
+      </ol>
+    </li>
+    <li><a href="#结语">结语</a></li>
+  </ol>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.webp"
+    data-sizes="auto"
+    alt="Rujax"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">Rujax</div>
+  <div class="sidebar-description">来，捕获月亮吧~</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">6</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      2
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">8</div>
+  </a>
+</div>
+<div class="sidebar-social" ><div class="icon-github sidebar-social-icon">
+        <a
+          href="https://github.com/rujax"
+          itemprop="url"
+          target="_blank"
+          aria-label="github"
+          rel="noopener nofollow noreferrer"
+        ></a>
+      </div></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon '><img src="/images/lunar.webp" alt="home icon" class="" style="height: 1em;"></div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '><img src="/images/lunar.webp" alt="archives icon" class="" style="height: 1em;"></div><div class="sidebar-menu-link">归档</div>
+    </div></div></div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2026-04-19 13:37:20 &#43;0800 CST" itemprop="datePublished"
+      >2026-04-19</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2026-04-19</time
+    >
+  </span></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote
+          class="alert-blockquote warning"
+          id="outdate-blockquote"
+          style="display: none;"
+        >
+          <p class="alert-heading">WARNING</p>
+          <p></p>
+        </blockquote><h1 id="开始之前">
+<a class="header-anchor" href="#%e5%bc%80%e5%a7%8b%e4%b9%8b%e5%89%8d"></a>
+开始之前
+</h1><p>在今天的 <code>Qt</code> 应用开发开始之前，先简单介绍一下版本控制系统工具 
+<a 
+    href="https://git-scm.com/"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    Git
+</a>
+。</p>
+<h2 id="git">
+<a class="header-anchor" href="#git"></a>
+Git
+</h2><h3 id="下载">
+<a class="header-anchor" href="#%e4%b8%8b%e8%bd%bd"></a>
+下载
+</h3><p>打开 <code>Git</code> 的
+<a 
+    href="https://git-scm.com/install/windows"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    安装页面
+</a>
+，点击 <code>Click here to download</code> 即可下载当前最新版本的独立安装程序。</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-1.webp" alt="3-1" title="下载 Git"></p>
+
+  <blockquote class="alert-blockquote tip">
+    <p class="alert-heading">
+      Tip
+    </p>
+    <p><p>也可以根据自己电脑使用的 <strong>CPU</strong> 指令集点击 <strong>Portable</strong> 下方的链接下载自解压便携版本的 <strong>Git</strong>。</p></p>
+  </blockquote>
+
+<h3 id="安装">
+<a class="header-anchor" href="#%e5%ae%89%e8%a3%85"></a>
+安装
+</h3><h4 id="1-information">
+<a class="header-anchor" href="#1-information"></a>
+1. Information
+</h4><p>打开安装程序：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-2.webp" alt="3-2" title="Information"></p>
+<h4 id="2-select-destination-location">
+<a class="header-anchor" href="#2-select-destination-location"></a>
+2. Select Destination Location
+</h4><p>修改安装目录：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-3.webp" alt="3-3" title="Select Destination Location"></p>
+<h4 id="3-select-components">
+<a class="header-anchor" href="#3-select-components"></a>
+3. Select Components
+</h4><p>选择需要安装的组件：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-4.webp" alt="3-4" title="Select Components"></p>
+<h4 id="4-select-start-menu-folder">
+<a class="header-anchor" href="#4-select-start-menu-folder"></a>
+4. Select Start Menu Folder
+</h4><p>创建开始菜单（不想创建的话，勾选左下角 <code>Don't create a Start Menu folder</code>）：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-5.webp" alt="3-5" title="Select Start Menu Folder"></p>
+<h4 id="5-choosing-the-default-editor-used-by-git">
+<a class="header-anchor" href="#5-choosing-the-default-editor-used-by-git"></a>
+5. Choosing the default editor used by Git
+</h4><p>为 <code>Git</code> 选择默认编辑器：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-6.webp" alt="3-6" title="Choosing the default editor used by Git"></p>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><p>因为历史原因，目前默认选项依然是 
+<a 
+    href="https://www.vim.org/"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    Vim
+</a>
+ 作为默认编辑器。<br>
+根据自己的喜好设置，例如：
+<a 
+    href="https://code.visualstudio.com/"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    Visual Studio Code
+</a>
+。</p></p>
+  </blockquote>
+
+<h4 id="6-adjusting-the-name-of-the-initial-branch-in-new-repositories">
+<a class="header-anchor" href="#6-adjusting-the-name-of-the-initial-branch-in-new-repositories"></a>
+6. Adjusting the name of the initial branch in new repositories
+</h4><p>设置创建新仓库时的初始分支名称，当前默认是：<code>master</code>。<br>
+建议勾选下面的选项 <code>Override the default branch name for new repositories</code>，填入 <code>main</code>：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-7.webp" alt="3-7" title="Adjusting the name of the initial branch in new repositories"></p>
+<h4 id="7-adjusting-your-path-environment">
+<a class="header-anchor" href="#7-adjusting-your-path-environment"></a>
+7. Adjusting your PATH environment
+</h4><p>调整环境变量，使用推荐的第<strong>2</strong>项，允许在第三方软件和命令行中使用 <code>Git</code>。</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-8.webp" alt="3-8" title="Adjusting your PATH environment"></p>
+<h4 id="8-choosing-the-ssh-executable">
+<a class="header-anchor" href="#8-choosing-the-ssh-executable"></a>
+8. Choosing the SSH executable
+</h4><p>使用安装程序附带的 <code>ssh.exe</code>：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-9.webp" alt="3-9" title="Choosing the SSH executable"></p>
+<h4 id="9-choosing-https-transport-backend">
+<a class="header-anchor" href="#9-choosing-https-transport-backend"></a>
+9. Choosing HTTPS transport backend
+</h4><p>使用 <code>Git</code> 自带的 <code>ca-bundle.crt</code> 证书：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-10.webp" alt="3-10" title="Choosing HTTPS transport backend"></p>
+<h4 id="10-configuring-the-line-ending-conversion">
+<a class="header-anchor" href="#10-configuring-the-line-ending-conversion"></a>
+10. Configuring the line ending conversion
+</h4><p>换行符转换设置，使用第<strong>1</strong>项推荐设置即可：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-11.webp" alt="3-11" title="Configuring the line ending conversion"></p>
+<h4 id="11-configuring-the-terminal-emulator-to-use-with-git-bash">
+<a class="header-anchor" href="#11-configuring-the-terminal-emulator-to-use-with-git-bash"></a>
+11. Configuring the terminal emulator to use with Git Bash
+</h4><p>指定使用 <code>Git Bash</code> 的终端，选择默认即可：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-12.webp" alt="3-12" title="Configuring the terminal emulator to use with Git Bash"></p>
+<h4 id="12-choose-the-default-behavior-of-git-pull">
+<a class="header-anchor" href="#12-choose-the-default-behavior-of-git-pull"></a>
+12. Choose the default behavior of git pull
+</h4><p>拉取代码时的默认行为，使用第<strong>1</strong>项：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-13.webp" alt="3-13" title="Choose the default behavior of git pull"></p>
+<h4 id="13-choose-a-credential-helper">
+<a class="header-anchor" href="#13-choose-a-credential-helper"></a>
+13. Choose a credential helper
+</h4><p>凭据管理使用 <code>Git</code> 默认的即可：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-14.webp" alt="3-14" title="Choose a credential helper"></p>
+<h4 id="14-configuring-extra-options">
+<a class="header-anchor" href="#14-configuring-extra-options"></a>
+14. Configuring extra options
+</h4><p>额外选项只勾选第<strong>1</strong>项 <code>Enable file system caching</code>：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-15.webp" alt="3-15" title="Configuring extra options"></p>
+<h4 id="15-installing-and-finished">
+<a class="header-anchor" href="#15-installing-and-finished"></a>
+15. Installing and Finished
+</h4><div class="gallery-wall" id="photoWall-59da0bda4"></div>
+<script>
+  (function() {
+    const imageUrls = JSON.parse("[\"/images/202604/re-0-qt-app-3/3-16.webp\",\"/images/202604/re-0-qt-app-3/3-17.webp\"]");
+    let images = [];
+    const wallId = '#photoWall-59da0bda4';
+    let resizeTimer;
+    let lastWidth = 0;
+    
+    function init() {
+      createInitialDOM();
+      loadImages();
+      const wall = _$(wallId);
+      if (wall && window.ResizeObserver) {
+        const observer = new ResizeObserver((entries) => {
+          const newWidth = entries[0].contentRect.width;
+          if (Math.abs(newWidth - lastWidth) > 1) {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(renderPhotoWall, 250);
+          }
+        });
+        observer.observe(wall);
+      } else {
+        window.addEventListener('resize', handleResize);
+      }
+    }
+    
+    function createInitialDOM() {
+      const wall = _$(wallId);
+      if (!wall || !imageUrls.length) return;
+      
+      wall.style.opacity = '0';
+      wall.style.pointerEvents = 'none';
+      
+      imageUrls.forEach((url) => {
+        images.push({
+          width: 800,
+          height: 600,
+          aspectRatio: 4/3,
+          url: url,
+          loaded: false
+        });
+      });
+      
+      renderPhotoWall();
+    }
+    
+    function loadImages() {
+      const loadPromises = imageUrls.map((url, index) => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = () => {
+            if (images[index]) {
+              images[index].width = img.naturalWidth;
+              images[index].height = img.naturalHeight;
+              images[index].aspectRatio = img.naturalWidth / img.naturalHeight;
+              images[index].loaded = true;
+            }
+            resolve();
+          };
+          img.onerror = () => {
+            if (images[index]) {
+              images[index].loaded = true;
+            }
+            resolve();
+          };
+          img.src = url;
+        });
+      });
+      
+      Promise.all(loadPromises)
+        .then(() => {
+          const wall = _$(wallId);
+          if (wall) {
+            wall.style.opacity = '1';
+            wall.style.pointerEvents = 'auto';
+            wall.style.transition = 'opacity 0.3s ease';
+          }
+          renderPhotoWall();
+        })
+        .catch((error) => console.error("图片加载失败:", error));
+    }
+    
+    function renderPhotoWall() {
+      const wall = _$(wallId);
+      
+      if (!images.length || !wall) return;
+      
+      const screenWidth = wall.offsetWidth || window.innerWidth - 40;
+      lastWidth = screenWidth;
+      
+      wall.innerHTML = "";
+      const rowHeight = 200;
+      const gap = 10;
+      const maxPerRow = 4;
+      
+      let row = [];
+      let rowWidth = 0;
+      const rows = [];
+      
+      images.forEach((img) => {
+        const scaledWidth = rowHeight * img.aspectRatio;
+        
+        if (rowWidth + scaledWidth <= screenWidth && row.length < maxPerRow) {
+          row.push(img);
+          rowWidth += scaledWidth + gap;
+        } else {
+          if (row.length) rows.push(row);
+          row = [img];
+          rowWidth = scaledWidth + gap;
+        }
+      });
+      
+      if (row.length) rows.push(row);
+      
+      rows.forEach((row) => {
+        const rowDiv = document.createElement("div");
+        rowDiv.style.cssText = `display: flex; gap: ${gap}px; width: 100%`;
+        
+        row.forEach((img) => {
+          const item = document.createElement("div");
+          item.className = "photo-item";
+          const flex = row.length === 1 ? '1' : img.aspectRatio;
+          item.style.cssText = `flex: ${flex}; height: ${rowHeight}px`;
+          
+          const imgEl = document.createElement("img");
+          imgEl.alt = "Gallery Image";
+          imgEl.style.cssText = "width: 100%; height: 100%; object-fit: cover";
+          imgEl.className = "lazyload";
+          imgEl.dataset.src = img.url;
+          imgEl.dataset.sizes = "auto";
+
+          const link = document.createElement("a");
+          link.href = img.url;
+          link.dataset.pswpWidth = img.width;
+          link.dataset.pswpHeight = img.height;
+          link.target = "_blank";
+          link.className = "article-gallery-item";
+          link.style.cssText = "width: 100%; height: 100%";
+          link.appendChild(imgEl);
+          
+          item.appendChild(link);
+          rowDiv.appendChild(item);
+        });
+        
+        wall.appendChild(rowDiv);
+      });
+    }
+    
+    function handleResize() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(renderPhotoWall, 250);
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script><link rel="preload" as="style" href="/css/gallery.min.43b19c254fc1e9d2fcbf30d14544d5c92d1d0ab4dc7a4ba35042649d6f36d6e3.css" onload="this.onload=null;this.rel='stylesheet'" />
+<p>安装完成 (｡･∀･)ﾉﾞ</p>
+
+  <blockquote class="alert-blockquote important">
+    <p class="alert-heading">
+      Important
+    </p>
+    <p><p>本文的重点并不是 Git 安装，因此只简单过一遍安装流程，没有解释的安装选项，请自行查阅。</p></p>
+  </blockquote>
+
+<h3 id="初始化">
+<a class="header-anchor" href="#%e5%88%9d%e5%a7%8b%e5%8c%96"></a>
+初始化
+</h3><p>打开上一篇创建的应用 <code>RSSReader</code> 文件夹，右键选择 <code>Open Git Bash here</code>：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-18.webp" alt="3-18" title="Open Git Bash here"></p>
+
+  <blockquote class="alert-blockquote tip">
+    <p class="alert-heading">
+      Tip
+    </p>
+    <p><p>也可以使用其他终端软件，比如我正在使用的 
+<a 
+    href="https://cmder.app/"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    cmder
+</a>
+。</p></p>
+  </blockquote>
+
+<p>输入命令 
+<a 
+    href="https://git-scm.com/docs/git-init"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    git init
+</a>
+ 执行后，创建 <code>.git</code> 文件夹：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-19.webp" alt="3-19" title="git init"></p>
+<h3 id="查看文件状态">
+<a class="header-anchor" href="#%e6%9f%a5%e7%9c%8b%e6%96%87%e4%bb%b6%e7%8a%b6%e6%80%81"></a>
+查看文件状态
+</h3><p>输入命令 
+<a 
+    href="https://git-scm.com/docs/git-status"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    git status
+</a>
+ 执行后，查看当前文件状态：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-20.webp" alt="3-20" title="git status"></p>
+<h3 id="gitignore-文件">
+<a class="header-anchor" href="#gitignore-%e6%96%87%e4%bb%b6"></a>
+.gitignore 文件
+</h3><p>新增文件名为 
+<a 
+    href="https://git-scm.com/docs/gitignore"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    .gitignore
+</a>
+ 的文件，填入以下内容，<br>
+用来标记不希望被跟踪提交的内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">.qtcreator/
+</span></span><span class="line"><span class="cl">build
+</span></span></code></pre></div><p>再次执行 <code>git status</code> 后，可以看到之前列出的 <code>.qtcreator/</code> 和 <code>build/</code> 文件夹已经被忽略了：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-21.webp" alt="3-21" title="git status after .gitignore"></p>
+<h3 id="添加文件">
+<a class="header-anchor" href="#%e6%b7%bb%e5%8a%a0%e6%96%87%e4%bb%b6"></a>
+添加文件
+</h3><p>输入命令 
+<a 
+    href="https://git-scm.com/docs/git-add"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    git add .
+</a>
+ 或者使用 <code>git add &lt;file name&gt;</code> 依次添加需要提交的文件：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-22.webp" alt="3-22" title="git add"></p>
+<p>再次执行 <code>git status</code> 后，可以看到之前未被跟踪的文件已经被列为新文件，等待被提交。</p>
+<h3 id="提交文件">
+<a class="header-anchor" href="#%e6%8f%90%e4%ba%a4%e6%96%87%e4%bb%b6"></a>
+提交文件
+</h3><p>输入命令 
+<a 
+    href="https://git-scm.com/docs/git-commit"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    git commit -m &lt;message&gt;
+</a>
+ 提交文件到本地仓库：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-23.webp" alt="3-23" title="git commit"></p>
+<p>再次执行 <code>git status</code> 后，可以看到目前工作树是干净的，没有文件需要被提交。</p>
+<p>至此，上一篇的代码已经成功提交，开始今天的 <code>Qt</code> 应用开发吧！</p>
+<h1 id="搭建-ui">
+<a class="header-anchor" href="#%e6%90%ad%e5%bb%ba-ui"></a>
+搭建 UI
+</h1><h2 id="改造顶部布局">
+<a class="header-anchor" href="#%e6%94%b9%e9%80%a0%e9%a1%b6%e9%83%a8%e5%b8%83%e5%b1%80"></a>
+改造顶部布局
+</h2><p>首先打开 <code>mainwindow.h</code> 文件，在 <code>private</code> 下添加单行编辑控件 
+<a 
+    href="https://doc.qt.io/qt-6/qlineedit.html"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    QLineEdit
+</a>
+ 和按钮控件 
+<a 
+    href="https://doc.qt.io/qt-6/qpushbutton.html"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    QPushButton
+</a>
+：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QLineEdit</span> <span class="o">*</span><span class="n">_feedEdit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QPushButton</span> <span class="o">*</span><span class="n">_subscribeButton</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span></code></pre></div><p>添加后，编辑器会提示这2个类型是未知的。<br>
+在文件顶部添加这2个类的声明即可。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;QMainWindow&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 新增
+</span></span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">QLineEdit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">QPushButton</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MainWindow</span> <span class="o">:</span> <span class="k">public</span> <span class="nc">QMainWindow</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span></code></pre></div><p>接着打开 <code>mainwindow.cpp</code> 文件，在文件顶部添加上述2个控件的库 <code>#include</code> 之后，在 <code>_buildUI()</code> 方法中做如下调整：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;QBoxLayout&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;QLabel&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 新增
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;QLineEdit&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;QPushButton&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nc">MainWindow</span><span class="p">::</span><span class="nf">_buildUI</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 调整前
+</span></span></span><span class="line"><span class="cl">    <span class="n">QLabel</span> <span class="o">*</span><span class="n">topLabel</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QLabel</span><span class="p">(</span><span class="s">&#34;top&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">topLabel</span><span class="o">-&gt;</span><span class="nf">setAlignment</span><span class="p">(</span><span class="nc">Qt</span><span class="p">::</span><span class="n">AlignCenter</span><span class="p">);</span> <span class="c1">// 设置文本居中
+</span></span></span><span class="line"><span class="cl">    <span class="n">topLabel</span><span class="o">-&gt;</span><span class="nf">setStyleSheet</span><span class="p">(</span><span class="s">&#34;background-color: Aqua; font-size: 24px&#34;</span><span class="p">);</span> <span class="c1">// 设置文本样式
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">QHBoxLayout</span> <span class="o">*</span><span class="n">topLayout</span> <span class="o">=</span> <span class="kr">new</span> <span class="n">QHBoxLayout</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">topLayout</span><span class="o">-&gt;</span><span class="nf">addWidget</span><span class="p">(</span><span class="n">topLabel</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 调整后
+</span></span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">spacing</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">_feedEdit</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QLineEdit</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_feedEdit</span><span class="o">-&gt;</span><span class="nf">setPlaceholderText</span><span class="p">(</span><span class="s">&#34;请输入 RSS 链接&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">_subscribeButton</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QPushButton</span><span class="p">(</span><span class="s">&#34;订阅&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">QHBoxLayout</span> <span class="o">*</span><span class="n">subscribeLayout</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QHBoxLayout</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">subscribeLayout</span><span class="o">-&gt;</span><span class="nf">setSpacing</span><span class="p">(</span><span class="n">spacing</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">subscribeLayout</span><span class="o">-&gt;</span><span class="nf">setContentsMargins</span><span class="p">(</span><span class="n">spacing</span><span class="p">,</span> <span class="n">spacing</span><span class="p">,</span> <span class="n">spacing</span><span class="p">,</span> <span class="n">spacing</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">subscribeLayout</span><span class="o">-&gt;</span><span class="nf">addWidget</span><span class="p">(</span><span class="n">_feedEdit</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">subscribeLayout</span><span class="o">-&gt;</span><span class="nf">addWidget</span><span class="p">(</span><span class="n">_subscribeButton</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 调整前
+</span></span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="nf">addLayout</span><span class="p">(</span><span class="n">topLayout</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 调整后
+</span></span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="nf">addLayout</span><span class="p">(</span><span class="n">subscribeLayout</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span></code></pre></div><p>简单描述下代码：</p>
+<ol>
+<li>初始化间距变量 <code>spacing</code> 并设置 <code>20</code></li>
+<li>初始化单行编辑控件 <code>_feedEdit</code>，并调用方法 
+<a 
+    href="https://doc.qt.io/qt-6/qlineedit.html#placeholderText-prop"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    setPlaceholderText()
+</a>
+ 设置占位文本</li>
+<li>初始化按钮控件 <code>_subscribeButton</code> 并设置文本</li>
+<li>初始化水平盒布局 <code>subscribeLayout</code>
+<ul>
+<li>调用方法 
+<a 
+    href="https://doc.qt.io/qt-6/qboxlayout.html#setSpacing"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    setSpacing()
+</a>
+ 设置组件间的间距</li>
+<li>调用方法 
+<a 
+    href="https://doc.qt.io/qt-6/qlayout.html#setContentsMargins"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    setContentsMargins
+</a>
+ 设置内容到布局四个边的边距</li>
+</ul>
+</li>
+<li>将 <code>2</code>、<code>3</code> 创建的组件添加到 <code>4</code> 的布局中</li>
+<li>在主布局 <code>mainLayout</code> 中添加布局 <code>subscribeLayout</code></li>
+</ol>
+<p>运行应用，可以看到如下的窗口：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-24.webp" alt="3-24" title="改造顶部布局"></p>
+<h2 id="改造底部布局">
+<a class="header-anchor" href="#%e6%94%b9%e9%80%a0%e5%ba%95%e9%83%a8%e5%b8%83%e5%b1%80"></a>
+改造底部布局
+</h2><h3 id="改造前的准备">
+<a class="header-anchor" href="#%e6%94%b9%e9%80%a0%e5%89%8d%e7%9a%84%e5%87%86%e5%a4%87"></a>
+改造前的准备
+</h3><p>调整代码之前，还需要做一些准备：</p>
+<ol>
+<li>在代码中获取到应用的版本号</li>
+<li>添加设置按钮的图标</li>
+</ol>
+<p>先做第1点。</p>
+<h4 id="获取版本号">
+<a class="header-anchor" href="#%e8%8e%b7%e5%8f%96%e7%89%88%e6%9c%ac%e5%8f%b7"></a>
+获取版本号
+</h4><p>在左侧文件结构右键 <code>RSSReader</code> 后点击 <code>添加新文件</code>，依次选择 <code>概要</code> → <code>Empty File</code> 后点击 <strong>选择</strong>：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-25.webp" alt="3-25" title="获取版本号 1"></p>
+<p>在新弹窗中填写文件名 <code>project.h.in</code> 后点击 <strong>下一步</strong> 后再点击完成，完成文件创建：</p>
+<div class="gallery-wall" id="photoWall-baebc845c"></div>
+<script>
+  (function() {
+    const imageUrls = JSON.parse("[\"/images/202604/re-0-qt-app-3/3-26.webp\",\"/images/202604/re-0-qt-app-3/3-27.webp\"]");
+    let images = [];
+    const wallId = '#photoWall-baebc845c';
+    let resizeTimer;
+    let lastWidth = 0;
+    
+    function init() {
+      createInitialDOM();
+      loadImages();
+      const wall = _$(wallId);
+      if (wall && window.ResizeObserver) {
+        const observer = new ResizeObserver((entries) => {
+          const newWidth = entries[0].contentRect.width;
+          if (Math.abs(newWidth - lastWidth) > 1) {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(renderPhotoWall, 250);
+          }
+        });
+        observer.observe(wall);
+      } else {
+        window.addEventListener('resize', handleResize);
+      }
+    }
+    
+    function createInitialDOM() {
+      const wall = _$(wallId);
+      if (!wall || !imageUrls.length) return;
+      
+      wall.style.opacity = '0';
+      wall.style.pointerEvents = 'none';
+      
+      imageUrls.forEach((url) => {
+        images.push({
+          width: 800,
+          height: 600,
+          aspectRatio: 4/3,
+          url: url,
+          loaded: false
+        });
+      });
+      
+      renderPhotoWall();
+    }
+    
+    function loadImages() {
+      const loadPromises = imageUrls.map((url, index) => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = () => {
+            if (images[index]) {
+              images[index].width = img.naturalWidth;
+              images[index].height = img.naturalHeight;
+              images[index].aspectRatio = img.naturalWidth / img.naturalHeight;
+              images[index].loaded = true;
+            }
+            resolve();
+          };
+          img.onerror = () => {
+            if (images[index]) {
+              images[index].loaded = true;
+            }
+            resolve();
+          };
+          img.src = url;
+        });
+      });
+      
+      Promise.all(loadPromises)
+        .then(() => {
+          const wall = _$(wallId);
+          if (wall) {
+            wall.style.opacity = '1';
+            wall.style.pointerEvents = 'auto';
+            wall.style.transition = 'opacity 0.3s ease';
+          }
+          renderPhotoWall();
+        })
+        .catch((error) => console.error("图片加载失败:", error));
+    }
+    
+    function renderPhotoWall() {
+      const wall = _$(wallId);
+      
+      if (!images.length || !wall) return;
+      
+      const screenWidth = wall.offsetWidth || window.innerWidth - 40;
+      lastWidth = screenWidth;
+      
+      wall.innerHTML = "";
+      const rowHeight = 200;
+      const gap = 10;
+      const maxPerRow = 4;
+      
+      let row = [];
+      let rowWidth = 0;
+      const rows = [];
+      
+      images.forEach((img) => {
+        const scaledWidth = rowHeight * img.aspectRatio;
+        
+        if (rowWidth + scaledWidth <= screenWidth && row.length < maxPerRow) {
+          row.push(img);
+          rowWidth += scaledWidth + gap;
+        } else {
+          if (row.length) rows.push(row);
+          row = [img];
+          rowWidth = scaledWidth + gap;
+        }
+      });
+      
+      if (row.length) rows.push(row);
+      
+      rows.forEach((row) => {
+        const rowDiv = document.createElement("div");
+        rowDiv.style.cssText = `display: flex; gap: ${gap}px; width: 100%`;
+        
+        row.forEach((img) => {
+          const item = document.createElement("div");
+          item.className = "photo-item";
+          const flex = row.length === 1 ? '1' : img.aspectRatio;
+          item.style.cssText = `flex: ${flex}; height: ${rowHeight}px`;
+          
+          const imgEl = document.createElement("img");
+          imgEl.alt = "Gallery Image";
+          imgEl.style.cssText = "width: 100%; height: 100%; object-fit: cover";
+          imgEl.className = "lazyload";
+          imgEl.dataset.src = img.url;
+          imgEl.dataset.sizes = "auto";
+
+          const link = document.createElement("a");
+          link.href = img.url;
+          link.dataset.pswpWidth = img.width;
+          link.dataset.pswpHeight = img.height;
+          link.target = "_blank";
+          link.className = "article-gallery-item";
+          link.style.cssText = "width: 100%; height: 100%";
+          link.appendChild(imgEl);
+          
+          item.appendChild(link);
+          rowDiv.appendChild(item);
+        });
+        
+        wall.appendChild(rowDiv);
+      });
+    }
+    
+    function handleResize() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(renderPhotoWall, 250);
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script><link rel="preload" as="style" href="/css/gallery.min.43b19c254fc1e9d2fcbf30d14544d5c92d1d0ab4dc7a4ba35042649d6f36d6e3.css" onload="this.onload=null;this.rel='stylesheet'" />
+<p>接下来打开 <code>CMakeLists.txt</code> 文件，做如下调整：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cmake" data-lang="cmake"><span class="line"><span class="cl"><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">3.19</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="nb">project</span><span class="p">(</span><span class="s">RSSReader</span> <span class="s">VERSION</span> <span class="s">0.0.1</span> <span class="s">LANGUAGES</span> <span class="s">CXX</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 新增
+</span></span></span><span class="line"><span class="cl"><span class="nb">configure_file</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">project.h.in</span> <span class="c"># 输入文件
+</span></span></span><span class="line"><span class="cl">    <span class="s">project.h</span>    <span class="c"># 输出文件
+</span></span></span><span class="line"><span class="cl">    <span class="s">@ONLY</span>        <span class="c"># 仅替换 @VAR@ 形式的变量
+</span></span></span><span class="line"><span class="cl"><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">...
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="nb">set</span><span class="p">(</span><span class="s">HEADERS</span>
+</span></span><span class="line"><span class="cl">    <span class="s">mainwindow.h</span>
+</span></span><span class="line"><span class="cl">    <span class="s">project.h</span> <span class="c"># 新增
+</span></span></span><span class="line"><span class="cl"><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="nb">qt_add_executable</span><span class="p">(</span><span class="s">RSSReader</span>
+</span></span><span class="line"><span class="cl">    <span class="s">WIN32</span> <span class="s">MACOSX_BUNDLE</span>
+</span></span><span class="line"><span class="cl">    <span class="o">${</span><span class="nv">SOURCES</span><span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">${</span><span class="nv">HEADERS</span><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 新增
+</span></span></span><span class="line"><span class="cl"><span class="nb">target_include_directories</span><span class="p">(</span><span class="s">RSSReader</span> <span class="s">PRIVATE</span> <span class="o">${</span><span class="nv">CMAKE_CURRENT_BINARY_DIR</span><span class="o">}</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">...
+</span></span></span></code></pre></div>
+  <blockquote class="alert-blockquote tip">
+    <p class="alert-heading">
+      Tip
+    </p>
+    <p><p>qt_add_executable() 命令中删除掉 <strong>project.h.in</strong>。</p></p>
+  </blockquote>
+
+<p>再打开新建的 <code>project.h.in</code>，填入以下内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#ifndef</span> <span class="cpt">PROJECT_H</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define</span> <span class="cpt">PROJECT_H</span><span class="cp">
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#define</span> <span class="cpt">PROJECT_VERSION</span><span class="cp"> &#34;@PROJECT_VERSION@&#34;
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#endif </span><span class="c1">// PROJECT_H
+</span></span></span></code></pre></div><p>为了能在代码中获取到应用版本号，这里使用了命令 
+<a 
+    href="https://cmake.org/cmake/help/latest/command/configure_file.html"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    configure_file
+</a>
+ 和 
+<a 
+    href="https://cmake.org/cmake/help/latest/command/target_include_directories.html"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    target_include_directories
+</a>
+。</p>
+<p><code>configure_file</code> 的作用是将输入文件 <code>project.h.in</code> 复制为输出文件 <code>project.h</code>，同时将输入文件中引用的
+<a 
+    href="https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#cmake-language-environment-variables"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    环境变量
+</a>
+的值进行
+<a 
+    href="https://cmake.org/cmake/help/latest/command/configure_file.html#transformations"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    替换
+</a>
+。</p>
+<p>因为上一篇 <code>CMakeLists.txt</code> 文件中，
+<a 
+    href="https://cmake.org/cmake/help/latest/command/project.html"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    project()
+</a>
+ 命令中添加了 <code>VERSION</code> 选项，它设置了 
+<a 
+    href="https://cmake.org/cmake/help/latest/variable/PROJECT_VERSION.html#variable:PROJECT_VERSION"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    PROJECT_VERSION
+</a>
+ 变量。<br>
+所以，<code>project.h.in</code> 文件中引用的变量 <code>&quot;@PROJECT_VERSION@&quot;</code> 可以被替换为 <code>CMakeLists.txt</code> 文件中设置的值，并且定义为宏 <code>PROJECT_VERSION</code>。</p>
+<p>修改完成后，保存 <code>CMakeLists.txt</code> 文件，此时项目会重新编译，同时左侧文件结构也出现了 <code>project.h.in</code> 和 <code>project.h</code> 的身影：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-28.webp" alt="3-28" title="project.h.in 和 project.h"></p>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><p>另外还有一点要说的是：<br>
+<strong>project.h</strong> 能被其他文件 <strong>#include</strong>，多亏了命令 
+<a 
+    href="https://cmake.org/cmake/help/latest/command/target_include_directories.html"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    target_include_directories
+</a>
+ 将其添加到项目中。</p></p>
+  </blockquote>
+
+<h4 id="添加图标">
+<a class="header-anchor" href="#%e6%b7%bb%e5%8a%a0%e5%9b%be%e6%a0%87"></a>
+添加图标
+</h4><p>执行新建文件操作，依次选择 <code>Qt</code> → <code>Qt Resource File</code>：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-29.webp" alt="3-29" title="project.qrc 1"></p>
+<p>填入文件名 <code>project</code> 后点击 <strong>下一步</strong>，再点击 <strong>完成</strong>：</p>
+<div class="gallery-wall" id="photoWall-9dd6c2c37"></div>
+<script>
+  (function() {
+    const imageUrls = JSON.parse("[\"/images/202604/re-0-qt-app-3/3-30.webp\",\"/images/202604/re-0-qt-app-3/3-31.webp\"]");
+    let images = [];
+    const wallId = '#photoWall-9dd6c2c37';
+    let resizeTimer;
+    let lastWidth = 0;
+    
+    function init() {
+      createInitialDOM();
+      loadImages();
+      const wall = _$(wallId);
+      if (wall && window.ResizeObserver) {
+        const observer = new ResizeObserver((entries) => {
+          const newWidth = entries[0].contentRect.width;
+          if (Math.abs(newWidth - lastWidth) > 1) {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(renderPhotoWall, 250);
+          }
+        });
+        observer.observe(wall);
+      } else {
+        window.addEventListener('resize', handleResize);
+      }
+    }
+    
+    function createInitialDOM() {
+      const wall = _$(wallId);
+      if (!wall || !imageUrls.length) return;
+      
+      wall.style.opacity = '0';
+      wall.style.pointerEvents = 'none';
+      
+      imageUrls.forEach((url) => {
+        images.push({
+          width: 800,
+          height: 600,
+          aspectRatio: 4/3,
+          url: url,
+          loaded: false
+        });
+      });
+      
+      renderPhotoWall();
+    }
+    
+    function loadImages() {
+      const loadPromises = imageUrls.map((url, index) => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = () => {
+            if (images[index]) {
+              images[index].width = img.naturalWidth;
+              images[index].height = img.naturalHeight;
+              images[index].aspectRatio = img.naturalWidth / img.naturalHeight;
+              images[index].loaded = true;
+            }
+            resolve();
+          };
+          img.onerror = () => {
+            if (images[index]) {
+              images[index].loaded = true;
+            }
+            resolve();
+          };
+          img.src = url;
+        });
+      });
+      
+      Promise.all(loadPromises)
+        .then(() => {
+          const wall = _$(wallId);
+          if (wall) {
+            wall.style.opacity = '1';
+            wall.style.pointerEvents = 'auto';
+            wall.style.transition = 'opacity 0.3s ease';
+          }
+          renderPhotoWall();
+        })
+        .catch((error) => console.error("图片加载失败:", error));
+    }
+    
+    function renderPhotoWall() {
+      const wall = _$(wallId);
+      
+      if (!images.length || !wall) return;
+      
+      const screenWidth = wall.offsetWidth || window.innerWidth - 40;
+      lastWidth = screenWidth;
+      
+      wall.innerHTML = "";
+      const rowHeight = 200;
+      const gap = 10;
+      const maxPerRow = 4;
+      
+      let row = [];
+      let rowWidth = 0;
+      const rows = [];
+      
+      images.forEach((img) => {
+        const scaledWidth = rowHeight * img.aspectRatio;
+        
+        if (rowWidth + scaledWidth <= screenWidth && row.length < maxPerRow) {
+          row.push(img);
+          rowWidth += scaledWidth + gap;
+        } else {
+          if (row.length) rows.push(row);
+          row = [img];
+          rowWidth = scaledWidth + gap;
+        }
+      });
+      
+      if (row.length) rows.push(row);
+      
+      rows.forEach((row) => {
+        const rowDiv = document.createElement("div");
+        rowDiv.style.cssText = `display: flex; gap: ${gap}px; width: 100%`;
+        
+        row.forEach((img) => {
+          const item = document.createElement("div");
+          item.className = "photo-item";
+          const flex = row.length === 1 ? '1' : img.aspectRatio;
+          item.style.cssText = `flex: ${flex}; height: ${rowHeight}px`;
+          
+          const imgEl = document.createElement("img");
+          imgEl.alt = "Gallery Image";
+          imgEl.style.cssText = "width: 100%; height: 100%; object-fit: cover";
+          imgEl.className = "lazyload";
+          imgEl.dataset.src = img.url;
+          imgEl.dataset.sizes = "auto";
+
+          const link = document.createElement("a");
+          link.href = img.url;
+          link.dataset.pswpWidth = img.width;
+          link.dataset.pswpHeight = img.height;
+          link.target = "_blank";
+          link.className = "article-gallery-item";
+          link.style.cssText = "width: 100%; height: 100%";
+          link.appendChild(imgEl);
+          
+          item.appendChild(link);
+          rowDiv.appendChild(item);
+        });
+        
+        wall.appendChild(rowDiv);
+      });
+    }
+    
+    function handleResize() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(renderPhotoWall, 250);
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script><link rel="preload" as="style" href="/css/gallery.min.43b19c254fc1e9d2fcbf30d14544d5c92d1d0ab4dc7a4ba35042649d6f36d6e3.css" onload="this.onload=null;this.rel='stylesheet'" />
+<p>再次打开 <code>CMakeLists.txt</code> 文件，进行调整：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cmake" data-lang="cmake"><span class="line"><span class="cl"><span class="err">...
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="nb">configure_file</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">project.h.in</span> <span class="c"># 输入文件
+</span></span></span><span class="line"><span class="cl">    <span class="s">project.h</span>    <span class="c"># 输出文件
+</span></span></span><span class="line"><span class="cl">    <span class="s">@ONLY</span>        <span class="c"># 仅替换 @VAR@ 形式的变量
+</span></span></span><span class="line"><span class="cl"><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 新增
+</span></span></span><span class="line"><span class="cl"><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_AUTORCC</span> <span class="s">ON</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">...
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="nb">set</span><span class="p">(</span><span class="s">HEADERS</span>
+</span></span><span class="line"><span class="cl">    <span class="s">mainwindow.h</span>
+</span></span><span class="line"><span class="cl">    <span class="s">project.h</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 新增
+</span></span></span><span class="line"><span class="cl"><span class="nb">set</span><span class="p">(</span><span class="s">RESOURCES</span>
+</span></span><span class="line"><span class="cl">    <span class="s">project.qrc</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="nb">qt_add_executable</span><span class="p">(</span><span class="s">RSSReader</span>
+</span></span><span class="line"><span class="cl">    <span class="s">WIN32</span> <span class="s">MACOSX_BUNDLE</span>
+</span></span><span class="line"><span class="cl">    <span class="o">${</span><span class="nv">SOURCES</span><span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">${</span><span class="nv">HEADERS</span><span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">${</span><span class="nv">RESOURCES</span><span class="o">}</span> <span class="c"># 新增
+</span></span></span><span class="line"><span class="cl"><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">...
+</span></span></span></code></pre></div><p>首先通过 <code>set(CMAKE_AUTORCC ON)</code> 启用 
+<a 
+    href="https://cmake.org/cmake/help/latest/prop_tgt/AUTORCC.html#prop_tgt:AUTORCC"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    AUTORCC
+</a>
+ 处理 <code>.qrc</code> 文件，<br>
+然后设置一个变量存放资源文件，并在 <code>qt_add_executable()</code> 中使用。</p>
+
+  <blockquote class="alert-blockquote tip">
+    <p class="alert-heading">
+      Tip
+    </p>
+    <p><p>qt_add_executable() 命令中删除掉 <strong>project.qrc</strong>。</p></p>
+  </blockquote>
+
+<p>此时，左侧文件结构里可以看到 <code>project.qrc</code> 文件的身影。<br>
+找一个设置按钮的 
+<a 
+    href="https://developer.mozilla.org/zh-CN/docs/Web/SVG"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    SVG
+</a>
+ 文件，并命名为 <code>config.svg</code>。<br>
+右键文件，选择 <code>添加现有文件</code>，在弹窗中选择 <code>config.svg</code> 文件：</p>
+<div class="gallery-wall" id="photoWall-2627ae071"></div>
+<script>
+  (function() {
+    const imageUrls = JSON.parse("[\"/images/202604/re-0-qt-app-3/3-32.webp\",\"/images/202604/re-0-qt-app-3/3-33.webp\",\"/images/202604/re-0-qt-app-3/3-34.webp\"]");
+    let images = [];
+    const wallId = '#photoWall-2627ae071';
+    let resizeTimer;
+    let lastWidth = 0;
+    
+    function init() {
+      createInitialDOM();
+      loadImages();
+      const wall = _$(wallId);
+      if (wall && window.ResizeObserver) {
+        const observer = new ResizeObserver((entries) => {
+          const newWidth = entries[0].contentRect.width;
+          if (Math.abs(newWidth - lastWidth) > 1) {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(renderPhotoWall, 250);
+          }
+        });
+        observer.observe(wall);
+      } else {
+        window.addEventListener('resize', handleResize);
+      }
+    }
+    
+    function createInitialDOM() {
+      const wall = _$(wallId);
+      if (!wall || !imageUrls.length) return;
+      
+      wall.style.opacity = '0';
+      wall.style.pointerEvents = 'none';
+      
+      imageUrls.forEach((url) => {
+        images.push({
+          width: 800,
+          height: 600,
+          aspectRatio: 4/3,
+          url: url,
+          loaded: false
+        });
+      });
+      
+      renderPhotoWall();
+    }
+    
+    function loadImages() {
+      const loadPromises = imageUrls.map((url, index) => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = () => {
+            if (images[index]) {
+              images[index].width = img.naturalWidth;
+              images[index].height = img.naturalHeight;
+              images[index].aspectRatio = img.naturalWidth / img.naturalHeight;
+              images[index].loaded = true;
+            }
+            resolve();
+          };
+          img.onerror = () => {
+            if (images[index]) {
+              images[index].loaded = true;
+            }
+            resolve();
+          };
+          img.src = url;
+        });
+      });
+      
+      Promise.all(loadPromises)
+        .then(() => {
+          const wall = _$(wallId);
+          if (wall) {
+            wall.style.opacity = '1';
+            wall.style.pointerEvents = 'auto';
+            wall.style.transition = 'opacity 0.3s ease';
+          }
+          renderPhotoWall();
+        })
+        .catch((error) => console.error("图片加载失败:", error));
+    }
+    
+    function renderPhotoWall() {
+      const wall = _$(wallId);
+      
+      if (!images.length || !wall) return;
+      
+      const screenWidth = wall.offsetWidth || window.innerWidth - 40;
+      lastWidth = screenWidth;
+      
+      wall.innerHTML = "";
+      const rowHeight = 200;
+      const gap = 10;
+      const maxPerRow = 4;
+      
+      let row = [];
+      let rowWidth = 0;
+      const rows = [];
+      
+      images.forEach((img) => {
+        const scaledWidth = rowHeight * img.aspectRatio;
+        
+        if (rowWidth + scaledWidth <= screenWidth && row.length < maxPerRow) {
+          row.push(img);
+          rowWidth += scaledWidth + gap;
+        } else {
+          if (row.length) rows.push(row);
+          row = [img];
+          rowWidth = scaledWidth + gap;
+        }
+      });
+      
+      if (row.length) rows.push(row);
+      
+      rows.forEach((row) => {
+        const rowDiv = document.createElement("div");
+        rowDiv.style.cssText = `display: flex; gap: ${gap}px; width: 100%`;
+        
+        row.forEach((img) => {
+          const item = document.createElement("div");
+          item.className = "photo-item";
+          const flex = row.length === 1 ? '1' : img.aspectRatio;
+          item.style.cssText = `flex: ${flex}; height: ${rowHeight}px`;
+          
+          const imgEl = document.createElement("img");
+          imgEl.alt = "Gallery Image";
+          imgEl.style.cssText = "width: 100%; height: 100%; object-fit: cover";
+          imgEl.className = "lazyload";
+          imgEl.dataset.src = img.url;
+          imgEl.dataset.sizes = "auto";
+
+          const link = document.createElement("a");
+          link.href = img.url;
+          link.dataset.pswpWidth = img.width;
+          link.dataset.pswpHeight = img.height;
+          link.target = "_blank";
+          link.className = "article-gallery-item";
+          link.style.cssText = "width: 100%; height: 100%";
+          link.appendChild(imgEl);
+          
+          item.appendChild(link);
+          rowDiv.appendChild(item);
+        });
+        
+        wall.appendChild(rowDiv);
+      });
+    }
+    
+    function handleResize() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(renderPhotoWall, 250);
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script><link rel="preload" as="style" href="/css/gallery.min.43b19c254fc1e9d2fcbf30d14544d5c92d1d0ab4dc7a4ba35042649d6f36d6e3.css" onload="this.onload=null;this.rel='stylesheet'" />
+<p>左侧文件结构可以看到 <code>config.svg</code> 文件，同时得知了它的访问路径为 <code>/config.svg</code>。</p>
+<h3 id="继续改造底部布局">
+<a class="header-anchor" href="#%e7%bb%a7%e7%bb%ad%e6%94%b9%e9%80%a0%e5%ba%95%e9%83%a8%e5%b8%83%e5%b1%80"></a>
+继续改造底部布局
+</h3><p>2点准备都完成了，继续改造底部布局。</p>
+<p>打开 <code>mainwindow.cpp</code> 文件，继续调整：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;QPushButton&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;project.h&#34;</span><span class="cp"> </span><span class="c1">// 新增
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nc">MainWindow</span><span class="p">::</span><span class="nf">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">)</span> <span class="o">:</span> <span class="nf">QMainWindow</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nc">MainWindow</span><span class="p">::</span><span class="nf">_buildUI</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 修改前
+</span></span></span><span class="line"><span class="cl">    <span class="n">QLabel</span> <span class="o">*</span><span class="n">bottomLabel</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QLabel</span><span class="p">(</span><span class="s">&#34;bottom&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bottomLabel</span><span class="o">-&gt;</span><span class="nf">setAlignment</span><span class="p">(</span><span class="nc">Qt</span><span class="p">::</span><span class="n">AlignCenter</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bottomLabel</span><span class="o">-&gt;</span><span class="nf">setStyleSheet</span><span class="p">(</span><span class="s">&#34;background-color: SpringGreen; font-size: 24px&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">QHBoxLayout</span> <span class="o">*</span><span class="n">bottomLayout</span> <span class="o">=</span> <span class="kr">new</span> <span class="n">QHBoxLayout</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bottomLayout</span><span class="o">-&gt;</span><span class="nf">addWidget</span><span class="p">(</span><span class="n">bottomLabel</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 修改后
+</span></span></span><span class="line"><span class="cl">    <span class="n">QLabel</span> <span class="o">*</span><span class="n">versionLabel</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QLabel</span><span class="p">(</span><span class="nf">QString</span><span class="p">(</span><span class="s">&#34;版本: %1&#34;</span><span class="p">).</span><span class="nf">arg</span><span class="p">(</span><span class="n">PROJECT_VERSION</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">versionLabel</span><span class="o">-&gt;</span><span class="nf">setStyleSheet</span><span class="p">(</span><span class="s">&#34;font-size: 14px&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">QPushButton</span> <span class="o">*</span><span class="n">configButton</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QPushButton</span><span class="p">(</span><span class="nf">QIcon</span><span class="p">(</span><span class="s">&#34;:/config.svg&#34;</span><span class="p">),</span> <span class="s">&#34;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">configButton</span><span class="o">-&gt;</span><span class="nf">setIconSize</span><span class="p">(</span><span class="nf">QSize</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">24</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">QHBoxLayout</span> <span class="o">*</span><span class="n">informationLayout</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QHBoxLayout</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">informationLayout</span><span class="o">-&gt;</span><span class="nf">setSpacing</span><span class="p">(</span><span class="n">spacing</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">informationLayout</span><span class="o">-&gt;</span><span class="nf">setContentsMargins</span><span class="p">(</span><span class="n">spacing</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">spacing</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">spacing</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">spacing</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">informationLayout</span><span class="o">-&gt;</span><span class="nf">addWidget</span><span class="p">(</span><span class="n">versionLabel</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">informationLayout</span><span class="o">-&gt;</span><span class="nf">addStretch</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">informationLayout</span><span class="o">-&gt;</span><span class="nf">addWidget</span><span class="p">(</span><span class="n">configButton</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 修改前
+</span></span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="nf">addLayout</span><span class="p">(</span><span class="n">bottomLayout</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 修改后
+</span></span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="nf">addLayout</span><span class="p">(</span><span class="n">informationLayout</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>简单描述下代码：</p>
+<ol>
+<li>初始化版本号标签 <code>versionLabel</code>，并设置版本号内容</li>
+<li>初始化设置按钮 <code>configButton</code>，并设置图标，再调用方法 
+<a 
+    href="https://doc.qt.io/qt-6/qabstractbutton.html#iconSize-prop"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    setIconSize()
+</a>
+ 设置图标大小</li>
+<li>初始化水平盒布局 <code>informationLayout</code>，依次添加 <code>1</code>、<code>2</code> 创建的组件，并且在组件之间调用方法 
+<a 
+    href="https://doc.qt.io/qt-6/qboxlayout.html#addStretch"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    addStretch()
+</a>
+ 添加一个弹簧撑开左右的组件</li>
+<li>在主布局 <code>mainLayout</code> 中添加布局 <code>informationLayout</code></li>
+</ol>
+<p>运用应用，可以看到如下的窗口：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-35.webp" alt="3-35" title="改造底部布局"></p>
+<h2 id="改造中间布局">
+<a class="header-anchor" href="#%e6%94%b9%e9%80%a0%e4%b8%ad%e9%97%b4%e5%b8%83%e5%b1%80"></a>
+改造中间布局
+</h2><p>我打算使用网格布局组件 
+<a 
+    href="https://doc.qt.io/qt-6/qgridlayout.html"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    QGridLayout
+</a>
+ 和滚动区域组件 
+<a 
+    href="https://doc.qt.io/qt-6/qscrollarea.html"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    QScrollArea
+</a>
+ 配合搭建中间布局的 UI。</p>
+<p>先打开 <code>mainwindow.h</code> 文件，进行调整：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">QLineEdit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">QPushButton</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">QGridLayout</span><span class="p">;</span> <span class="c1">// 新增
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MainWindow</span> <span class="o">:</span> <span class="k">public</span> <span class="nc">QMainWindow</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QLineEdit</span> <span class="o">*</span><span class="n">_feedEdit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QPushButton</span> <span class="o">*</span><span class="n">_subscribeButton</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QGridLayout</span> <span class="o">*</span><span class="n">_feedsLayout</span><span class="p">;</span> <span class="c1">// 新增
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span></code></pre></div><p>再打开 <code>mainwindow.cpp</code> 文件，进行调整：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;QPushButton&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;QScrollArea&gt;</span><span class="cp"> </span><span class="c1">// 新增
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nc">MainWindow</span><span class="p">::</span><span class="nf">_buildUI</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 修改前
+</span></span></span><span class="line"><span class="cl">    <span class="n">QLabel</span> <span class="o">*</span><span class="n">middleLabel</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QLabel</span><span class="p">(</span><span class="s">&#34;middle&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">middleLabel</span><span class="o">-&gt;</span><span class="nf">setAlignment</span><span class="p">(</span><span class="nc">Qt</span><span class="p">::</span><span class="n">AlignCenter</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">middleLabel</span><span class="o">-&gt;</span><span class="nf">setStyleSheet</span><span class="p">(</span><span class="s">&#34;background-color: Violet; font-size: 24px&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">QHBoxLayout</span> <span class="o">*</span><span class="n">middleLayout</span> <span class="o">=</span> <span class="kr">new</span> <span class="n">QHBoxLayout</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">middleLayout</span><span class="o">-&gt;</span><span class="nf">addWidget</span><span class="p">(</span><span class="n">middleLabel</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 修改后
+</span></span></span><span class="line"><span class="cl">    <span class="n">_feedsLayout</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QGridLayout</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_feedsLayout</span><span class="o">-&gt;</span><span class="nf">setSpacing</span><span class="p">(</span><span class="n">spacing</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_feedsLayout</span><span class="o">-&gt;</span><span class="nf">setContentsMargins</span><span class="p">(</span><span class="n">spacing</span><span class="p">,</span> <span class="n">spacing</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">spacing</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">row</span><span class="p">;</span> <span class="o">++</span><span class="n">r</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">col</span><span class="p">;</span> <span class="o">++</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">QLabel</span> <span class="o">*</span><span class="n">feedLabel</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QLabel</span><span class="p">(</span><span class="nc">QString</span><span class="p">::</span><span class="nf">number</span><span class="p">(</span><span class="n">r</span> <span class="o">*</span> <span class="n">col</span> <span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">feedLabel</span><span class="o">-&gt;</span><span class="nf">setAlignment</span><span class="p">(</span><span class="nc">Qt</span><span class="p">::</span><span class="n">AlignCenter</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">feedLabel</span><span class="o">-&gt;</span><span class="nf">setStyleSheet</span><span class="p">(</span><span class="s">&#34;background-color: Violet; font-size: 24px&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">feedLabel</span><span class="o">-&gt;</span><span class="nf">setMinimumSize</span><span class="p">(</span><span class="nf">QSize</span><span class="p">(</span><span class="mi">240</span><span class="p">,</span> <span class="mi">180</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">_feedsLayout</span><span class="o">-&gt;</span><span class="nf">addWidget</span><span class="p">(</span><span class="n">feedLabel</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">QWidget</span> <span class="o">*</span><span class="n">feedsContainer</span> <span class="o">=</span> <span class="kr">new</span> <span class="n">QWidget</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">feedsContainer</span><span class="o">-&gt;</span><span class="nf">setLayout</span><span class="p">(</span><span class="n">_feedsLayout</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">QScrollArea</span> <span class="o">*</span><span class="n">feedsScrollArea</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QScrollArea</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">feedsScrollArea</span><span class="o">-&gt;</span><span class="nf">setHorizontalScrollBarPolicy</span><span class="p">(</span><span class="nc">Qt</span><span class="p">::</span><span class="n">ScrollBarAlwaysOff</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">feedsScrollArea</span><span class="o">-&gt;</span><span class="nf">setFrameShape</span><span class="p">(</span><span class="nc">QFrame</span><span class="p">::</span><span class="n">NoFrame</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">feedsScrollArea</span><span class="o">-&gt;</span><span class="nf">setWidget</span><span class="p">(</span><span class="n">feedsContainer</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 修改前
+</span></span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="nf">addLayout</span><span class="p">(</span><span class="n">middleLayout</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 修改后
+</span></span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="nf">addWidget</span><span class="p">(</span><span class="n">feedsScrollArea</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>简单描述下代码：</p>
+<ol>
+<li>初始化网格布局 <code>_feedsLayout</code></li>
+<li>临时生成5行3列标签内容用来查看效果</li>
+<li>初始化滚动区域的容器组件 <code>feedsContainer</code>，并调用方法 
+<a 
+    href="https://doc.qt.io/qt-6/qwidget.html#setLayout"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    setLayout()
+</a>
+ 将 <code>_feedsLayout</code> 设置为其布局</li>
+<li>初始化滚动区域组件 <code>feedsScrollArea</code>
+<ul>
+<li>调用方法 
+<a 
+    href="https://doc.qt.io/qt-6/qabstractscrollarea.html#horizontalScrollBarPolicy-prop"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    setHorizontalScrollBarPolicy()
+</a>
+ 设置横向滚动条不启用</li>
+<li>调用方法 
+<a 
+    href="https://doc.qt.io/qt-6/qframe.html#frameShape-prop"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    setFrameShape()
+</a>
+ 隐藏滚动条的背景</li>
+</ul>
+</li>
+</ol>
+<p>运用应用，可以看到如下的窗口：</p>
+<p><img src="/images/202604/re-0-qt-app-3/3-36.anim.webp" alt="3-36" title="改造中间布局"></p>
+<h1 id="结语">
+<a class="header-anchor" href="#%e7%bb%93%e8%af%ad"></a>
+结语
+</h1><p>应用的基础 UI 已经搭建完成 (｡･∀･)ﾉﾞ</p>
+<p>现在的界面看起来有些奇怪，不用担心，下一篇的内容就是 <strong>通过样式让界面变得好看起来</strong>！</p>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><p>本文源码可以在 
+<a 
+    href="https://github.com/rujax/re-0-qt-app-code/tree/main/3"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    此处
+</a>
+ 找到。</p></p>
+  </blockquote>
+
+</div>
+    <footer class="article-footer"><blockquote class="article-copyright"><p><strong><span class="icon-user icon"></span>本文作者：</strong>Rujax</p><p>
+      <strong><span class="icon-link icon"></span>本文链接：</strong><a href="https://rujax.github.io/posts/202604/re-0-qt-app-3/">https://rujax.github.io/posts/202604/re-0-qt-app-3/</a>
+    </p><p><strong><span class="icon-pencil icon"></span>本文标题：</strong>从零开始的 Qt 应用开发（3）：UI</p><p><strong><span class="icon-calendar icon"></span>本文发布时间：</strong>2026-04-19 13:37:20</p><p>
+      
+      <strong><span class="icon-copyright icon"></span>本文版权：</strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" rel="noopener nofollow noreferrer" target="_blank"><span class="icon-creative-commons"></span>BY-NC-SA</a> 许可协议。转载请注明出处！
+    </p>
+    <span class="icon-creative-commons article-copyright-bg"></span></blockquote>
+<div class="share-wrapper"><a href="https://www.facebook.com/sharer/sharer.php?u=https://rujax.github.io/posts/202604/re-0-qt-app-3/" target="_blank" rel="noopener noreferrer" title="从零开始的 Qt 应用开发（3）：UI">
+      <div class="share-icon icon icon-facebook"></div>
+    </a><a href="https://twitter.com/intent/tweet?url=https://rujax.github.io/posts/202604/re-0-qt-app-3/&amp;text=%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84%20Qt%20%e5%ba%94%e7%94%a8%e5%bc%80%e5%8f%91%ef%bc%883%ef%bc%89%ef%bc%9aUI&amp;via=https://rujax.github.io/" target="_blank" rel="noopener noreferrer" title="从零开始的 Qt 应用开发（3）：UI">
+      <div class="share-icon icon icon-twitter"></div>
+    </a><a href="https://www.linkedin.com/shareArticle?url=https://rujax.github.io/posts/202604/re-0-qt-app-3/&amp;title=%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84%20Qt%20%e5%ba%94%e7%94%a8%e5%bc%80%e5%8f%91%ef%bc%883%ef%bc%89%ef%bc%9aUI&amp;summary=%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%ef%bc%8c%e5%bc%80%e5%8f%91%e4%b8%80%e4%b8%aa%e5%9f%ba%e4%ba%8e%20Qt6%20%e7%9a%84%e7%ae%80%e5%8d%95%e5%ba%94%e7%94%a8&amp;mini=true&amp;ro=true" target="_blank" rel="noopener noreferrer" title="从零开始的 Qt 应用开发（3）：UI">
+      <div class="share-icon icon icon-linkedin"></div>
+    </a><a href="https://www.reddit.com/submit?url=https://rujax.github.io/posts/202604/re-0-qt-app-3/&amp;title=%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84%20Qt%20%e5%ba%94%e7%94%a8%e5%bc%80%e5%8f%91%ef%bc%883%ef%bc%89%ef%bc%9aUI" target="_blank" rel="noopener noreferrer" title="从零开始的 Qt 应用开发（3）：UI">
+      <div class="share-icon icon icon-reddit"></div>
+    </a><a href="https://service.weibo.com/share/share.php?url=https://rujax.github.io/posts/202604/re-0-qt-app-3/&amp;appkey=&amp;title=%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84%20Qt%20%e5%ba%94%e7%94%a8%e5%bc%80%e5%8f%91%ef%bc%883%ef%bc%89%ef%bc%9aUI&amp;pic=&amp;ralateUid=" target="_blank" rel="noopener noreferrer" title="从零开始的 Qt 应用开发（3）：UI">
+      <div class="share-icon icon icon-weibo"></div>
+    </a><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://rujax.github.io/posts/202604/re-0-qt-app-3/&amp;title=%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84%20Qt%20%e5%ba%94%e7%94%a8%e5%bc%80%e5%8f%91%ef%bc%883%ef%bc%89%ef%bc%9aUI&amp;desc=%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%ef%bc%8c%e5%bc%80%e5%8f%91%e4%b8%80%e4%b8%aa%e5%9f%ba%e4%ba%8e%20Qt6%20%e7%9a%84%e7%ae%80%e5%8d%95%e5%ba%94%e7%94%a8&amp;source=https://rujax.github.io/" target="_blank" rel="noopener noreferrer" title="从零开始的 Qt 应用开发（3）：UI">
+      <div class="share-icon icon icon-qq"></div>
+    </a><a href="javascript:;"  title="从零开始的 Qt 应用开发（3）：UI">
+      <div class="share-icon icon icon-weixin"><div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hugo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div></div>
+    </a></div><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-category-link"
+        href="/categories/%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84-qt-%e5%ba%94%e7%94%a8%e5%bc%80%e5%8f%91"
+        data-aos="zoom-in"
+      >从零开始的 Qt 应用开发</a>
+    </li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/qt"
+        rel="tag"
+        >Qt</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/git"
+        rel="tag"
+        >Git</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="/images/covers/posts/iuno-18.webp"
+              data-sizes="auto"
+              alt="批量将 PNG 图片转变为 WebP 格式"
+              class="lazyload"
+            /><a
+          href="/posts/202604/ffmpeg-png-to-webp/"
+          aria-label="前一篇:批量将 PNG 图片转变为 WebP 格式"
+          title="前一篇:批量将 PNG 图片转变为 WebP 格式"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">批量将 PNG 图片转变为 WebP 格式</h3>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">万物，皆可为引</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="giscus">
+            
+          </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment giscus-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2026
+
+      Rujax
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp;Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;9.3k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;00:20</span>
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">
+          总访问量&nbsp;
+          <span id="busuanzi_value_site_pv"></span>
+        </span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">
+          总访客量&nbsp;
+          <span id="busuanzi_value_site_uv"></span>
+        </span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ol>
+    <li><a href="#开始之前">开始之前</a>
+      <ol>
+        <li><a href="#git">Git</a>
+          <ol>
+            <li><a href="#下载">下载</a></li>
+            <li><a href="#安装">安装</a>
+              <ol>
+                <li><a href="#1-information">1. Information</a></li>
+                <li><a href="#2-select-destination-location">2. Select Destination Location</a></li>
+                <li><a href="#3-select-components">3. Select Components</a></li>
+                <li><a href="#4-select-start-menu-folder">4. Select Start Menu Folder</a></li>
+                <li><a href="#5-choosing-the-default-editor-used-by-git">5. Choosing the default editor used by Git</a></li>
+                <li><a href="#6-adjusting-the-name-of-the-initial-branch-in-new-repositories">6. Adjusting the name of the initial branch in new repositories</a></li>
+                <li><a href="#7-adjusting-your-path-environment">7. Adjusting your PATH environment</a></li>
+                <li><a href="#8-choosing-the-ssh-executable">8. Choosing the SSH executable</a></li>
+                <li><a href="#9-choosing-https-transport-backend">9. Choosing HTTPS transport backend</a></li>
+                <li><a href="#10-configuring-the-line-ending-conversion">10. Configuring the line ending conversion</a></li>
+                <li><a href="#11-configuring-the-terminal-emulator-to-use-with-git-bash">11. Configuring the terminal emulator to use with Git Bash</a></li>
+                <li><a href="#12-choose-the-default-behavior-of-git-pull">12. Choose the default behavior of git pull</a></li>
+                <li><a href="#13-choose-a-credential-helper">13. Choose a credential helper</a></li>
+                <li><a href="#14-configuring-extra-options">14. Configuring extra options</a></li>
+                <li><a href="#15-installing-and-finished">15. Installing and Finished</a></li>
+              </ol>
+            </li>
+            <li><a href="#初始化">初始化</a></li>
+            <li><a href="#查看文件状态">查看文件状态</a></li>
+            <li><a href="#gitignore-文件">.gitignore 文件</a></li>
+            <li><a href="#添加文件">添加文件</a></li>
+            <li><a href="#提交文件">提交文件</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#搭建-ui">搭建 UI</a>
+      <ol>
+        <li><a href="#改造顶部布局">改造顶部布局</a></li>
+        <li><a href="#改造底部布局">改造底部布局</a>
+          <ol>
+            <li><a href="#改造前的准备">改造前的准备</a>
+              <ol>
+                <li><a href="#获取版本号">获取版本号</a></li>
+                <li><a href="#添加图标">添加图标</a></li>
+              </ol>
+            </li>
+            <li><a href="#继续改造底部布局">继续改造底部布局</a></li>
+          </ol>
+        </li>
+        <li><a href="#改造中间布局">改造中间布局</a></li>
+      </ol>
+    </li>
+    <li><a href="#结语">结语</a></li>
+  </ol>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.webp"
+    data-sizes="auto"
+    alt="Rujax"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">Rujax</div>
+  <div class="sidebar-description">来，捕获月亮吧~</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">6</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      2
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">8</div>
+  </a>
+</div>
+<div class="sidebar-social" ><div class="icon-github sidebar-social-icon">
+        <a
+          href="https://github.com/rujax"
+          itemprop="url"
+          target="_blank"
+          aria-label="github"
+          rel="noopener nofollow noreferrer"
+        ></a>
+      </div></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon '><img src="/images/lunar.webp" alt="home icon" class="" style="height: 1em;"></div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '><img src="/images/lunar.webp" alt="archives icon" class="" style="height: 1em;"></div><div class="sidebar-menu-link">归档</div>
+    </div></div></div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    
+    
+    
+    
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    
+    
+    
+    
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script src="/js/main.js" integrity="" crossorigin="anonymous"  ></script><script src="/js/aos.js" integrity="" crossorigin="anonymous"  ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" integrity="" crossorigin="anonymous" data-pjax ></script><script>
+  var setupFirework = () => {
+    if (! false  || !window.matchMedia('(max-width: 768px)').matches) {
+      if (window.firework) {
+        const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"var(--red-1)\",\"var(--red-2)\",\"var(--red-3)\",\"var(--red-4)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"var(--red-0)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
+        options.excludeElements = options.excludeelements;
+        delete options.excludeelements;
+        window.firework(options);
+      }
+    }
+  }
+</script><script
+    src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js"
+    defer
+    
+    
+    onload="setupFirework()"
+    integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8&#43;pUoWX8n1rgq282T" crossorigin="anonymous"></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "Rujax",
+          title: "从零开始的 Qt 应用开发（3）：UI",
+          url: "https:\/\/rujax.github.io\/posts\/202604\/re-0-qt-app-3\/",
+          description: "从零开始，开发一个基于 Qt6 的简单应用",
+          cover: "https:\/\/rujax.github.io\/images\/iuno-main.webp",
+        };
+      </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax ></script><script src="/js/tabs.js" integrity="" crossorigin="anonymous" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+        }
+        pswp()
+      </script><script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus', 'disqus', 'utterances'];
+  var commentConfig = {giscus: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        const defaultTheme = { dark: 'dark', light: 'light' };
+        const customTheme = {
+          light: '' ? '' : new URL('\/css\/giscus_reimu_light.min.54854b2e5c61ba14e4cce58a1e8dc6c34db76b0f2a574b47fae308e0e524bb33.css', window.location.origin).href,
+          dark: '' ? '' : new URL('\/css\/giscus_reimu_dark.min.3f69967c9769c02c0995f612c5cfe76a7387292fac0db5a6d2fe18342167dcae.css', window.location.origin).href
+        };
+        const hasGiscusCorsHeader = async (url) => {
+          if (!url) return false;
+          if (!url.startsWith('http')) return true; 
+          try {
+            let response = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+            if (response.status === 405) {
+              response = await fetch(url, { method: 'GET', cache: 'no-store' });
+            }
+            const allowOrigin = response.headers.get('access-control-allow-origin') || '';
+            return allowOrigin === '*' || allowOrigin.split(',').map(value => value.trim()).includes('https://giscus.app');
+          } catch {
+            return false;
+          }
+        };
+        let giscusTheme = defaultTheme;
+        const [darkCorsOk, lightCorsOk] = await Promise.all([
+          hasGiscusCorsHeader(customTheme.dark),
+          hasGiscusCorsHeader(customTheme.light)
+        ]);
+        if (darkCorsOk && lightCorsOk) {
+          giscusTheme = customTheme;
+        }
+
+        const docLang = 'zh-CN' || document.documentElement.lang || 'en'; 
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'rujax\/rujax.github.io.comments');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOR8tzVg');
+        giscusScript.setAttribute('data-category', 'Announcements');
+        giscusScript.setAttribute('data-category-id', 'DIC_kwDOR8tzVs4C6WtJ');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? giscusTheme.dark : giscusTheme.light);
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('data-loading', 'lazy');
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+         const themeHandler = (e) => {
+          const isDark = e.detail.isDark;
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe || !iframe.contentWindow) {
+            document.body.removeEventListener('reimu:theme-set', themeHandler);
+            return;
+          }
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: isDark ? giscusTheme.dark : giscusTheme.light } } }, 'https://giscus.app');
+        };
+        document.body.addEventListener('reimu:theme-set', themeHandler);
+      }
+    },};
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig?.[key]?.enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      var configDefault = 'giscus';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig?.[sys]?.enable) || '';
+    }
+  }
+
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false
+    };
+
+    
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      
+      const commentType = item.getAttribute('data-selector');
+
+      
+      hideAllComments();
+
+      
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          
+          changeActiveCommentItems(item);
+        });
+      }
+
+      
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script><script
+    src="https://npm.webcache.cn/qrcode@1.5.1/build/qrcode.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-VT1EeewTCEXgndcPMQ0PzV&#43;uVFYjxFIjmAA7s5gcMX9t4Dt5TD&#43;OVQIn7NJWIXn7" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@zumer/snapdom@1.9.14/dist/snapdom.min.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-OEQ&#43;fJp/Mvi2uzBREXybtxryJvLytWapuHu4EE6LPwTKUwATYcc55tPPcZTzVcmx" crossorigin="anonymous"></script></div>
+</div><script data-pjax>
+    var updateTime = _$('#post-update-time')?.innerHTML;
+
+    if (updateTime) {
+      const update = new Date(updateTime);
+      const now = new Date();
+      const diff = now - update;
+      const days = diff / 86400000;
+      const { daysago: daysAgo, message: template } = window.siteConfig.outdate;
+      if (days >= daysAgo) {
+        let message = `This article was last updated on ${updateTime}. Please note that the content may no longer be applicable.`;
+        if (typeof template === 'string') {
+          message = template.replace(/{time}/, updateTime);
+        } else if (typeof template === 'object') {
+          const lang = document.documentElement.lang;
+          const messageKey = Object.keys(template).find(key => key.toLowerCase() === lang.toLowerCase());
+          if (messageKey && template[messageKey]) {
+            message = template[messageKey].replace(/{time}/, updateTime);
+          }
+        }
+        const blockquote = _$('#outdate-blockquote');
+        if (blockquote) {
+          blockquote.querySelectorAll('p')[1].innerText = message;
+          blockquote.style.display = 'flow-root';
+        }
+      }
+    }
+  </script><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    
+    async
+    
+    
+    integrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

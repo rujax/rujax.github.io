@@ -12,12 +12,58 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Sun, 12 Apr 2026 15:33:17 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 19 Apr 2026 13:37:20 +0800</lastBuildDate>
     
     
     <atom:link href="https://rujax.github.io/tags/qt/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
+    
+    
+
+    <item>
+      <title>从零开始的 Qt 应用开发（3）：UI</title>
+      <link>https://rujax.github.io/posts/202604/re-0-qt-app-3/</link>
+      <pubDate>Sun, 19 Apr 2026 13:37:20 &#43;0800</pubDate>
+      <author>rujax.c@gmail.com (Rujax)</author>
+      <guid>https://rujax.github.io/posts/202604/re-0-qt-app-3/</guid>
+      <description>
+        <![CDATA[<h1>从零开始的 Qt 应用开发（3）：UI</h1><p>作者：Rujax（rujax.c@gmail.com）</p>
+        
+          <h1 id="开始之前">
+<a class="header-anchor" href="#%e5%bc%80%e5%a7%8b%e4%b9%8b%e5%89%8d"></a>
+开始之前
+</h1><p>在今天的 <code>Qt</code> 应用开发开始之前，先简单介绍一下版本控制系统工具 
+<a 
+    href="https://git-scm.com/"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    Git
+</a>
+。</p>
+<h2 id="git">
+<a class="header-anchor" href="#git"></a>
+Git
+</h2><h3 id="下载">
+<a class="header-anchor" href="#%e4%b8%8b%e8%bd%bd"></a>
+下载
+</h3><p>打开 <code>Git</code> 的
+<a 
+    href="https://git-scm.com/install/windows"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    安装页面
+</a>
+，点击 <code>Click here to download</code> 即可下载当前最新版本的独立安装程序。</p>
+        
+        <hr><p>本文2026-04-19首发于<a href='https://rujax.github.io/'>Rujax's blog</a>，最后修改于2026-04-19</p>]]>
+      </description>
+      
+        <category>从零开始的 Qt 应用开发</category>
+      
+    </item>
     
     
 

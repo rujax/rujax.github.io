@@ -12,12 +12,37 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Sun, 19 Apr 2026 18:28:37 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 21 Apr 2026 23:48:05 +0800</lastBuildDate>
     
     
     <atom:link href="https://rujax.github.io/categories/%E9%94%9A%E5%AE%9A%E6%9C%AA%E7%9F%A5/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
+    
+    
+
+    <item>
+      <title>使用 webpmux 将多张 WebP 图片生成动图</title>
+      <link>https://rujax.github.io/posts/202604/webpmux-anim-webp/</link>
+      <pubDate>Tue, 21 Apr 2026 23:48:05 &#43;0800</pubDate>
+      <author>rujax.c@gmail.com (Rujax)</author>
+      <guid>https://rujax.github.io/posts/202604/webpmux-anim-webp/</guid>
+      <description>
+        <![CDATA[<h1>使用 webpmux 将多张 WebP 图片生成动图</h1><p>作者：Rujax（rujax.c@gmail.com）</p>
+        
+          <h1 id="问题">
+<a class="header-anchor" href="#%e9%97%ae%e9%a2%98"></a>
+问题
+</h1><a href="/posts/202604/re-0-qt-app-3/" title="从零开始的 Qt 应用开发（3）：UI" target="_blank">从零开始的 Qt 应用开发（3）：UI</a>
+<p>在上面这篇文章的末尾，我想要展示滚动区域的滚动效果时，需要一个简单的动图：<br>
+将几张图依次替换产生滚动的视觉效果。</p>
+        
+        <hr><p>本文2026-04-21首发于<a href='https://rujax.github.io/'>Rujax's blog</a>，最后修改于2026-04-21</p>]]>
+      </description>
+      
+        <category>锚定未知</category>
+      
+    </item>
     
     
 

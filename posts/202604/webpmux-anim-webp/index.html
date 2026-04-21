@@ -8,10 +8,10 @@
   name="viewport"
   content="width=device-width, initial-scale=1, shrink-to-fit=no"
 /><title>
-  批量将 PNG 图片转变为 WebP 格式 | Rujax
+  使用 webpmux 将多张 WebP 图片生成动图 | Rujax
 </title>
-<meta name="description" content="使用 FFmpeg/cwebp 批量转换图片格式"/>
-    <meta name="keywords" content="ffmpeg,cwebp,png,webp" /><script>
+<meta name="description" content="WebP 图片其实有动画形式 (⊙ˍ⊙)"/>
+    <meta name="keywords" content="webpmux,webp,animation,动图" /><script>
   window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"https://rujax.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (⊙…⊙)\",\"zh-cn\":\"复制失败 (⊙…⊙)\"},\"success\":{\"en\":\"Copy successfully (★^O^★)\",\"zh-cn\":\"复制成功 (★^O^★)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_a0oqhord1y\",\"outdate\":{\"daysago\":180,\"enable\":true,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\"}}}");
   
 </script>
@@ -22,20 +22,20 @@
     type="font/woff2"
     crossorigin="anonymous"
   /><link rel="stylesheet" href="/css/loader.min.065aed82b24a386b4876c1b25a82897328b7a31ce3248eafdd8df0b1bf6548fc.css" /><meta property="og:type" content="website" />
-  <meta property="og:title" content="批量将 PNG 图片转变为 WebP 格式 | Rujax" />
+  <meta property="og:title" content="使用 webpmux 将多张 WebP 图片生成动图 | Rujax" />
   <meta
     property="og:description"
-    content="使用 FFmpeg/cwebp 批量转换图片格式"
+    content="WebP 图片其实有动画形式 (⊙ˍ⊙)"
   />
-  <meta property="og:url" content="https://rujax.github.io/posts/202604/ffmpeg-png-to-webp/" />
+  <meta property="og:url" content="https://rujax.github.io/posts/202604/webpmux-anim-webp/" />
   <meta
     property="og:site_name"
     content="Rujax&#39;s blog"
   />
   <meta property="og:image" content="https://rujax.github.io/images/iuno-main.webp" />
   <meta property="article:author" content="Rujax" />
-  <meta property="article:published_time" content="2026-04-15T18:05:05&#43;08:00" />
-  <meta property="article:modified_time" content="2026-04-15T18:05:05&#43;08:00" /><meta property="article:tag" content="FFmpeg, cwebp, PNG, WebP" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://rujax.github.io/images/iuno-main.webp" />
+  <meta property="article:published_time" content="2026-04-21T23:48:05&#43;08:00" />
+  <meta property="article:modified_time" content="2026-04-21T23:48:05&#43;08:00" /><meta property="article:tag" content="webpmux, WebP" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://rujax.github.io/images/iuno-main.webp" />
 <link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.882d55c20b1a2743f93905eeee19f0a018e08bfe453e72b7b9a0782f6928002e.css" /><link
     rel="preload"
     as="style"
@@ -104,9 +104,9 @@
       </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
   </nav>
   <nav id="sub-nav" aria-label="Secondary navigation"></nav></div>
-<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/iuno-main.webp" alt="批量将 PNG 图片转变为 WebP 格式"><div id="header-outer">
+<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/iuno-main.webp" alt="使用 webpmux 将多张 WebP 图片生成动图"><div id="header-outer">
     <div id="header-title"><span id="logo">
-            <h1 data-aos="slide-up">批量将 PNG 图片转变为 WebP 格式</h1>
+            <h1 data-aos="slide-up">使用 webpmux 将多张 WebP 图片生成动图</h1>
           </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
   </div>
 </header><div id="content"
@@ -121,24 +121,8 @@
   <nav id="TableOfContents">
   <ol>
     <li><a href="#问题">问题</a></li>
-    <li><a href="#解决">解决</a>
-      <ol>
-        <li><a href="#在-windows-系统上批量提取-png-格式图片">在 Windows 系统上批量提取 PNG 格式图片</a></li>
-        <li><a href="#使用-ffmpeg">使用 FFmpeg</a>
-          <ol>
-            <li><a href="#检测编码器">检测编码器</a></li>
-            <li><a href="#格式转换">格式转换</a></li>
-            <li><a href="#结合-for-命令">结合 for 命令</a></li>
-          </ol>
-        </li>
-        <li><a href="#使用-cwebp">使用 cwebp</a>
-          <ol>
-            <li><a href="#结合-for-命令格式转换">结合 for 命令格式转换</a></li>
-            <li><a href="#2个工具转换后的图片大小对比">2个工具转换后的图片大小对比</a></li>
-          </ol>
-        </li>
-      </ol>
-    </li>
+    <li><a href="#解决">解决</a></li>
+    <li><a href="#额外">额外</a></li>
     <li><a href="#结语">结语</a></li>
   </ol>
 </nav>
@@ -207,11 +191,11 @@
     class="article-date-link icon-calendar"
     data-aos="zoom-in"
   >
-    <time datetime="2026-04-15 18:05:05 &#43;0800 CST" itemprop="datePublished"
-      >2026-04-15</time
+    <time datetime="2026-04-21 23:48:05 &#43;0800 CST" itemprop="datePublished"
+      >2026-04-21</time
     >
     <time style="display: none;" id="post-update-time"
-      >2026-04-15</time
+      >2026-04-21</time
     >
   </span></div>
 </div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote
@@ -224,144 +208,155 @@
         </blockquote><h1 id="问题">
 <a class="header-anchor" href="#%e9%97%ae%e9%a2%98"></a>
 问题
-</h1><p>最近给博客添加了一大波文章封面，测试时发现一个问题：<br>
-图片都是 
+</h1><div class="post-link-card-wrap">
+	<div class="post-link-card">
+		<a
+			href="/posts/202604/re-0-qt-app-3/"
+			title="从零开始的 Qt 应用开发（3）：UI"></a><div class="post-link-card-cover-wrap">
+				<img
+					src="/images/covers/posts/iuno-card.webp"
+					class="no-lightbox"
+					title="从零开始的 Qt 应用开发（3）：UI"
+					alt="从零开始的 Qt 应用开发（3）：UI"
+				/>
+			</div><div class="post-link-card-item-wrap">
+			<div class="post-link-card-title">从零开始的 Qt 应用开发（3）：UI</div>
+			<div class="post-link-card-excerpt">从零开始，开发一个基于 Qt6 的简单应用</div>
+		</div>
+	</div>
+</div>
+
+<p>在上面这篇文章的末尾，我想要展示滚动区域的滚动效果时，需要一个简单的动图：<br>
+将几张图依次替换产生滚动的视觉效果。</p>
+<p>开始想要制作一张 
 <a 
-    href="https://zh.wikipedia.org/wiki/PNG"
+    href="https://zh.wikipedia.org/wiki/GIF"
     
      target="_blank" rel="noopener noreferrer"
 >
-    PNG
+    GIF
 </a>
- 格式的，每一个文件大小都超过了 2M。<br>
-我的博客对于图片的精细度并没有什么要求，只要能大致看清图片里是什么就行。<br>
-因此，这个大小的图片加载速度确实比较影响阅读体验。</p>
-<p>考虑到预加载器的图片也因为网速的问题，时不时加载不出来，<br>
-于是下定决心将所有 <code>PNG</code> 格式的图片都转变为 
+ 动图，但是我此前并没有这方面的研究。<br>
+同时，我又担心生成的 <code>GIF</code> 动图如果体积太大，会影响加载的速度。</p>
+<p>突然，在浏览 <code>WebP</code> 文档时，我发现了 
 <a 
-    href="https://developers.google.com/speed/webp?hl=zh-cn"
+    href="https://developers.google.com/speed/webp/docs/webpmux?hl=en"
     
      target="_blank" rel="noopener noreferrer"
 >
-    WebP
+    webpmux
 </a>
- 格式。</p>
+ 这个工具可以将多张 <code>WebP</code> 图片生成动图。</p>
 <h1 id="解决">
 <a class="header-anchor" href="#%e8%a7%a3%e5%86%b3"></a>
 解决
-</h1><h2 id="在-windows-系统上批量提取-png-格式图片">
-<a class="header-anchor" href="#%e5%9c%a8-windows-%e7%b3%bb%e7%bb%9f%e4%b8%8a%e6%89%b9%e9%87%8f%e6%8f%90%e5%8f%96-png-%e6%a0%bc%e5%bc%8f%e5%9b%be%e7%89%87"></a>
-在 Windows 系统上批量提取 PNG 格式图片
-</h2><p>由于此前使用命令行的生涯基本都是在 <code>Linux</code> 和 <code>Mac</code> 上，对于 <code>Windows</code> 系统上如何批量提取 <code>PNG</code> 格式图片不甚了解。<br>
-还好有万能的互联网，经过搜索查询到了 <code>Windows</code> 命令行上使用的命令 
-<a 
-    href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/for"
-    
-     target="_blank" rel="noopener noreferrer"
->
-    for
-</a>
-。</p>
-<p><img src="/images/202604/ffmpeg-png-to-webp/for.webp" alt="for" title="for 的文档"></p>
-<p>通过文档的示例可以得到基础的使用方式：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># *.jpg 的原因是因为发现博客里的图片除了 PNG 格式还有少许 JPG 格式的，一起处理了</span>
-</span></span><span class="line"><span class="cl">$ <span class="k">for</span> %f in <span class="o">(</span>*.png *.jpg<span class="o">)</span> <span class="k">do</span> &lt;command&gt; <span class="o">[</span>&lt;commandlineoptions&gt;<span class="o">]</span>
-</span></span></code></pre></div><p>简单解释下：<code>for</code> 循环遍历当前文件夹内所有扩展名为 <code>.png</code> 或者 <code>.jpg</code> 的文件，并将每次遍历的完整文件名存入变量 <code>%f</code> 中。</p>
-<p>接下来，就是将格式转换的命令填入上述的 <code>&lt;command&gt; [&lt;commandlineoptions&gt;]</code> 中。</p>
-<h2 id="使用-ffmpeg">
-<a class="header-anchor" href="#%e4%bd%bf%e7%94%a8-ffmpeg"></a>
-使用 FFmpeg
-</h2><p>
-<a 
-    href="https://ffmpeg.org/"
-    
-     target="_blank" rel="noopener noreferrer"
->
-    FFmpeg
-</a>
- 是非常优秀的视频处理工具，同时它也拥有图片处理功能。</p>
-<h3 id="检测编码器">
-<a class="header-anchor" href="#%e6%a3%80%e6%b5%8b%e7%bc%96%e7%a0%81%e5%99%a8"></a>
-检测编码器
-</h3><p>首先检查当前使用的 <code>FFmpeg</code> 是否含有 <code>WebP</code> 编码器：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ ffmpeg.exe -loglevel quiet -encoders <span class="p">|</span> grep webp
-</span></span><span class="line"><span class="cl"> V....D libwebp_anim         libwebp WebP image <span class="o">(</span>codec webp<span class="o">)</span>
-</span></span><span class="line"><span class="cl"> V....D libwebp              libwebp WebP image <span class="o">(</span>codec webp<span class="o">)</span>
-</span></span></code></pre></div><h3 id="格式转换">
-<a class="header-anchor" href="#%e6%a0%bc%e5%bc%8f%e8%bd%ac%e6%8d%a2"></a>
-格式转换
-</h3><p>格式转换的命令就比较简单了：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 新创建一个文件夹 output 用来存放转换后的图片</span>
-</span></span><span class="line"><span class="cl">$ ffmpeg.exe -i input.png -c:v libwebp output/output.webp
+</h1><p>通过文档可以得知生成动图的命令是：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ webpmux -frame FRAME_OPTIONS <span class="o">[</span> -frame ... <span class="o">]</span> <span class="o">[</span> -loop LOOP_COUNT <span class="o">]</span> <span class="o">[</span> -bgcolor BACKGROUND_COLOR <span class="o">]</span> -o OUTPUT
 </span></span></code></pre></div><ul>
-<li><code>-i</code>：指定输入图片</li>
-<li><code>-c:v</code>：指定图像处理编码器</li>
-<li><code>output/output.webp</code>：指定输出图片</li>
-</ul>
-<h3 id="结合-for-命令">
-<a class="header-anchor" href="#%e7%bb%93%e5%90%88-for-%e5%91%bd%e4%bb%a4"></a>
-结合 for 命令
-</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ <span class="k">for</span> %f in <span class="o">(</span>*.png *.jpg<span class="o">)</span> <span class="k">do</span> ffmpeg.exe -i %f -c:v libwebp output/&lt;file name only&gt;.webp
-</span></span></code></pre></div><p>出现了新的问题，之前存储文件名的变量 <code>%f</code> 包含了文件名和文件扩展名，但是在这条命令中，我们只需要文件名。</p>
-<p>查阅之前 <code>for</code> 命令的文档，找到使用 <code>%~n&lt;variable&gt;</code> 的方式可以只获得文件名，调整命令：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ <span class="k">for</span> %f in <span class="o">(</span>*.png *.jpg<span class="o">)</span> <span class="k">do</span> ffmpeg.exe -i %f -c:v libwebp output/%~nf.webp
-</span></span></code></pre></div><p>大功告成，顺利转换图片的格式。</p>
-<h2 id="使用-cwebp">
-<a class="header-anchor" href="#%e4%bd%bf%e7%94%a8-cwebp"></a>
-使用 cwebp
-</h2><p>除了使用 <code>FFmpeg</code>，<code>Google</code> 还提供了针对 
+<li><code>-frame</code>：指定每一帧的选项 
 <a 
-    href="https://developers.google.com/speed/webp/docs/precompiled?hl=zh-cn"
+    href="https://developers.google.com/speed/webp/docs/webpmux?hl=en#frame_options_-frame"
     
      target="_blank" rel="noopener noreferrer"
 >
-    WebP
+    file_i +di[+xi+yi[+mi[bi]]]
 </a>
- 一系列的工具。</p>
-<h3 id="结合-for-命令格式转换">
-<a class="header-anchor" href="#%e7%bb%93%e5%90%88-for-%e5%91%bd%e4%bb%a4%e6%a0%bc%e5%bc%8f%e8%bd%ac%e6%8d%a2"></a>
-结合 for 命令格式转换
-</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ <span class="k">for</span> %f in <span class="o">(</span>*.png *.jpg<span class="o">)</span> <span class="k">do</span> cwebp.exe %f -o output/%~nf.webp
-</span></span></code></pre></div><h3 id="2个工具转换后的图片大小对比">
-<a class="header-anchor" href="#2%e4%b8%aa%e5%b7%a5%e5%85%b7%e8%bd%ac%e6%8d%a2%e5%90%8e%e7%9a%84%e5%9b%be%e7%89%87%e5%a4%a7%e5%b0%8f%e5%af%b9%e6%af%94"></a>
-2个工具转换后的图片大小对比
-</h3><p>首先要说的是，本文上述的转换方式都不是无损压缩（我需要的正是有损压缩</p>
-<p><code>cwebp</code> 工具提供了参数 <code>-q</code> 指定压缩系数，<code>FFmpeg</code> 转换格式后的 <code>.webp</code> 图片大小约等于使用 <code>cwebp</code> 指定参数 <code>-q 75</code> 的结果。</p>
-<p>具体使用哪个工具，根据自己的需求就好。</p>
 
-  <blockquote class="alert-blockquote note">
-    <p class="alert-heading">
-      Note
-    </p>
-    <p><p>如果需要无损压缩的话，请使用 <strong>cwebp</strong> 工具并指定参数 <strong>-lossless</strong>。</p></p>
-  </blockquote>
-
+<ul>
+<li><code>file_i</code>：每一帧的 <code>WebP</code> 文件名</li>
+<li><code>di</code>：下一帧之前的等待时间，单位：<code>ms</code>（毫秒）</li>
+<li><code>xi</code>：水平偏移量，默认值：<code>0</code></li>
+<li><code>yi</code>：垂直偏移量，默认值：<code>0</code></li>
+<li><code>mi</code>：每一帧的处置方法，默认值：<code>0</code>（无）</li>
+<li><code>bi</code>：每一帧的混合方法，默认值：<code>+b</code>（混合）</li>
+</ul>
+</li>
+<li><code>-loop</code>：指定循环次数，默认值：<code>0</code>（无限循环）</li>
+<li><code>-bgcolor</code>：指定背景色，默认值：<code>255,255,255,255</code></li>
+<li><code>-o</code>：指定生成动图文件名</li>
+</ul>
+<p>文档底部还提供了清晰直观的示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ webpmux -frame 1.webp +100 -frame 2.webp +100+50+50 <span class="se">\
+</span></span></span><span class="line"><span class="cl">    -frame 3.webp +100+50+50+1+b -loop <span class="m">10</span> -bgcolor 255,255,255,255 <span class="se">\
+</span></span></span><span class="line"><span class="cl">    -o anim_container.webp
+</span></span></code></pre></div><h1 id="额外">
+<a class="header-anchor" href="#%e9%a2%9d%e5%a4%96"></a>
+额外
+</h1><p>如果想要生成复杂的动图可以写脚本或者程序，比如下面这段我写的 <code>go</code> 代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nx">main</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="s">&#34;fmt&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="s">&#34;os&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="s">&#34;os/exec&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">inputFile</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&#34;capybara.webp&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">outputFile</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&#34;capybara.anim.webp&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">xi</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">yi</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">di</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">33</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">mi</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">step</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">count</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">step</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">params</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">([]</span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nx">count</span><span class="o">*</span><span class="mi">3</span><span class="o">*</span><span class="mi">4</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nx">xi</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">count</span><span class="p">;</span><span class="w"> </span><span class="nx">xi</span><span class="o">++</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nx">params</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">append</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;-frame&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">inputFile</span><span class="p">,</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;+%d+%d+0+%d&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">di</span><span class="p">,</span><span class="w"> </span><span class="nx">xi</span><span class="o">*</span><span class="nx">step</span><span class="p">,</span><span class="w"> </span><span class="nx">mi</span><span class="p">)}</span><span class="o">...</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nx">yi</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">count</span><span class="p">;</span><span class="w"> </span><span class="nx">yi</span><span class="o">++</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nx">params</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">append</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;-frame&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">inputFile</span><span class="p">,</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;+%d+%d+%d+%d&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">di</span><span class="p">,</span><span class="w"> </span><span class="nx">xi</span><span class="o">*</span><span class="nx">step</span><span class="p">,</span><span class="w"> </span><span class="nx">yi</span><span class="o">*</span><span class="nx">step</span><span class="p">,</span><span class="w"> </span><span class="nx">mi</span><span class="p">)}</span><span class="o">...</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nx">xi</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">xi</span><span class="o">--</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nx">params</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">append</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;-frame&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">inputFile</span><span class="p">,</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;+%d+%d+%d+%d&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">di</span><span class="p">,</span><span class="w"> </span><span class="nx">xi</span><span class="o">*</span><span class="nx">step</span><span class="p">,</span><span class="w"> </span><span class="nx">yi</span><span class="o">*</span><span class="nx">step</span><span class="p">,</span><span class="w"> </span><span class="nx">mi</span><span class="p">)}</span><span class="o">...</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nx">yi</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">yi</span><span class="o">--</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nx">params</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">append</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;-frame&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">inputFile</span><span class="p">,</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;+%d+0+%d+%d&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">di</span><span class="p">,</span><span class="w"> </span><span class="nx">yi</span><span class="o">*</span><span class="nx">step</span><span class="p">,</span><span class="w"> </span><span class="nx">mi</span><span class="p">)}</span><span class="o">...</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">params</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">append</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;-o&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">params</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">append</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span><span class="w"> </span><span class="nx">outputFile</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">cmd</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">exec</span><span class="p">.</span><span class="nf">Command</span><span class="p">(</span><span class="s">&#34;webpmux.exe&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">params</span><span class="o">...</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">cmd</span><span class="p">.</span><span class="nx">Stdout</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdout</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">cmd</span><span class="p">.</span><span class="nx">Stderr</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">os</span><span class="p">.</span><span class="nx">Stderr</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">cmd</span><span class="p">.</span><span class="nf">Run</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>效果如图：</p>
+<p><img src="/images/202604/webpmux-anim-webp/capybara.anim.webp" alt="capybara" title="Capybara Animation"></p>
 <h1 id="结语">
 <a class="header-anchor" href="#%e7%bb%93%e8%af%ad"></a>
 结语
-</h1><p>全站的图片都已经转换为 <code>WebP</code> 格式，肉眼可见的加载速度提升 &lt;(￣︶￣)&gt;</p>
+</h1><p>上面的动图纯属好玩，博君一乐。<br>
+这就是我这篇博客的意义所在啦 &lt;(￣︶￣)&gt;</p>
 </div>
     <footer class="article-footer"><blockquote class="article-copyright"><p><strong><span class="icon-user icon"></span>本文作者：</strong>Rujax</p><p>
-      <strong><span class="icon-link icon"></span>本文链接：</strong><a href="https://rujax.github.io/posts/202604/ffmpeg-png-to-webp/">https://rujax.github.io/posts/202604/ffmpeg-png-to-webp/</a>
-    </p><p><strong><span class="icon-pencil icon"></span>本文标题：</strong>批量将 PNG 图片转变为 WebP 格式</p><p><strong><span class="icon-calendar icon"></span>本文发布时间：</strong>2026-04-15 18:05:05</p><p>
+      <strong><span class="icon-link icon"></span>本文链接：</strong><a href="https://rujax.github.io/posts/202604/webpmux-anim-webp/">https://rujax.github.io/posts/202604/webpmux-anim-webp/</a>
+    </p><p><strong><span class="icon-pencil icon"></span>本文标题：</strong>使用 webpmux 将多张 WebP 图片生成动图</p><p><strong><span class="icon-calendar icon"></span>本文发布时间：</strong>2026-04-21 23:48:05</p><p>
       
       <strong><span class="icon-copyright icon"></span>本文版权：</strong>
       本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" rel="noopener nofollow noreferrer" target="_blank"><span class="icon-creative-commons"></span>BY-NC-SA</a> 许可协议。转载请注明出处！
     </p>
     <span class="icon-creative-commons article-copyright-bg"></span></blockquote>
-<div class="share-wrapper"><a href="https://www.facebook.com/sharer/sharer.php?u=https://rujax.github.io/posts/202604/ffmpeg-png-to-webp/" target="_blank" rel="noopener noreferrer" title="批量将 PNG 图片转变为 WebP 格式">
+<div class="share-wrapper"><a href="https://www.facebook.com/sharer/sharer.php?u=https://rujax.github.io/posts/202604/webpmux-anim-webp/" target="_blank" rel="noopener noreferrer" title="使用 webpmux 将多张 WebP 图片生成动图">
       <div class="share-icon icon icon-facebook"></div>
-    </a><a href="https://twitter.com/intent/tweet?url=https://rujax.github.io/posts/202604/ffmpeg-png-to-webp/&amp;text=%e6%89%b9%e9%87%8f%e5%b0%86%20PNG%20%e5%9b%be%e7%89%87%e8%bd%ac%e5%8f%98%e4%b8%ba%20WebP%20%e6%a0%bc%e5%bc%8f&amp;via=https://rujax.github.io/" target="_blank" rel="noopener noreferrer" title="批量将 PNG 图片转变为 WebP 格式">
+    </a><a href="https://twitter.com/intent/tweet?url=https://rujax.github.io/posts/202604/webpmux-anim-webp/&amp;text=%e4%bd%bf%e7%94%a8%20webpmux%20%e5%b0%86%e5%a4%9a%e5%bc%a0%20WebP%20%e5%9b%be%e7%89%87%e7%94%9f%e6%88%90%e5%8a%a8%e5%9b%be&amp;via=https://rujax.github.io/" target="_blank" rel="noopener noreferrer" title="使用 webpmux 将多张 WebP 图片生成动图">
       <div class="share-icon icon icon-twitter"></div>
-    </a><a href="https://www.linkedin.com/shareArticle?url=https://rujax.github.io/posts/202604/ffmpeg-png-to-webp/&amp;title=%e6%89%b9%e9%87%8f%e5%b0%86%20PNG%20%e5%9b%be%e7%89%87%e8%bd%ac%e5%8f%98%e4%b8%ba%20WebP%20%e6%a0%bc%e5%bc%8f&amp;summary=%e4%bd%bf%e7%94%a8%20FFmpeg/cwebp%20%e6%89%b9%e9%87%8f%e8%bd%ac%e6%8d%a2%e5%9b%be%e7%89%87%e6%a0%bc%e5%bc%8f&amp;mini=true&amp;ro=true" target="_blank" rel="noopener noreferrer" title="批量将 PNG 图片转变为 WebP 格式">
+    </a><a href="https://www.linkedin.com/shareArticle?url=https://rujax.github.io/posts/202604/webpmux-anim-webp/&amp;title=%e4%bd%bf%e7%94%a8%20webpmux%20%e5%b0%86%e5%a4%9a%e5%bc%a0%20WebP%20%e5%9b%be%e7%89%87%e7%94%9f%e6%88%90%e5%8a%a8%e5%9b%be&amp;summary=WebP%20%e5%9b%be%e7%89%87%e5%85%b6%e5%ae%9e%e6%9c%89%e5%8a%a8%e7%94%bb%e5%bd%a2%e5%bc%8f%20%28%e2%8a%99%cb%8d%e2%8a%99%29&amp;mini=true&amp;ro=true" target="_blank" rel="noopener noreferrer" title="使用 webpmux 将多张 WebP 图片生成动图">
       <div class="share-icon icon icon-linkedin"></div>
-    </a><a href="https://www.reddit.com/submit?url=https://rujax.github.io/posts/202604/ffmpeg-png-to-webp/&amp;title=%e6%89%b9%e9%87%8f%e5%b0%86%20PNG%20%e5%9b%be%e7%89%87%e8%bd%ac%e5%8f%98%e4%b8%ba%20WebP%20%e6%a0%bc%e5%bc%8f" target="_blank" rel="noopener noreferrer" title="批量将 PNG 图片转变为 WebP 格式">
+    </a><a href="https://www.reddit.com/submit?url=https://rujax.github.io/posts/202604/webpmux-anim-webp/&amp;title=%e4%bd%bf%e7%94%a8%20webpmux%20%e5%b0%86%e5%a4%9a%e5%bc%a0%20WebP%20%e5%9b%be%e7%89%87%e7%94%9f%e6%88%90%e5%8a%a8%e5%9b%be" target="_blank" rel="noopener noreferrer" title="使用 webpmux 将多张 WebP 图片生成动图">
       <div class="share-icon icon icon-reddit"></div>
-    </a><a href="https://service.weibo.com/share/share.php?url=https://rujax.github.io/posts/202604/ffmpeg-png-to-webp/&amp;appkey=&amp;title=%e6%89%b9%e9%87%8f%e5%b0%86%20PNG%20%e5%9b%be%e7%89%87%e8%bd%ac%e5%8f%98%e4%b8%ba%20WebP%20%e6%a0%bc%e5%bc%8f&amp;pic=&amp;ralateUid=" target="_blank" rel="noopener noreferrer" title="批量将 PNG 图片转变为 WebP 格式">
+    </a><a href="https://service.weibo.com/share/share.php?url=https://rujax.github.io/posts/202604/webpmux-anim-webp/&amp;appkey=&amp;title=%e4%bd%bf%e7%94%a8%20webpmux%20%e5%b0%86%e5%a4%9a%e5%bc%a0%20WebP%20%e5%9b%be%e7%89%87%e7%94%9f%e6%88%90%e5%8a%a8%e5%9b%be&amp;pic=&amp;ralateUid=" target="_blank" rel="noopener noreferrer" title="使用 webpmux 将多张 WebP 图片生成动图">
       <div class="share-icon icon icon-weibo"></div>
-    </a><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://rujax.github.io/posts/202604/ffmpeg-png-to-webp/&amp;title=%e6%89%b9%e9%87%8f%e5%b0%86%20PNG%20%e5%9b%be%e7%89%87%e8%bd%ac%e5%8f%98%e4%b8%ba%20WebP%20%e6%a0%bc%e5%bc%8f&amp;desc=%e4%bd%bf%e7%94%a8%20FFmpeg/cwebp%20%e6%89%b9%e9%87%8f%e8%bd%ac%e6%8d%a2%e5%9b%be%e7%89%87%e6%a0%bc%e5%bc%8f&amp;source=https://rujax.github.io/" target="_blank" rel="noopener noreferrer" title="批量将 PNG 图片转变为 WebP 格式">
+    </a><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://rujax.github.io/posts/202604/webpmux-anim-webp/&amp;title=%e4%bd%bf%e7%94%a8%20webpmux%20%e5%b0%86%e5%a4%9a%e5%bc%a0%20WebP%20%e5%9b%be%e7%89%87%e7%94%9f%e6%88%90%e5%8a%a8%e5%9b%be&amp;desc=WebP%20%e5%9b%be%e7%89%87%e5%85%b6%e5%ae%9e%e6%9c%89%e5%8a%a8%e7%94%bb%e5%bd%a2%e5%bc%8f%20%28%e2%8a%99%cb%8d%e2%8a%99%29&amp;source=https://rujax.github.io/" target="_blank" rel="noopener noreferrer" title="使用 webpmux 将多张 WebP 图片生成动图">
       <div class="share-icon icon icon-qq"></div>
-    </a><a href="javascript:;"  title="批量将 PNG 图片转变为 WebP 格式">
+    </a><a href="javascript:;"  title="使用 webpmux 将多张 WebP 图片生成动图">
       <div class="share-icon icon icon-weixin"><div id="share-weixin">
             <div class="share-weixin-dom">
               <div class="share-weixin-content">
@@ -389,23 +384,9 @@
 <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
       <a
         class="article-tag-list-link"
-        href="/tags/ffmpeg"
+        href="/tags/webpmux"
         rel="tag"
-        >FFmpeg</a
-      >
-    </li><li class="article-tag-list-item" data-aos="zoom-in">
-      <a
-        class="article-tag-list-link"
-        href="/tags/cwebp"
-        rel="tag"
-        >cwebp</a
-      >
-    </li><li class="article-tag-list-item" data-aos="zoom-in">
-      <a
-        class="article-tag-list-link"
-        href="/tags/png"
-        rel="tag"
-        >PNG</a
+        >webpmux</a
       >
     </li><li class="article-tag-list-item" data-aos="zoom-in">
       <a
@@ -421,28 +402,16 @@
     aria-label="Article navigation"
     data-aos="fade-up"
   ><div class="article-nav-link-wrap left"><img
-              data-src="/images/covers/posts/iuno-6.webp"
-              data-sizes="auto"
-              alt="设置文章中的链接点击默认打开新标签页"
-              class="lazyload"
-            /><a
-          href="/posts/202604/hugo-link-default-tab/"
-          aria-label="前一篇:设置文章中的链接点击默认打开新标签页"
-          title="前一篇:设置文章中的链接点击默认打开新标签页"
-        ></a>
-        <div class="article-nav-caption">前一篇</div>
-        <h3 class="article-nav-title">设置文章中的链接点击默认打开新标签页</h3>
-      </div><div class="article-nav-link-wrap right"><img
-              data-src="/images/covers/posts/iuno-8.webp"
+              data-src="/images/covers/posts/iuno-14.webp"
               data-sizes="auto"
               alt="从零开始的 Qt 应用开发（3）：UI"
               class="lazyload"
             /><a
           href="/posts/202604/re-0-qt-app-3/"
-          aria-label="后一篇:从零开始的 Qt 应用开发（3）：UI"
-          title="后一篇:从零开始的 Qt 应用开发（3）：UI"
+          aria-label="前一篇:从零开始的 Qt 应用开发（3）：UI"
+          title="前一篇:从零开始的 Qt 应用开发（3）：UI"
         ></a>
-        <div class="article-nav-caption">后一篇</div>
+        <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">从零开始的 Qt 应用开发（3）：UI</h3>
       </div></nav></article><section id="comments" data-aos="fade-up">
 <div class="comment-header"><h2 class="comment-title">万物，皆可为引</h2>
@@ -508,24 +477,8 @@
   <nav id="TableOfContents">
   <ol>
     <li><a href="#问题">问题</a></li>
-    <li><a href="#解决">解决</a>
-      <ol>
-        <li><a href="#在-windows-系统上批量提取-png-格式图片">在 Windows 系统上批量提取 PNG 格式图片</a></li>
-        <li><a href="#使用-ffmpeg">使用 FFmpeg</a>
-          <ol>
-            <li><a href="#检测编码器">检测编码器</a></li>
-            <li><a href="#格式转换">格式转换</a></li>
-            <li><a href="#结合-for-命令">结合 for 命令</a></li>
-          </ol>
-        </li>
-        <li><a href="#使用-cwebp">使用 cwebp</a>
-          <ol>
-            <li><a href="#结合-for-命令格式转换">结合 for 命令格式转换</a></li>
-            <li><a href="#2个工具转换后的图片大小对比">2个工具转换后的图片大小对比</a></li>
-          </ol>
-        </li>
-      </ol>
-    </li>
+    <li><a href="#解决">解决</a></li>
+    <li><a href="#额外">额外</a></li>
     <li><a href="#结语">结语</a></li>
   </ol>
 </nav>
@@ -628,9 +581,9 @@
   <div><script data-pjax>
         window.REIMU_POST = {
           author: "Rujax",
-          title: "批量将 PNG 图片转变为 WebP 格式",
-          url: "https:\/\/rujax.github.io\/posts\/202604\/ffmpeg-png-to-webp\/",
-          description: "使用 FFmpeg\/cwebp 批量转换图片格式",
+          title: "使用 webpmux 将多张 WebP 图片生成动图",
+          url: "https:\/\/rujax.github.io\/posts\/202604\/webpmux-anim-webp\/",
+          description: "WebP 图片其实有动画形式 (⊙ˍ⊙)",
           cover: "https:\/\/rujax.github.io\/images\/iuno-main.webp",
         };
       </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax ></script><script src="/js/tabs.js" integrity="" crossorigin="anonymous" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {

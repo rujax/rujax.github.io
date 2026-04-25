@@ -1,0 +1,1575 @@
+<!doctype html>
+<html
+  lang="zh-CN"
+  data-theme-mode="auto"
+  >
+  <head><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  从零开始的 Qt 应用开发（4）：样式 | Rujax
+</title>
+<meta name="description" content="从零开始，开发一个基于 Qt6 的简单应用"/>
+    <meta name="keywords" content="Qt,应用,开发,样式" /><script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"https://rujax.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (⊙…⊙)\",\"zh-cn\":\"复制失败 (⊙…⊙)\"},\"success\":{\"en\":\"Copy successfully (★^O^★)\",\"zh-cn\":\"复制成功 (★^O^★)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_a0oqhord1y\",\"outdate\":{\"daysago\":180,\"enable\":true,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\"}}}");
+  
+</script>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><link rel="stylesheet" href="/css/loader.min.065aed82b24a386b4876c1b25a82897328b7a31ce3248eafdd8df0b1bf6548fc.css" /><meta property="og:type" content="website" />
+  <meta property="og:title" content="从零开始的 Qt 应用开发（4）：样式 | Rujax" />
+  <meta
+    property="og:description"
+    content="从零开始，开发一个基于 Qt6 的简单应用"
+  />
+  <meta property="og:url" content="https://rujax.github.io/posts/202604/re-0-qt-app-4/" />
+  <meta
+    property="og:site_name"
+    content="Rujax&#39;s blog"
+  />
+  <meta property="og:image" content="https://rujax.github.io/images/iuno-main.webp" />
+  <meta property="article:author" content="Rujax" />
+  <meta property="article:published_time" content="2026-04-25T20:05:50&#43;08:00" />
+  <meta property="article:modified_time" content="2026-04-25T20:05:50&#43;08:00" /><meta property="article:tag" content="Qt, Git" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://rujax.github.io/images/iuno-main.webp" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.32f2ae7a00f67e89d9e4c4d48a2f5fc7c60b27a86db0de916c91211ba476f2b2.css" /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css"
+    integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz&#43;YI" crossorigin="anonymous"
+    onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    
+    
+    
+    
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css"
+    integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous"/><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.css"
+    integrity="sha384-tLMkTWh2pfXNWGFlUS0w1TFtRG5xZ9lPWFOooj&#43;vDDLIL&#43;xBGQU/voDBY5XE2lVh" crossorigin="anonymous"/></head>
+  <body><div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate"><img src="/images/iuno-circle.webp" alt="loading" /></div><div class="loading-word">预见未来中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script><div id="copy-tooltip"></div>
+<div id="lang-tooltip">
+本文章没有找到对应的语言版本
+</div>
+<div id="heatmap-tooltip"></div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation"><a class="main-nav-link-wrap" href="/"><div class='main-nav-icon icon '><img src="/images/lunar.webp" alt="home icon" class="" style="height: 1em;"></div><span class="main-nav-link">首页</span>
+      </a><a class="main-nav-link-wrap" href="/archives"><div class='main-nav-icon icon '><img src="/images/lunar.webp" alt="archives icon" class="" style="height: 1em;"></div><span class="main-nav-link">归档</span>
+      </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation"></nav></div>
+<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/iuno-main.webp" alt="从零开始的 Qt 应用开发（4）：样式"><div id="header-outer">
+    <div id="header-title"><span id="logo">
+            <h1 data-aos="slide-up">从零开始的 Qt 应用开发（4）：样式</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          aria-label="Page content"
+          class="sidebar-left"
+            ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ol>
+    <li><a href="#开始之前">开始之前</a>
+      <ol>
+        <li><a href="#检查文件差异">检查文件差异</a></li>
+      </ol>
+    </li>
+    <li><a href="#添加样式">添加样式</a>
+      <ol>
+        <li><a href="#添加-qss-文件">添加 .qss 文件</a></li>
+        <li><a href="#qt-style-sheets">Qt Style Sheets</a></li>
+        <li><a href="#调整代码">调整代码</a>
+          <ol>
+            <li><a href="#maincpp">main.cpp</a></li>
+            <li><a href="#mainwindowcpp">mainwindow.cpp</a>
+              <ol>
+                <li><a href="#第一处">第一处</a></li>
+                <li><a href="#第二处">第二处</a></li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#美化样式">美化样式</a>
+      <ol>
+        <li><a href="#窗口背景色">窗口背景色</a></li>
+        <li><a href="#美化顶部订阅布局">美化顶部订阅布局</a>
+          <ol>
+            <li><a href="#美化单行编辑组件和订阅按钮">美化单行编辑组件和订阅按钮</a></li>
+            <li><a href="#为顶部订阅布局添加下边框">为顶部订阅布局添加下边框</a></li>
+          </ol>
+        </li>
+        <li><a href="#美化中间布局">美化中间布局</a></li>
+        <li><a href="#美化底部布局">美化底部布局</a>
+          <ol>
+            <li><a href="#为底部布局添加上边框">为底部布局添加上边框</a></li>
+            <li><a href="#美化版本标签组件和设置按钮">美化版本标签组件和设置按钮</a></li>
+          </ol>
+        </li>
+        <li><a href="#调整边距">调整边距</a></li>
+      </ol>
+    </li>
+    <li><a href="#结语">结语</a></li>
+  </ol>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.webp"
+    data-sizes="auto"
+    alt="Rujax"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">Rujax</div>
+  <div class="sidebar-description">来，捕获月亮吧~</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">8</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      2
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">9</div>
+  </a>
+</div>
+<div class="sidebar-social" ><div class="icon-github sidebar-social-icon">
+        <a
+          href="https://github.com/rujax"
+          itemprop="url"
+          target="_blank"
+          aria-label="github"
+          rel="noopener nofollow noreferrer"
+        ></a>
+      </div></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon '><img src="/images/lunar.webp" alt="home icon" class="" style="height: 1em;"></div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '><img src="/images/lunar.webp" alt="archives icon" class="" style="height: 1em;"></div><div class="sidebar-menu-link">归档</div>
+    </div></div></div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2026-04-25 20:05:50 &#43;0800 CST" itemprop="datePublished"
+      >2026-04-25</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2026-04-25</time
+    >
+  </span></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote
+          class="alert-blockquote warning"
+          id="outdate-blockquote"
+          style="display: none;"
+        >
+          <p class="alert-heading">WARNING</p>
+          <p></p>
+        </blockquote><h1 id="开始之前">
+<a class="header-anchor" href="#%e5%bc%80%e5%a7%8b%e4%b9%8b%e5%89%8d"></a>
+开始之前
+</h1><p>在开始今天的 <code>Qt</code> 应用开发之前，先将上一篇的代码变动提交到仓库里。</p>
+<h2 id="检查文件差异">
+<a class="header-anchor" href="#%e6%a3%80%e6%9f%a5%e6%96%87%e4%bb%b6%e5%b7%ae%e5%bc%82"></a>
+检查文件差异
+</h2><p>进入项目文件夹后执行 <code>git status</code> 可以查看到当前的文件状态：</p>
+<p><img src="/images/202604/re-0-qt-app-4/4-1.webp" alt="4-1" title="文件状态"></p>
+<p>可以看到：<code>config.svg</code>、<code>project.h.in</code> 和 <code>project.qrc</code> 被列为新文件，<br>
+而 <code>CMakeLists.txt</code>、<code>mainwindow.cpp</code> 和 <code>mainwindow.h</code> 被列为已修改的状态。</p>
+<p>通过 <code>git diff</code> 命令可以查看已修改文件的差异。</p>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><p>查看差异的方式有很多种，比如：<strong>Qt Creator</strong> 内置的 <strong>Git</strong> 工具和 <strong>Visual Studio Code</strong> 的 <strong>Git</strong> 工具以及相关插件。</p></p>
+  </blockquote>
+
+<p>确认文件差异无误后，依次使用 <code>git add .</code> 和 <code>git commit -m &lt;message&gt;</code> 提交代码。</p>
+<h1 id="添加样式">
+<a class="header-anchor" href="#%e6%b7%bb%e5%8a%a0%e6%a0%b7%e5%bc%8f"></a>
+添加样式
+</h1><p>在 <code>Qt</code> 应用中添加样式除了对继承自 
+<a 
+    href="https://doc.qt.io/qt-6/qwidget.html"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    QWidget
+</a>
+ 的组件使用 
+<a 
+    href="https://doc.qt.io/qt-6/qwidget.html#styleSheet-prop"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    setStyleSheet()
+</a>
+ 方法，<br>
+还可以通过添加文件扩展名为 <code>.qss</code> 的样式文件，调用 
+<a 
+    href="https://doc.qt.io/qt-6/qapplication.html"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    QApplication
+</a>
+ 的 
+<a 
+    href="https://doc.qt.io/qt-6/qapplication.html#styleSheet-prop"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    setStyleSheet()
+</a>
+ 方法应用到整个项目之中。</p>
+<h2 id="添加-qss-文件">
+<a class="header-anchor" href="#%e6%b7%bb%e5%8a%a0-qss-%e6%96%87%e4%bb%b6"></a>
+添加 .qss 文件
+</h2><p>右键 <code>project.qrc</code> 文件，选择 <code>添加新文件...</code>，在弹窗中依次选择 <code>概要</code> → <code>Empty File</code> 后，点击 <strong>选择&hellip;</strong>：</p>
+<p><img src="/images/202604/re-0-qt-app-4/4-2.webp" alt="4-2" title="添加 .qss 文件 1"></p>
+<p>文件名填入：<code>project.qss</code> 后，点击 <strong>下一步</strong>，在新的弹窗中点击 <strong>完成</strong>：</p>
+<div class="gallery-wall" id="photoWall-403cbaace"></div>
+<script>
+  (function() {
+    const imageUrls = JSON.parse("[\"/images/202604/re-0-qt-app-4/4-3.webp\",\"/images/202604/re-0-qt-app-4/4-4.webp\"]");
+    let images = [];
+    const wallId = '#photoWall-403cbaace';
+    let resizeTimer;
+    let lastWidth = 0;
+    
+    function init() {
+      createInitialDOM();
+      loadImages();
+      const wall = _$(wallId);
+      if (wall && window.ResizeObserver) {
+        const observer = new ResizeObserver((entries) => {
+          const newWidth = entries[0].contentRect.width;
+          if (Math.abs(newWidth - lastWidth) > 1) {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(renderPhotoWall, 250);
+          }
+        });
+        observer.observe(wall);
+      } else {
+        window.addEventListener('resize', handleResize);
+      }
+    }
+    
+    function createInitialDOM() {
+      const wall = _$(wallId);
+      if (!wall || !imageUrls.length) return;
+      
+      wall.style.opacity = '0';
+      wall.style.pointerEvents = 'none';
+      
+      imageUrls.forEach((url) => {
+        images.push({
+          width: 800,
+          height: 600,
+          aspectRatio: 4/3,
+          url: url,
+          loaded: false
+        });
+      });
+      
+      renderPhotoWall();
+    }
+    
+    function loadImages() {
+      const loadPromises = imageUrls.map((url, index) => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = () => {
+            if (images[index]) {
+              images[index].width = img.naturalWidth;
+              images[index].height = img.naturalHeight;
+              images[index].aspectRatio = img.naturalWidth / img.naturalHeight;
+              images[index].loaded = true;
+            }
+            resolve();
+          };
+          img.onerror = () => {
+            if (images[index]) {
+              images[index].loaded = true;
+            }
+            resolve();
+          };
+          img.src = url;
+        });
+      });
+      
+      Promise.all(loadPromises)
+        .then(() => {
+          const wall = _$(wallId);
+          if (wall) {
+            wall.style.opacity = '1';
+            wall.style.pointerEvents = 'auto';
+            wall.style.transition = 'opacity 0.3s ease';
+          }
+          renderPhotoWall();
+        })
+        .catch((error) => console.error("图片加载失败:", error));
+    }
+    
+    function renderPhotoWall() {
+      const wall = _$(wallId);
+      
+      if (!images.length || !wall) return;
+      
+      const screenWidth = wall.offsetWidth || window.innerWidth - 40;
+      lastWidth = screenWidth;
+      
+      wall.innerHTML = "";
+      const rowHeight = 200;
+      const gap = 10;
+      const maxPerRow = 4;
+      
+      let row = [];
+      let rowWidth = 0;
+      const rows = [];
+      
+      images.forEach((img) => {
+        const scaledWidth = rowHeight * img.aspectRatio;
+        
+        if (rowWidth + scaledWidth <= screenWidth && row.length < maxPerRow) {
+          row.push(img);
+          rowWidth += scaledWidth + gap;
+        } else {
+          if (row.length) rows.push(row);
+          row = [img];
+          rowWidth = scaledWidth + gap;
+        }
+      });
+      
+      if (row.length) rows.push(row);
+      
+      rows.forEach((row) => {
+        const rowDiv = document.createElement("div");
+        rowDiv.style.cssText = `display: flex; gap: ${gap}px; width: 100%`;
+        
+        row.forEach((img) => {
+          const item = document.createElement("div");
+          item.className = "photo-item";
+          const flex = row.length === 1 ? '1' : img.aspectRatio;
+          item.style.cssText = `flex: ${flex}; height: ${rowHeight}px`;
+          
+          const imgEl = document.createElement("img");
+          imgEl.alt = "Gallery Image";
+          imgEl.style.cssText = "width: 100%; height: 100%; object-fit: cover";
+          imgEl.className = "lazyload";
+          imgEl.dataset.src = img.url;
+          imgEl.dataset.sizes = "auto";
+
+          const link = document.createElement("a");
+          link.href = img.url;
+          link.dataset.pswpWidth = img.width;
+          link.dataset.pswpHeight = img.height;
+          link.target = "_blank";
+          link.className = "article-gallery-item";
+          link.style.cssText = "width: 100%; height: 100%";
+          link.appendChild(imgEl);
+          
+          item.appendChild(link);
+          rowDiv.appendChild(item);
+        });
+        
+        wall.appendChild(rowDiv);
+      });
+    }
+    
+    function handleResize() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(renderPhotoWall, 250);
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script><link rel="preload" as="style" href="/css/gallery.min.43b19c254fc1e9d2fcbf30d14544d5c92d1d0ab4dc7a4ba35042649d6f36d6e3.css" onload="this.onload=null;this.rel='stylesheet'" />
+<p>此时，可以看到 <code>project.qss</code> 文件已经在左侧文件结构 <code>Resources</code> → <code>project.qrc</code> → <code>/</code> 的路径之下了。</p>
+<p><img src="/images/202604/re-0-qt-app-4/4-5.webp" alt="4-5" title="添加 .qss 文件 4"></p>
+<h2 id="qt-style-sheets">
+<a class="header-anchor" href="#qt-style-sheets"></a>
+Qt Style Sheets
+</h2><p>
+<a 
+    href="https://doc.qt.io/qt-6/stylesheet.html"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    Qt Style Sheets
+</a>
+ 是 <code>Qt</code> 应用中的 
+<a 
+    href="http://www.w3.org/Style/CSS/"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    Cascading Style Sheets(CSS)
+</a>
+，<br>
+它的 
+<a 
+    href="https://doc.qt.io/qt-6/stylesheet-syntax.html"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    语法
+</a>
+ 深受 <code>CSS</code> 启发。</p>
+<p>官方文档 
+<a 
+    href="https://doc.qt.io/qt-6/stylesheet-reference.html"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    Qt Style Sheets Reference
+</a>
+ 和 
+<a 
+    href="https://doc.qt.io/qt-6/stylesheet-examples.html"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    Qt Style Sheets Examples
+</a>
+ 都是非常好的学习资料。</p>
+<h2 id="调整代码">
+<a class="header-anchor" href="#%e8%b0%83%e6%95%b4%e4%bb%a3%e7%a0%81"></a>
+调整代码
+</h2><h3 id="maincpp">
+<a class="header-anchor" href="#maincpp"></a>
+main.cpp
+</h3><p>添加如下高亮代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;mainwindow.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;QApplication&gt;</span><span class="cp">
+</span></span></span><span class="line hl"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;QFile&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QApplication</span> <span class="n">a</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">QFile</span> <span class="nf">qss</span><span class="p">(</span><span class="s">&#34;:/project.qss&#34;</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">
+</span></span><span class="line hl"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">qss</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="nc">QFile</span><span class="p">::</span><span class="n">ReadOnly</span><span class="p">))</span>
+</span></span><span class="line hl"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line hl"><span class="cl">        <span class="n">QString</span> <span class="n">style</span> <span class="o">=</span> <span class="n">qss</span><span class="p">.</span><span class="nf">readAll</span><span class="p">();</span>
+</span></span><span class="line hl"><span class="cl">        <span class="n">a</span><span class="p">.</span><span class="nf">setStyleSheet</span><span class="p">(</span><span class="n">style</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">
+</span></span><span class="line hl"><span class="cl">        <span class="n">qss</span><span class="p">.</span><span class="nf">close</span><span class="p">();</span>
+</span></span><span class="line hl"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line hl"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line hl"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line hl"><span class="cl">        <span class="nf">qWarning</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Can&#39;t open project.qss&#34;</span><span class="p">;</span>
+</span></span><span class="line hl"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">MainWindow</span> <span class="n">w</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>简单描述下代码：</p>
+<ol>
+<li>调用 
+<a 
+    href="https://doc.qt.io/qt-6/qfile.html#QFile-2"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    QFile
+</a>
+ 的构造函数生成实例 <code>qss</code></li>
+<li>再调用 
+<a 
+    href="https://doc.qt.io/qt-6/qfile.html#open"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    open()
+</a>
+ 方法以只读模式打开文件</li>
+<li>调用 
+<a 
+    href="https://doc.qt.io/qt-6/qiodevice.html#readAll"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    readAll()
+</a>
+ 方法读取文件内容并赋值给字符串</li>
+<li>调用 
+<a 
+    href="https://doc.qt.io/qt-6/qapplication.html#styleSheet-prop"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    setStyleSheet()
+</a>
+ 方法应用样式</li>
+<li>调用 
+<a 
+    href="https://doc.qt.io/qt-6/qfiledevice.html#close"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    close()
+</a>
+ 方法关闭文件</li>
+<li>如果打开文件失败，则调用宏 
+<a 
+    href="https://doc.qt.io/qt-6/qdebug.html#qWarning"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    qWarning()
+</a>
+ 打印失败信息</li>
+</ol>
+<p>运行应用，查看底部应用输出，没有输出 <code>Can't open project.qss</code> 则代表加载成功。</p>
+<p><img src="/images/202604/re-0-qt-app-4/4-6.webp" alt="4-6" title="加载 .qss 文件"></p>
+<h3 id="mainwindowcpp">
+<a class="header-anchor" href="#mainwindowcpp"></a>
+mainwindow.cpp
+</h3><p>打开 <code>mainwindow.cpp</code> 文件，搜索关键字 <code>setStyleSheet</code>，可以看到代码有 <strong>2</strong> 处使用。</p>
+<h4 id="第一处">
+<a class="header-anchor" href="#%e7%ac%ac%e4%b8%80%e5%a4%84"></a>
+第一处
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nc">MainWindow</span><span class="p">::</span><span class="nf">_buildUI</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">row</span><span class="p">;</span> <span class="o">++</span><span class="n">r</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">col</span><span class="p">;</span> <span class="o">++</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">QLabel</span> <span class="o">*</span><span class="n">feedLabel</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QLabel</span><span class="p">(</span><span class="nc">QString</span><span class="p">::</span><span class="nf">number</span><span class="p">(</span><span class="n">r</span> <span class="o">*</span> <span class="n">col</span> <span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">// 修改前
+</span></span></span><span class="line"><span class="cl">            <span class="n">feedLabel</span><span class="o">-&gt;</span><span class="nf">setAlignment</span><span class="p">(</span><span class="nc">Qt</span><span class="p">::</span><span class="n">AlignCenter</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">feedLabel</span><span class="o">-&gt;</span><span class="nf">setStyleSheet</span><span class="p">(</span><span class="s">&#34;background-color: Violet; font-size: 24px&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">// 修改后
+</span></span></span><span class="line hl"><span class="cl">            <span class="n">feedLabel</span><span class="o">-&gt;</span><span class="nf">setProperty</span><span class="p">(</span><span class="s">&#34;class&#34;</span><span class="p">,</span> <span class="s">&#34;feed-label&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">feedLabel</span><span class="o">-&gt;</span><span class="nf">setAlignment</span><span class="p">(</span><span class="nc">Qt</span><span class="p">::</span><span class="n">AlignCenter</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="p">...</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>通过调用 
+<a 
+    href="https://doc.qt.io/qt-6/qobject.html#setProperty"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    setProperty()
+</a>
+ 方法，<br>
+给每一个生成的 <code>feedLabel</code> 添加属性 <code>class</code>，属性值为 <code>feed-label</code>。</p>
+<p>设置属性 <code>class</code> 的作用类似 <code>CSS</code> 的 
+<a 
+    href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Reference/Selectors/Class_selectors"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    类选择器
+</a>
+，  指定这类标签都拥有这个属性。</p>
+<p>接着，打开 <code>project.qss</code>，填入以下内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">QLabel</span><span class="p">.</span><span class="nc">feed-label</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">background-color</span><span class="p">:</span> <span class="n">Violet</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">font-size</span><span class="p">:</span> <span class="mi">24</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>运行应用，可以看到窗口中的内容与原先一致。</p>
+<h4 id="第二处">
+<a class="header-anchor" href="#%e7%ac%ac%e4%ba%8c%e5%a4%84"></a>
+第二处
+</h4><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nc">MainWindow</span><span class="p">::</span><span class="nf">_buildUI</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">QLabel</span> <span class="o">*</span><span class="n">versionLabel</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QLabel</span><span class="p">(</span><span class="nf">QString</span><span class="p">(</span><span class="s">&#34;版本: %1&#34;</span><span class="p">).</span><span class="nf">arg</span><span class="p">(</span><span class="n">PROJECT_VERSION</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 修改前
+</span></span></span><span class="line"><span class="cl">    <span class="n">versionLabel</span><span class="o">-&gt;</span><span class="nf">setStyleSheet</span><span class="p">(</span><span class="s">&#34;font-size: 14px&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 修改后
+</span></span></span><span class="line hl"><span class="cl">    <span class="n">versionLabel</span><span class="o">-&gt;</span><span class="nf">setObjectName</span><span class="p">(</span><span class="s">&#34;version-label&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>通过调用 
+<a 
+    href="https://doc.qt.io/qt-6/qobject.html#setObjectName"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    setObjectName()
+</a>
+ 方法为 <code>versionLabel</code> 指定名称，<br>
+在 <code>qss</code> 中则类似 <code>CSS</code> 的 
+<a 
+    href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Reference/Selectors/ID_selectors"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    ID 选择器
+</a>
+ 的效果。</p>
+<p>打开 <code>project.qss</code>，填入以下内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">QLabel</span><span class="p">#</span><span class="nn">version-label</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">font-size</span><span class="p">:</span> <span class="mi">14</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>运行应用，与之前样式一致即可。</p>
+<h1 id="美化样式">
+<a class="header-anchor" href="#%e7%be%8e%e5%8c%96%e6%a0%b7%e5%bc%8f"></a>
+美化样式
+</h1><h2 id="窗口背景色">
+<a class="header-anchor" href="#%e7%aa%97%e5%8f%a3%e8%83%8c%e6%99%af%e8%89%b2"></a>
+窗口背景色
+</h2><p>继续修改 <code>mainwindow.cpp</code> 文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nc">MainWindow</span><span class="p">::</span><span class="nf">_buildUI</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">QWidget</span> <span class="o">*</span><span class="n">feedsContainer</span> <span class="o">=</span> <span class="kr">new</span> <span class="n">QWidget</span><span class="p">;</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">feedsContainer</span><span class="o">-&gt;</span><span class="nf">setObjectName</span><span class="p">(</span><span class="s">&#34;feeds-container&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">feedsContainer</span><span class="o">-&gt;</span><span class="nf">setLayout</span><span class="p">(</span><span class="n">_feedsLayout</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">QWidget</span> <span class="o">*</span><span class="n">container</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QWidget</span><span class="p">(</span><span class="kp">this</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">container</span><span class="o">-&gt;</span><span class="nf">setObjectName</span><span class="p">(</span><span class="s">&#34;container&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">container</span><span class="o">-&gt;</span><span class="nf">setLayout</span><span class="p">(</span><span class="n">mainLayout</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>继续修改 <code>project.qss</code> 文件，在顶部添加：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">QWidget</span><span class="p">#</span><span class="nn">container</span><span class="o">,</span> <span class="nt">QWidget</span><span class="p">#</span><span class="nn">feeds-container</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">background-color</span><span class="p">:</span> <span class="mh">#fcfcfc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="美化顶部订阅布局">
+<a class="header-anchor" href="#%e7%be%8e%e5%8c%96%e9%a1%b6%e9%83%a8%e8%ae%a2%e9%98%85%e5%b8%83%e5%b1%80"></a>
+美化顶部订阅布局
+</h2><h3 id="美化单行编辑组件和订阅按钮">
+<a class="header-anchor" href="#%e7%be%8e%e5%8c%96%e5%8d%95%e8%a1%8c%e7%bc%96%e8%be%91%e7%bb%84%e4%bb%b6%e5%92%8c%e8%ae%a2%e9%98%85%e6%8c%89%e9%92%ae"></a>
+美化单行编辑组件和订阅按钮
+</h3><p>继续修改 <code>mainwindow.cpp</code> 文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nc">MainWindow</span><span class="p">::</span><span class="nf">_buildUI</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">_feedEdit</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QLineEdit</span><span class="p">();</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">_feedEdit</span><span class="o">-&gt;</span><span class="nf">setObjectName</span><span class="p">(</span><span class="s">&#34;feed-edit&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_feedEdit</span><span class="o">-&gt;</span><span class="nf">setPlaceholderText</span><span class="p">(</span><span class="s">&#34;请输入 RSS 链接&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">_subscribeButton</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QPushButton</span><span class="p">(</span><span class="s">&#34;订阅&#34;</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">_subscribeButton</span><span class="o">-&gt;</span><span class="nf">setObjectName</span><span class="p">(</span><span class="s">&#34;subscribe-button&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>继续修改 <code>project.qss</code> 文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="o">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">QLineEdit</span><span class="p">#</span><span class="nn">feed-edit</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">height</span><span class="p">:</span> <span class="mi">60</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">padding</span><span class="p">:</span> <span class="mi">5</span><span class="kt">px</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="kc">gray</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">border-radius</span><span class="p">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">font-size</span><span class="p">:</span> <span class="mi">24</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">QPushButton</span><span class="p">#</span><span class="nn">subscribe-button</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="mi">180</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">height</span><span class="p">:</span> <span class="mi">60</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">padding</span><span class="p">:</span> <span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">background-color</span><span class="p">:</span> <span class="mh">#ff9632</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">border-radius</span><span class="p">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">font-size</span><span class="p">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">font-weight</span><span class="p">:</span> <span class="kc">bold</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">color</span><span class="p">:</span> <span class="kc">white</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">QPushButton</span><span class="p">#</span><span class="nn">subscribe-button</span><span class="p">:</span><span class="nd">hover</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">background-color</span><span class="p">:</span> <span class="mh">#ee802f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">QPushButton</span><span class="p">#</span><span class="nn">subscribe-button</span><span class="p">:</span><span class="nd">pressed</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">background-color</span><span class="p">:</span> <span class="mh">#ff9632</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="为顶部订阅布局添加下边框">
+<a class="header-anchor" href="#%e4%b8%ba%e9%a1%b6%e9%83%a8%e8%ae%a2%e9%98%85%e5%b8%83%e5%b1%80%e6%b7%bb%e5%8a%a0%e4%b8%8b%e8%be%b9%e6%a1%86"></a>
+为顶部订阅布局添加下边框
+</h3><p>这里通过 
+<a 
+    href="https://doc.qt.io/qt-6/qframe.html"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    QFrame
+</a>
+ 组件实现一条边框，继续修改 <code>mainwindow.cpp</code> 文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nc">MainWindow</span><span class="p">::</span><span class="nf">_buildUI</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">subscribeLayout</span><span class="o">-&gt;</span><span class="nf">addWidget</span><span class="p">(</span><span class="n">_subscribeButton</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line hl"><span class="cl">    <span class="n">QFrame</span> <span class="o">*</span><span class="n">subscribeLine</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QFrame</span><span class="p">();</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">subscribeLine</span><span class="o">-&gt;</span><span class="nf">setObjectName</span><span class="p">(</span><span class="s">&#34;subscribe-line&#34;</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">subscribeLine</span><span class="o">-&gt;</span><span class="nf">setFrameShape</span><span class="p">(</span><span class="nc">QFrame</span><span class="p">::</span><span class="n">HLine</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">subscribeLine</span><span class="o">-&gt;</span><span class="nf">setContentsMargins</span><span class="p">(</span><span class="n">spacing</span> <span class="o">+</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">spacing</span> <span class="o">+</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="nf">addLayout</span><span class="p">(</span><span class="n">subscribeLayout</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="nf">addWidget</span><span class="p">(</span><span class="n">subscribeLine</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="nf">addWidget</span><span class="p">(</span><span class="n">feedsScrollArea</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>继续修改 <code>project.qss</code> 文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="o">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">QFrame</span><span class="p">#</span><span class="nn">subscribe-line</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">color</span><span class="p">:</span> <span class="kc">lightgray</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>运行应用，应该能看到如下图的窗口：</p>
+<p><img src="/images/202604/re-0-qt-app-4/4-7.webp" alt="4-7" title="美化顶部布局后的窗口"></p>
+<h2 id="美化中间布局">
+<a class="header-anchor" href="#%e7%be%8e%e5%8c%96%e4%b8%ad%e9%97%b4%e5%b8%83%e5%b1%80"></a>
+美化中间布局
+</h2><p>继续修改 <code>project.qss</code> 文件，调整 <code>QLabel.feed-label</code> 的内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="o">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">QLabel</span><span class="p">.</span><span class="nc">feed-label</span> <span class="p">{</span>
+</span></span><span class="line hl"><span class="cl">    <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="kc">gray</span><span class="p">;</span>
+</span></span><span class="line hl"><span class="cl">    <span class="k">border-radius</span><span class="p">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">font-size</span><span class="p">:</span> <span class="mi">24</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
+</span></span></code></pre></div>
+  <blockquote class="alert-blockquote tip">
+    <p class="alert-heading">
+      Tip
+    </p>
+    <p><p><strong>feed</strong> 后续打算自定义组件独立出来，到时再做精细的美化。</p></p>
+  </blockquote>
+
+<h2 id="美化底部布局">
+<a class="header-anchor" href="#%e7%be%8e%e5%8c%96%e5%ba%95%e9%83%a8%e5%b8%83%e5%b1%80"></a>
+美化底部布局
+</h2><h3 id="为底部布局添加上边框">
+<a class="header-anchor" href="#%e4%b8%ba%e5%ba%95%e9%83%a8%e5%b8%83%e5%b1%80%e6%b7%bb%e5%8a%a0%e4%b8%8a%e8%be%b9%e6%a1%86"></a>
+为底部布局添加上边框
+</h3><p>继续修改 <code>mainwindow.cpp</code> 文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nc">MainWindow</span><span class="p">::</span><span class="nf">_buildUI</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">feedsScrollArea</span><span class="o">-&gt;</span><span class="nf">setWidget</span><span class="p">(</span><span class="n">feedsContainer</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line hl"><span class="cl">    <span class="n">QFrame</span> <span class="o">*</span><span class="n">informationLine</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QFrame</span><span class="p">();</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">informationLine</span><span class="o">-&gt;</span><span class="nf">setObjectName</span><span class="p">(</span><span class="s">&#34;information-line&#34;</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">informationLine</span><span class="o">-&gt;</span><span class="nf">setFrameShape</span><span class="p">(</span><span class="nc">QFrame</span><span class="p">::</span><span class="n">HLine</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="nf">addWidget</span><span class="p">(</span><span class="n">feedsScrollArea</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="nf">addWidget</span><span class="p">(</span><span class="n">informationLine</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mainLayout</span><span class="o">-&gt;</span><span class="nf">addLayout</span><span class="p">(</span><span class="n">informationLayout</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>继续修改 <code>project.qss</code> 文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="o">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">QFrame</span><span class="p">#</span><span class="nn">information-line</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">color</span><span class="p">:</span> <span class="kc">gray</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="美化版本标签组件和设置按钮">
+<a class="header-anchor" href="#%e7%be%8e%e5%8c%96%e7%89%88%e6%9c%ac%e6%a0%87%e7%ad%be%e7%bb%84%e4%bb%b6%e5%92%8c%e8%ae%be%e7%bd%ae%e6%8c%89%e9%92%ae"></a>
+美化版本标签组件和设置按钮
+</h3><p>继续修改 <code>project.qss</code> 文件，调整 <code>QLabel#version-label</code> 的内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="o">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">QLabel</span><span class="p">#</span><span class="nn">version-label</span> <span class="p">{</span>
+</span></span><span class="line hl"><span class="cl">    <span class="k">font-weight</span><span class="p">:</span> <span class="kc">bold</span><span class="p">;</span>
+</span></span><span class="line hl"><span class="cl">    <span class="k">color</span><span class="p">:</span> <span class="kc">gray</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">font-size</span><span class="p">:</span> <span class="mi">14</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
+</span></span></code></pre></div><p>继续修改 <code>mainwindow.cpp</code> 文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nc">MainWindow</span><span class="p">::</span><span class="nf">_buildUI</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">versionLabel</span><span class="o">-&gt;</span><span class="nf">setObjectName</span><span class="p">(</span><span class="s">&#34;version-label&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">QPushButton</span> <span class="o">*</span><span class="n">configButton</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QPushButton</span><span class="p">(</span><span class="nf">QIcon</span><span class="p">(</span><span class="s">&#34;:/config.svg&#34;</span><span class="p">),</span> <span class="s">&#34;&#34;</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">configButton</span><span class="o">-&gt;</span><span class="nf">setObjectName</span><span class="p">(</span><span class="s">&#34;config-button&#34;</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">configButton</span><span class="o">-&gt;</span><span class="nf">setIconSize</span><span class="p">(</span><span class="nf">QSize</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>再修改 <code>project.qss</code> 文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="o">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">QPushButton</span><span class="p">#</span><span class="nn">config-button</span><span class="o">,</span> <span class="nt">QPushButton</span><span class="p">#</span><span class="nn">config-button</span><span class="p">:</span><span class="nd">hover</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">background-color</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">border</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="调整边距">
+<a class="header-anchor" href="#%e8%b0%83%e6%95%b4%e8%be%b9%e8%b7%9d"></a>
+调整边距
+</h2><p>因为添加了 <strong>2</strong> 条边框，为了使整体边距更加协调，微调了部分布局的边距。<br>
+打开 <code>mainwindow.cpp</code> 文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nc">MainWindow</span><span class="p">::</span><span class="nf">_buildUI</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">QHBoxLayout</span> <span class="o">*</span><span class="n">subscribeLayout</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QHBoxLayout</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">subscribeLayout</span><span class="o">-&gt;</span><span class="nf">setSpacing</span><span class="p">(</span><span class="n">spacing</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">subscribeLayout</span><span class="o">-&gt;</span><span class="nf">setContentsMargins</span><span class="p">(</span><span class="n">spacing</span><span class="p">,</span> <span class="n">spacing</span><span class="p">,</span> <span class="n">spacing</span><span class="p">,</span> <span class="n">spacing</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">subscribeLayout</span><span class="o">-&gt;</span><span class="nf">addWidget</span><span class="p">(</span><span class="n">_feedEdit</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">_feedsLayout</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QGridLayout</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_feedsLayout</span><span class="o">-&gt;</span><span class="nf">setSpacing</span><span class="p">(</span><span class="n">spacing</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">_feedsLayout</span><span class="o">-&gt;</span><span class="nf">setContentsMargins</span><span class="p">(</span><span class="n">spacing</span><span class="p">,</span> <span class="n">spacing</span><span class="p">,</span> <span class="n">spacing</span><span class="p">,</span> <span class="n">spacing</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>运行应用，应该能看到如下图的窗口：</p>
+<p><img src="/images/202604/re-0-qt-app-4/4-8.webp" alt="4-8" title="美化全部布局后的窗口"></p>
+<h1 id="结语">
+<a class="header-anchor" href="#%e7%bb%93%e8%af%ad"></a>
+结语
+</h1><p>至此，针对应用的简单美化已经完成 (｡･∀･)ﾉﾞ</p>
+<p>下一篇将开始介绍使用 <code>Qt</code> 的重要技术：<strong>信号</strong> 和 <strong>槽</strong>。</p>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><p>本文源码可以在 
+<a 
+    href="https://github.com/rujax/re-0-qt-app-code/tree/main/4"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    此处
+</a>
+ 找到。<br>
+另外，每完成一篇内容后，请自行提交代码到本地仓库中，养成好习惯 &lt;(￣︶￣)&gt;</p></p>
+  </blockquote>
+
+</div>
+    <footer class="article-footer"><blockquote class="article-copyright"><p><strong><span class="icon-user icon"></span>本文作者：</strong>Rujax</p><p>
+      <strong><span class="icon-link icon"></span>本文链接：</strong><a href="https://rujax.github.io/posts/202604/re-0-qt-app-4/">https://rujax.github.io/posts/202604/re-0-qt-app-4/</a>
+    </p><p><strong><span class="icon-pencil icon"></span>本文标题：</strong>从零开始的 Qt 应用开发（4）：样式</p><p><strong><span class="icon-calendar icon"></span>本文发布时间：</strong>2026-04-25 20:05:50</p><p>
+      
+      <strong><span class="icon-copyright icon"></span>本文版权：</strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" rel="noopener nofollow noreferrer" target="_blank"><span class="icon-creative-commons"></span>BY-NC-SA</a> 许可协议。转载请注明出处！
+    </p>
+    <span class="icon-creative-commons article-copyright-bg"></span></blockquote>
+<div class="share-wrapper"><a href="https://www.facebook.com/sharer/sharer.php?u=https://rujax.github.io/posts/202604/re-0-qt-app-4/" target="_blank" rel="noopener noreferrer" title="从零开始的 Qt 应用开发（4）：样式">
+      <div class="share-icon icon icon-facebook"></div>
+    </a><a href="https://twitter.com/intent/tweet?url=https://rujax.github.io/posts/202604/re-0-qt-app-4/&amp;text=%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84%20Qt%20%e5%ba%94%e7%94%a8%e5%bc%80%e5%8f%91%ef%bc%884%ef%bc%89%ef%bc%9a%e6%a0%b7%e5%bc%8f&amp;via=https://rujax.github.io/" target="_blank" rel="noopener noreferrer" title="从零开始的 Qt 应用开发（4）：样式">
+      <div class="share-icon icon icon-twitter"></div>
+    </a><a href="https://www.linkedin.com/shareArticle?url=https://rujax.github.io/posts/202604/re-0-qt-app-4/&amp;title=%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84%20Qt%20%e5%ba%94%e7%94%a8%e5%bc%80%e5%8f%91%ef%bc%884%ef%bc%89%ef%bc%9a%e6%a0%b7%e5%bc%8f&amp;summary=%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%ef%bc%8c%e5%bc%80%e5%8f%91%e4%b8%80%e4%b8%aa%e5%9f%ba%e4%ba%8e%20Qt6%20%e7%9a%84%e7%ae%80%e5%8d%95%e5%ba%94%e7%94%a8&amp;mini=true&amp;ro=true" target="_blank" rel="noopener noreferrer" title="从零开始的 Qt 应用开发（4）：样式">
+      <div class="share-icon icon icon-linkedin"></div>
+    </a><a href="https://www.reddit.com/submit?url=https://rujax.github.io/posts/202604/re-0-qt-app-4/&amp;title=%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84%20Qt%20%e5%ba%94%e7%94%a8%e5%bc%80%e5%8f%91%ef%bc%884%ef%bc%89%ef%bc%9a%e6%a0%b7%e5%bc%8f" target="_blank" rel="noopener noreferrer" title="从零开始的 Qt 应用开发（4）：样式">
+      <div class="share-icon icon icon-reddit"></div>
+    </a><a href="https://service.weibo.com/share/share.php?url=https://rujax.github.io/posts/202604/re-0-qt-app-4/&amp;appkey=&amp;title=%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84%20Qt%20%e5%ba%94%e7%94%a8%e5%bc%80%e5%8f%91%ef%bc%884%ef%bc%89%ef%bc%9a%e6%a0%b7%e5%bc%8f&amp;pic=&amp;ralateUid=" target="_blank" rel="noopener noreferrer" title="从零开始的 Qt 应用开发（4）：样式">
+      <div class="share-icon icon icon-weibo"></div>
+    </a><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://rujax.github.io/posts/202604/re-0-qt-app-4/&amp;title=%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84%20Qt%20%e5%ba%94%e7%94%a8%e5%bc%80%e5%8f%91%ef%bc%884%ef%bc%89%ef%bc%9a%e6%a0%b7%e5%bc%8f&amp;desc=%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%ef%bc%8c%e5%bc%80%e5%8f%91%e4%b8%80%e4%b8%aa%e5%9f%ba%e4%ba%8e%20Qt6%20%e7%9a%84%e7%ae%80%e5%8d%95%e5%ba%94%e7%94%a8&amp;source=https://rujax.github.io/" target="_blank" rel="noopener noreferrer" title="从零开始的 Qt 应用开发（4）：样式">
+      <div class="share-icon icon icon-qq"></div>
+    </a><a href="javascript:;"  title="从零开始的 Qt 应用开发（4）：样式">
+      <div class="share-icon icon icon-weixin"><div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hugo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div></div>
+    </a></div><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-category-link"
+        href="/categories/%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84-qt-%e5%ba%94%e7%94%a8%e5%bc%80%e5%8f%91"
+        data-aos="zoom-in"
+      >从零开始的 Qt 应用开发</a>
+    </li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/qt"
+        rel="tag"
+        >Qt</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/git"
+        rel="tag"
+        >Git</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="/images/covers/posts/iuno-14.webp"
+              data-sizes="auto"
+              alt="使用 webpmux 将多张 WebP 图片生成动图"
+              class="lazyload"
+            /><a
+          href="/posts/202604/webpmux-anim-webp/"
+          aria-label="前一篇:使用 webpmux 将多张 WebP 图片生成动图"
+          title="前一篇:使用 webpmux 将多张 WebP 图片生成动图"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">使用 webpmux 将多张 WebP 图片生成动图</h3>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">万物，皆可为引</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="giscus">
+            
+          </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment giscus-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
+        </div><footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2026
+
+      Rujax
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Hugo</a
+        >&nbsp;Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;11.7k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;00:26</span>
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">
+          总访问量&nbsp;
+          <span id="busuanzi_value_site_pv"></span>
+        </span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">
+          总访客量&nbsp;
+          <span id="busuanzi_value_site_uv"></span>
+        </span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ol>
+    <li><a href="#开始之前">开始之前</a>
+      <ol>
+        <li><a href="#检查文件差异">检查文件差异</a></li>
+      </ol>
+    </li>
+    <li><a href="#添加样式">添加样式</a>
+      <ol>
+        <li><a href="#添加-qss-文件">添加 .qss 文件</a></li>
+        <li><a href="#qt-style-sheets">Qt Style Sheets</a></li>
+        <li><a href="#调整代码">调整代码</a>
+          <ol>
+            <li><a href="#maincpp">main.cpp</a></li>
+            <li><a href="#mainwindowcpp">mainwindow.cpp</a>
+              <ol>
+                <li><a href="#第一处">第一处</a></li>
+                <li><a href="#第二处">第二处</a></li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#美化样式">美化样式</a>
+      <ol>
+        <li><a href="#窗口背景色">窗口背景色</a></li>
+        <li><a href="#美化顶部订阅布局">美化顶部订阅布局</a>
+          <ol>
+            <li><a href="#美化单行编辑组件和订阅按钮">美化单行编辑组件和订阅按钮</a></li>
+            <li><a href="#为顶部订阅布局添加下边框">为顶部订阅布局添加下边框</a></li>
+          </ol>
+        </li>
+        <li><a href="#美化中间布局">美化中间布局</a></li>
+        <li><a href="#美化底部布局">美化底部布局</a>
+          <ol>
+            <li><a href="#为底部布局添加上边框">为底部布局添加上边框</a></li>
+            <li><a href="#美化版本标签组件和设置按钮">美化版本标签组件和设置按钮</a></li>
+          </ol>
+        </li>
+        <li><a href="#调整边距">调整边距</a></li>
+      </ol>
+    </li>
+    <li><a href="#结语">结语</a></li>
+  </ol>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.webp"
+    data-sizes="auto"
+    alt="Rujax"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">Rujax</div>
+  <div class="sidebar-description">来，捕获月亮吧~</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">8</div>
+  </div>
+  <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      2
+    </div>
+  </a>
+  <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
+    <div>标签</div>
+    <div class="sidebar-state-number">9</div>
+  </a>
+</div>
+<div class="sidebar-social" ><div class="icon-github sidebar-social-icon">
+        <a
+          href="https://github.com/rujax"
+          itemprop="url"
+          target="_blank"
+          aria-label="github"
+          rel="noopener nofollow noreferrer"
+        ></a>
+      </div></div><div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a><div class='sidebar-menu-icon icon '><img src="/images/lunar.webp" alt="home icon" class="" style="height: 1em;"></div><div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a><div class='sidebar-menu-icon icon '><img src="/images/lunar.webp" alt="archives icon" class="" style="height: 1em;"></div><div class="sidebar-menu-link">归档</div>
+    </div></div></div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div id="aplayer" theme="var(--color-link)"></div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    
+    
+    
+    
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    
+    
+    
+    
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script src="/js/main.js" integrity="" crossorigin="anonymous"  ></script><script src="/js/aos.js" integrity="" crossorigin="anonymous"  ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" integrity="" crossorigin="anonymous" data-pjax ></script><script>
+  var setupFirework = () => {
+    if (! false  || !window.matchMedia('(max-width: 768px)').matches) {
+      if (window.firework) {
+        const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"var(--red-1)\",\"var(--red-2)\",\"var(--red-3)\",\"var(--red-4)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"var(--red-0)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
+        options.excludeElements = options.excludeelements;
+        delete options.excludeelements;
+        window.firework(options);
+      }
+    }
+  }
+</script><script
+    src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js"
+    defer
+    
+    
+    onload="setupFirework()"
+    integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8&#43;pUoWX8n1rgq282T" crossorigin="anonymous"></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "Rujax",
+          title: "从零开始的 Qt 应用开发（4）：样式",
+          url: "https:\/\/rujax.github.io\/posts\/202604\/re-0-qt-app-4\/",
+          description: "从零开始，开发一个基于 Qt6 的简单应用",
+          cover: "https:\/\/rujax.github.io\/images\/iuno-main.webp",
+        };
+      </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax ></script><script src="/js/tabs.js" integrity="" crossorigin="anonymous" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {
+          if (_$$(`${gallery} ${children}`).length > 0) {
+            new PhotoSwipeLightbox({
+              gallery,
+              children,pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+        }
+        const pswp = () => {
+          initPswp('.article-entry', 'a.article-gallery-item');
+          initPswp('.article-gallery', 'a.article-gallery-item');
+        }
+        pswp()
+      </script><script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus', 'disqus', 'utterances'];
+  var commentConfig = {giscus: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+        const defaultTheme = { dark: 'dark', light: 'light' };
+        const customTheme = {
+          light: '' ? '' : new URL('\/css\/giscus_reimu_light.min.54854b2e5c61ba14e4cce58a1e8dc6c34db76b0f2a574b47fae308e0e524bb33.css', window.location.origin).href,
+          dark: '' ? '' : new URL('\/css\/giscus_reimu_dark.min.3f69967c9769c02c0995f612c5cfe76a7387292fac0db5a6d2fe18342167dcae.css', window.location.origin).href
+        };
+        const hasGiscusCorsHeader = async (url) => {
+          if (!url) return false;
+          if (!url.startsWith('http')) return true; 
+          try {
+            let response = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+            if (response.status === 405) {
+              response = await fetch(url, { method: 'GET', cache: 'no-store' });
+            }
+            const allowOrigin = response.headers.get('access-control-allow-origin') || '';
+            return allowOrigin === '*' || allowOrigin.split(',').map(value => value.trim()).includes('https://giscus.app');
+          } catch {
+            return false;
+          }
+        };
+        let giscusTheme = defaultTheme;
+        const [darkCorsOk, lightCorsOk] = await Promise.all([
+          hasGiscusCorsHeader(customTheme.dark),
+          hasGiscusCorsHeader(customTheme.light)
+        ]);
+        if (darkCorsOk && lightCorsOk) {
+          giscusTheme = customTheme;
+        }
+
+        const docLang = 'zh-CN' || document.documentElement.lang || 'en'; 
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'rujax\/rujax.github.io.comments');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOR8tzVg');
+        giscusScript.setAttribute('data-category', 'Announcements');
+        giscusScript.setAttribute('data-category-id', 'DIC_kwDOR8tzVs4C6WtJ');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? giscusTheme.dark : giscusTheme.light);
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('data-loading', 'lazy');
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+         const themeHandler = (e) => {
+          const isDark = e.detail.isDark;
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe || !iframe.contentWindow) {
+            document.body.removeEventListener('reimu:theme-set', themeHandler);
+            return;
+          }
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: isDark ? giscusTheme.dark : giscusTheme.light } } }, 'https://giscus.app');
+        };
+        document.body.addEventListener('reimu:theme-set', themeHandler);
+      }
+    },};
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig?.[key]?.enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      var configDefault = 'giscus';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig?.[sys]?.enable) || '';
+    }
+  }
+
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false
+    };
+
+    
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      
+      const commentType = item.getAttribute('data-selector');
+
+      
+      hideAllComments();
+
+      
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          
+          changeActiveCommentItems(item);
+        });
+      }
+
+      
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script><script
+    src="https://npm.webcache.cn/qrcode@1.5.1/build/qrcode.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-VT1EeewTCEXgndcPMQ0PzV&#43;uVFYjxFIjmAA7s5gcMX9t4Dt5TD&#43;OVQIn7NJWIXn7" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/@zumer/snapdom@1.9.14/dist/snapdom.min.js"
+    defer
+    
+    data-pjax
+    
+    integrity="sha384-OEQ&#43;fJp/Mvi2uzBREXybtxryJvLytWapuHu4EE6LPwTKUwATYcc55tPPcZTzVcmx" crossorigin="anonymous"></script></div>
+</div><script data-pjax>
+    var updateTime = _$('#post-update-time')?.innerHTML;
+
+    if (updateTime) {
+      const update = new Date(updateTime);
+      const now = new Date();
+      const diff = now - update;
+      const days = diff / 86400000;
+      const { daysago: daysAgo, message: template } = window.siteConfig.outdate;
+      if (days >= daysAgo) {
+        let message = `This article was last updated on ${updateTime}. Please note that the content may no longer be applicable.`;
+        if (typeof template === 'string') {
+          message = template.replace(/{time}/, updateTime);
+        } else if (typeof template === 'object') {
+          const lang = document.documentElement.lang;
+          const messageKey = Object.keys(template).find(key => key.toLowerCase() === lang.toLowerCase());
+          if (messageKey && template[messageKey]) {
+            message = template[messageKey].replace(/{time}/, updateTime);
+          }
+        }
+        const blockquote = _$('#outdate-blockquote');
+        if (blockquote) {
+          blockquote.querySelectorAll('p')[1].innerText = message;
+          blockquote.style.display = 'flow-root';
+        }
+      }
+    }
+  </script><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    
+    async
+    
+    
+    integrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/
+
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script><script>
+    var setupAPlayer = () => {
+      if (! false  || !window.matchMedia('(max-width: 768px)').matches) {
+        if (window.matchMedia('(max-width: 959px)').matches) {
+        const aplayer = _$('#aplayer');
+          if (aplayer) {
+            const aside = aplayer.parentNode?.parentNode;
+            if (aside?.tagName === 'ASIDE') {
+              aplayer.removeAttribute('data-aos');
+              aside.parentNode.removeChild(aplayer);
+              document.body.appendChild(aplayer);
+            }
+          }
+        }
+        new APlayer({
+            theme: "var(--color-link)",
+            container: document.getElementById('aplayer'),
+            audio: JSON.parse("[{\"artist\":\"MapleStory\",\"cover\":\"/images/covers/audios/maplestory.webp\",\"name\":\"Title\",\"url\":\"/audios/global/Title.mp3\"},{\"artist\":\"MapleStory\",\"cover\":\"/images/covers/audios/maplestory.webp\",\"name\":\"WhenTheMorningComes\",\"url\":\"/audios/global/WhenTheMorningComes.mp3\"},{\"artist\":\"MapleStory\",\"cover\":\"/images/covers/audios/maplestory.webp\",\"name\":\"AboveTheTreetops\",\"url\":\"/audios/global/AboveTheTreetops.mp3\"},{\"artist\":\"MapleStory\",\"cover\":\"/images/covers/audios/maplestory.webp\",\"name\":\"Shinin'Harbor\",\"url\":\"/audios/global/Shinin'Harbor.mp3\"},{\"artist\":\"MapleStory\",\"cover\":\"/images/covers/audios/maplestory.webp\",\"name\":\"FantasticThinking\",\"url\":\"/audios/global/FantasticThinking.mp3\"}]") || [],
+            fixed:  true  || false,
+            
+            autoplay:  false  || false,
+            loop: 'all' || 'all',
+            order: 'random' || 'list',
+            preload: 'none' || 'auto',
+            volume:  0.5  || 0.7,
+            mutex:  true  || true,
+            listFolded:  false  || false,
+            lrcType:  null  || 0,
+        });
+      }
+    }
+    </script><script
+    src="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.js"
+    defer
+    
+    
+    onload="setupAPlayer()"
+    integrity="sha384-gdGYZwHnfJM54evoZhpO0s6ZF5BQiybkiyW7VXr&#43;h5UfruuRL/aORyw&#43;5&#43;HZoU6e" crossorigin="anonymous"></script></body>
+</html>

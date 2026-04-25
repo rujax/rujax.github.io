@@ -12,12 +12,42 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Tue, 21 Apr 2026 23:48:05 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 25 Apr 2026 20:05:50 +0800</lastBuildDate>
     
     
     <atom:link href="https://rujax.github.io/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
+    
+    
+
+    <item>
+      <title>从零开始的 Qt 应用开发（4）：样式</title>
+      <link>https://rujax.github.io/posts/202604/re-0-qt-app-4/</link>
+      <pubDate>Sat, 25 Apr 2026 20:05:50 &#43;0800</pubDate>
+      <author>rujax.c@gmail.com (Rujax)</author>
+      <guid>https://rujax.github.io/posts/202604/re-0-qt-app-4/</guid>
+      <description>
+        <![CDATA[<h1>从零开始的 Qt 应用开发（4）：样式</h1><p>作者：Rujax（rujax.c@gmail.com）</p>
+        
+          <h1 id="开始之前">
+<a class="header-anchor" href="#%e5%bc%80%e5%a7%8b%e4%b9%8b%e5%89%8d"></a>
+开始之前
+</h1><p>在开始今天的 <code>Qt</code> 应用开发之前，先将上一篇的代码变动提交到仓库里。</p>
+<h2 id="检查文件差异">
+<a class="header-anchor" href="#%e6%a3%80%e6%9f%a5%e6%96%87%e4%bb%b6%e5%b7%ae%e5%bc%82"></a>
+检查文件差异
+</h2><p>进入项目文件夹后执行 <code>git status</code> 可以查看到当前的文件状态：</p>
+<p><img src="/images/202604/re-0-qt-app-4/4-1.webp" alt="4-1" title="文件状态"></p>
+<p>可以看到：<code>config.svg</code>、<code>project.h.in</code> 和 <code>project.qrc</code> 被列为新文件，<br>
+而 <code>CMakeLists.txt</code>、<code>mainwindow.cpp</code> 和 <code>mainwindow.h</code> 被列为已修改的状态。</p>
+        
+        <hr><p>本文2026-04-25首发于<a href='https://rujax.github.io/'>Rujax's blog</a>，最后修改于2026-04-25</p>]]>
+      </description>
+      
+        <category>从零开始的 Qt 应用开发</category>
+      
+    </item>
     
     
 

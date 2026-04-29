@@ -8,9 +8,10 @@
   name="viewport"
   content="width=device-width, initial-scale=1, shrink-to-fit=no"
 /><title>
-  Git | Rujax
+  从零开始的 Qt 应用开发（5）：信号和槽 | Rujax
 </title>
-<meta name="description" content="来，捕获月亮吧~"/><script>
+<meta name="description" content="从零开始，开发一个基于 Qt6 的简单应用"/>
+    <meta name="keywords" content="Qt,应用,开发,信号,槽" /><script>
   window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"https://rujax.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (⊙…⊙)\",\"zh-cn\":\"复制失败 (⊙…⊙)\"},\"success\":{\"en\":\"Copy successfully (★^O^★)\",\"zh-cn\":\"复制成功 (★^O^★)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_a0oqhord1y\",\"outdate\":{\"daysago\":180,\"enable\":true,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\"}}}");
   
 </script>
@@ -21,20 +22,20 @@
     type="font/woff2"
     crossorigin="anonymous"
   /><link rel="stylesheet" href="/css/loader.min.065aed82b24a386b4876c1b25a82897328b7a31ce3248eafdd8df0b1bf6548fc.css" /><meta property="og:type" content="website" />
-  <meta property="og:title" content="Git | Rujax" />
+  <meta property="og:title" content="从零开始的 Qt 应用开发（5）：信号和槽 | Rujax" />
   <meta
     property="og:description"
-    content="来，捕获月亮吧~"
+    content="从零开始，开发一个基于 Qt6 的简单应用"
   />
-  <meta property="og:url" content="https://rujax.github.io/tags/git/" />
+  <meta property="og:url" content="https://rujax.github.io/posts/202604/re-0-qt-app-5/" />
   <meta
     property="og:site_name"
     content="Rujax&#39;s blog"
   />
   <meta property="og:image" content="https://rujax.github.io/images/iuno-main.webp" />
   <meta property="article:author" content="Rujax" />
-  <meta property="article:published_time" content="2026-04-25T20:05:50&#43;08:00" />
-  <meta property="article:modified_time" content="2026-04-25T20:05:50&#43;08:00" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://rujax.github.io/images/iuno-main.webp" /><link rel="alternate" type="application/rss+xml" href="https://rujax.github.io/tags/git/index.xml" title="Rujax's blog">
+  <meta property="article:published_time" content="2026-04-29T16:13:08&#43;08:00" />
+  <meta property="article:modified_time" content="2026-04-29T16:13:08&#43;08:00" /><meta property="article:tag" content="Qt" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://rujax.github.io/images/iuno-main.webp" />
 <link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.32f2ae7a00f67e89d9e4c4d48a2f5fc7c60b27a86db0de916c91211ba476f2b2.css" /><link
     rel="preload"
     as="style"
@@ -105,20 +106,50 @@
       </a><a class="main-nav-link-wrap" href="/archives"><div class='main-nav-icon icon '><img src="/images/lunar.webp" alt="archives icon" class="" style="height: 1em;"></div><span class="main-nav-link">归档</span>
       </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
   </nav>
-  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-rss-link" class="nav-icon" href="/tags/git/index.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a></nav></div>
-<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/iuno-main.webp" alt="Git"><div id="header-outer">
+  <nav id="sub-nav" aria-label="Secondary navigation"></nav></div>
+<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/iuno-main.webp" alt="从零开始的 Qt 应用开发（5）：信号和槽"><div id="header-outer">
     <div id="header-title"><span id="logo">
-            <h1 data-aos="slide-up">标签</h1>
-          </span><h2 id="subtitle-wrap" data-aos="slide-down"><span id="subtitle">Git</span></h2></div>
+            <h1 data-aos="slide-up">从零开始的 Qt 应用开发（5）：信号和槽</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
   </div>
 </header><div id="content"
           aria-label="Page content"
           class="sidebar-left"
-            ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container "><div class="sidebar-wrapper">
+            ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
     <div
       class="sidebar-wrap"
       data-aos="fade-up"
-    ><div class="sidebar-author">
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ol>
+    <li><a href="#信号和槽">信号和槽</a>
+      <ol>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#优点">优点</a></li>
+        <li><a href="#使用">使用</a></li>
+      </ol>
+    </li>
+    <li><a href="#编程">编程</a>
+      <ol>
+        <li><a href="#订阅链接文本框">订阅链接文本框</a>
+          <ol>
+            <li><a href="#mainwindowcpp">mainwindow.cpp</a></li>
+          </ol>
+        </li>
+        <li><a href="#订阅按钮">订阅按钮</a>
+          <ol>
+            <li><a href="#mainwindowh">mainwindow.h</a></li>
+            <li><a href="#mainwindowcpp-1">mainwindow.cpp</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#结语">结语</a></li>
+  </ol>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img
     data-src="/avatar/avatar.webp"
     data-sizes="auto"
@@ -163,177 +194,367 @@
         href="/archives"
         aria-label="归档"
       ></a><div class='sidebar-menu-icon icon '><img src="/images/lunar.webp" alt="archives icon" class="" style="height: 1em;"></div><div class="sidebar-menu-link">归档</div>
-    </div></div></div>
-  </div><div class="sidebar-widget"><div class="widget-wrapper">
-    <div
-      class="widget-wrap"
-      data-aos="fade-up"
-    >
-      <div style="display: flex; justify-content: space-between;">
-        <h3 class="widget-title">分类</h3></div>
-      <div class="widget">
-        <ul class="category-list"><li class="category-list-item">
-                <a class="category-list-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84-qt-%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/" 
-                  title="从零开始的 Qt 应用开发"
-                  >从零开始的 Qt 应用开发</a
-                >
-              </li><li class="category-list-item">
-                <a class="category-list-link" href="/categories/%E9%94%9A%E5%AE%9A%E6%9C%AA%E7%9F%A5/" 
-                  title="锚定未知"
-                  >锚定未知</a
-                >
-              </li></ul>
-      </div>
-    </div>
-  </div><div class="widget-wrapper">
-    <div
-      class="widget-wrap"
-      data-aos="fade-up"
-    >
-      <div style="display: flex; justify-content: space-between;">
-        <h3 class="widget-title">标签</h3></div>
-      <div class="widget">
-        <ul class="tag-list" itemprop="keywords"><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/cwebp/"
-                  aria-label="标签: Cwebp"
-                  title="Cwebp"
-                >
-                  Cwebp
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/ffmpeg/"
-                  aria-label="标签: FFmpeg"
-                  title="FFmpeg"
-                >
-                  FFmpeg
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/git/"
-                  aria-label="标签: Git"
-                  title="Git"
-                >
-                  Git
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/go/"
-                  aria-label="标签: Go"
-                  title="Go"
-                >
-                  Go
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/hugo/"
-                  aria-label="标签: Hugo"
-                  title="Hugo"
-                >
-                  Hugo
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/png/"
-                  aria-label="标签: PNG"
-                  title="PNG"
-                >
-                  PNG
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/qt/"
-                  aria-label="标签: Qt"
-                  title="Qt"
-                >
-                  Qt
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/webp/"
-                  aria-label="标签: WebP"
-                  title="WebP"
-                >
-                  WebP
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/webpmux/"
-                  aria-label="标签: Webpmux"
-                  title="Webpmux"
-                >
-                  Webpmux
-                </a>
-              </li></ul>
-      </div>
-    </div>
-  </div><div class="widget-wrapper">
-    <div
-      class="widget-wrap"
-      data-aos="fade-up"
-    >
-      <h3 class="widget-title">最新文章</h3>
-      <div class="widget">
-        <ul><li>
-              <a href="/posts/202604/re-0-qt-app-5/" title="从零开始的 Qt 应用开发（5）：信号和槽">从零开始的 Qt 应用开发（5）：信号和槽</a>
-            </li><li>
-              <a href="/posts/202604/re-0-qt-app-4/" title="从零开始的 Qt 应用开发（4）：样式">从零开始的 Qt 应用开发（4）：样式</a>
-            </li><li>
-              <a href="/posts/202604/webpmux-anim-webp/" title="使用 webpmux 将多张 WebP 图片生成动图">使用 webpmux 将多张 WebP 图片生成动图</a>
-            </li><li>
-              <a href="/posts/202604/re-0-qt-app-3/" title="从零开始的 Qt 应用开发（3）：UI">从零开始的 Qt 应用开发（3）：UI</a>
-            </li><li>
-              <a href="/posts/202604/ffmpeg-png-to-webp/" title="批量将 PNG 图片转变为 WebP 格式">批量将 PNG 图片转变为 WebP 格式</a>
-            </li></ul>
-      </div>
-    </div>
-  </div></div></div></aside>
-<section id="main" aria-label="Main content"><div
-    class="archives-outer-wrap"
+    </div></div></div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
     data-aos="fade-up"
   >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2026-04-29 16:13:08 &#43;0800 CST" itemprop="datePublished"
+      >2026-04-29</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2026-04-29</time
+    >
+  </span></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote
+          class="alert-blockquote warning"
+          id="outdate-blockquote"
+          style="display: none;"
+        >
+          <p class="alert-heading">WARNING</p>
+          <p></p>
+        </blockquote><h1 id="信号和槽">
+<a class="header-anchor" href="#%e4%bf%a1%e5%8f%b7%e5%92%8c%e6%a7%bd"></a>
+信号和槽
+</h1><h2 id="简介">
+<a class="header-anchor" href="#%e7%ae%80%e4%bb%8b"></a>
+简介
+</h2><p><code>Qt</code> 使用一套名为 
+<a 
+    href="https://doc.qt.io/qt-6/signalsandslots.html"
     
-    <section class="archives-wrap" data-aos="fade-up">
-    <div class="archive-year-wrap">
-      <span class="archive-year">2026</span>
-    </div>
-    <ul><li class="archive-article">
-          <div class="archive-article-date">
-            <span>
-              <time
-                class="dt-published"
-                datetime="2026-04-25 20:05:50 &#43;0800 CST"
-                itemprop="datePublished"
-                >2026-04-25</time
-              >
-            </span>
-          </div><a class="archive-article-title" href="/posts/202604/re-0-qt-app-4/"
-              >从零开始的 Qt 应用开发（4）：样式</a
-            ></li><li class="archive-article">
-          <div class="archive-article-date">
-            <span>
-              <time
-                class="dt-published"
-                datetime="2026-04-19 13:37:20 &#43;0800 CST"
-                itemprop="datePublished"
-                >2026-04-19</time
-              >
-            </span>
-          </div><a class="archive-article-title" href="/posts/202604/re-0-qt-app-3/"
-              >从零开始的 Qt 应用开发（3）：UI</a
-            ></li></ul>
-  </section></div><nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up"><span class="page-number current">1</span></nav>
-</section>
+     target="_blank" rel="noopener noreferrer"
+>
+    信号和槽
+</a>
+ 的技术来实现组件之间的通信。</p>
+<p>简而言之：<br>
+当某个事件（例如：按钮点击）发生时就会发出该组件定义的信号，然后与这个信号建立连接的槽就会被调用。</p>
+<h2 id="优点">
+<a class="header-anchor" href="#%e4%bc%98%e7%82%b9"></a>
+优点
+</h2><p>这个技术最直观的优点就是：<strong>松散耦合</strong>。</p>
+<p>信号只负责发出信号，槽只负责接收信号，它们彼此之间并不需要知道对方的实现。<br>
+同时，一个信号可以与多个槽连接，一个槽也可以与多个信号连接，甚至信号与信号之间也可以连接。<br>
+这保证了 <code>Qt</code> 组件间通信的稳定、灵活、强大与易用。</p>
+<h2 id="使用">
+<a class="header-anchor" href="#%e4%bd%bf%e7%94%a8"></a>
+使用
+</h2><p>通过 
+<a 
+    href="https://doc.qt.io/qt-6/qobject.html"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    QObject
+</a>
+ 这个所有 <code>Qt</code> 对象的基类的 
+<a 
+    href="https://doc.qt.io/qt-6/qobject.html#connect"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    connect
+</a>
+ 函数连接。</p>
+<p><img src="/images/202604/re-0-qt-app-5/5-1.webp" alt="5-1" title="QObject 类"></p>
+<p>如上图所示：<code>connect</code> 函数共有 <strong><code>5</code></strong> 个重载版本。</p>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><p>不同的连接方式有各自的 
+<a 
+    href="https://doc.qt.io/qt-6/signalsandslots-syntaxes.html"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    优缺点
+</a>
+，根据自己的偏好使用即可。<br>
+本文 <strong>不使用基于字符串</strong> 的连接方式。</p></p>
+  </blockquote>
+
+<h1 id="编程">
+<a class="header-anchor" href="#%e7%bc%96%e7%a8%8b"></a>
+编程
+</h1><p>本文将介绍 <strong>2</strong> 个版本的 <code>connect</code> 函数的使用。</p>
+<h2 id="订阅链接文本框">
+<a class="header-anchor" href="#%e8%ae%a2%e9%98%85%e9%93%be%e6%8e%a5%e6%96%87%e6%9c%ac%e6%a1%86"></a>
+订阅链接文本框
+</h2><h3 id="mainwindowcpp">
+<a class="header-anchor" href="#mainwindowcpp"></a>
+mainwindow.cpp
+</h3><p>打开 <code>mainwindow.cpp</code> 文件，添加一段代码用来查看订阅链接文本框组件的值：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nc">MainWindow</span><span class="p">::</span><span class="nf">_buildUI</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">_feedEdit</span><span class="o">-&gt;</span><span class="nf">setPlaceholderText</span><span class="p">(</span><span class="s">&#34;请输入 RSS 链接&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line hl"><span class="cl">    <span class="nf">connect</span><span class="p">(</span><span class="n">_feedEdit</span><span class="p">,</span> <span class="o">&amp;</span><span class="nc">QLineEdit</span><span class="p">::</span><span class="n">textChanged</span><span class="p">,</span> <span class="p">[](</span><span class="k">const</span> <span class="n">QString</span> <span class="o">&amp;</span><span class="n">text</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line hl"><span class="cl">        <span class="nf">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;text:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">text</span><span class="p">;</span>
+</span></span><span class="line hl"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>通过将 
+<a 
+    href="https://doc.qt.io/qt-6/qlineedit.html"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    QLineEdit
+</a>
+ 的 
+<a 
+    href="https://doc.qt.io/qt-6/qlineedit.html#textChanged"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    textChanged
+</a>
+ 信号和 
+<a 
+    href="https://learn.microsoft.com/en-us/cpp/cpp/lambda-expressions-in-cpp?view=msvc-170"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    lambda
+</a>
+ 连接，<br>
+每次订阅链接文本框组件的值发生变化时，都会在底部 <strong>应用程序输出</strong> 中打印出来。</p>
+<h2 id="订阅按钮">
+<a class="header-anchor" href="#%e8%ae%a2%e9%98%85%e6%8c%89%e9%92%ae"></a>
+订阅按钮
+</h2><h3 id="mainwindowh">
+<a class="header-anchor" href="#mainwindowh"></a>
+mainwindow.h
+</h3><p>打开 <code>mainwindow.h</code> 文件，添加如下高亮代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MainWindow</span> <span class="o">:</span> <span class="k">public</span> <span class="nc">QMainWindow</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">_buildUI</span><span class="p">();</span>
+</span></span><span class="line hl"><span class="cl">    <span class="kt">void</span> <span class="nf">_connectSlots</span><span class="p">();</span>
+</span></span><span class="line hl"><span class="cl">
+</span></span><span class="line hl"><span class="cl"><span class="k">private</span> <span class="nl">slots</span><span class="p">:</span>
+</span></span><span class="line hl"><span class="cl">    <span class="kt">void</span> <span class="nf">_subscribeButtonClicked</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>简单描述下代码：</p>
+<ol>
+<li>声明一个私有方法，将所有连接信号和槽的代码都放在里面（方便管理</li>
+<li>声明一个私有槽，用来连接 
+<a 
+    href="https://doc.qt.io/qt-6/qpushbutton.html"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    QPushButton
+</a>
+ 的 
+<a 
+    href="https://doc.qt.io/qt-6/qabstractbutton.html#clicked"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    clicked
+</a>
+ 信号（继承自 
+<a 
+    href="https://doc.qt.io/qt-6/qabstractbutton.html"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    QAbstractButton
+</a>
+）</li>
+</ol>
+<h3 id="mainwindowcpp-1">
+<a class="header-anchor" href="#mainwindowcpp-1"></a>
+mainwindow.cpp
+</h3><p>打开 <code>mainwindow.cpp</code> 文件，添加如下高亮代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;QScrollArea&gt;</span><span class="cp">
+</span></span></span><span class="line hl"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;QMessageBox&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;project.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nc">MainWindow</span><span class="p">::</span><span class="nf">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">)</span> <span class="o">:</span> <span class="nf">QMainWindow</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">setWindowTitle</span><span class="p">(</span><span class="s">&#34;RSSReader&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">_buildUI</span><span class="p">();</span>
+</span></span><span class="line hl"><span class="cl">    <span class="nf">_connectSlots</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nc">MainWindow</span><span class="p">::</span><span class="nf">_buildUI</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line hl"><span class="cl"><span class="kt">void</span> <span class="nc">MainWindow</span><span class="p">::</span><span class="nf">_connectSlots</span><span class="p">()</span>
+</span></span><span class="line hl"><span class="cl"><span class="p">{</span>
+</span></span><span class="line hl"><span class="cl">    <span class="nf">connect</span><span class="p">(</span><span class="n">_subscribeButton</span><span class="p">,</span> <span class="o">&amp;</span><span class="nc">QPushButton</span><span class="p">::</span><span class="n">clicked</span><span class="p">,</span> <span class="kp">this</span><span class="p">,</span> <span class="o">&amp;</span><span class="nc">MainWindow</span><span class="p">::</span><span class="n">_subscribeButtonClicked</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl"><span class="p">}</span>
+</span></span><span class="line hl"><span class="cl">
+</span></span><span class="line hl"><span class="cl"><span class="kt">void</span> <span class="nc">MainWindow</span><span class="p">::</span><span class="nf">_subscribeButtonClicked</span><span class="p">()</span>
+</span></span><span class="line hl"><span class="cl"><span class="p">{</span>
+</span></span><span class="line hl"><span class="cl">    <span class="nc">QMessageBox</span><span class="p">::</span><span class="nf">information</span><span class="p">(</span><span class="kp">this</span><span class="p">,</span> <span class="s">&#34;单行编辑组件&#34;</span><span class="p">,</span> <span class="n">_feedEdit</span><span class="o">-&gt;</span><span class="nf">text</span><span class="p">());</span>
+</span></span><span class="line hl"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>简单描述下代码：</p>
+<ol>
+<li><code>include</code> 
+<a 
+    href="https://doc.qt.io/qt-6/zh/qmessagebox.html"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    QMessageBox
+</a>
+ 组件类</li>
+<li>在构造函数中调用 <code>_connectSlots</code> 方法</li>
+<li>添加 <code>_connectSlots</code> 方法的实现，连接订阅按钮的点击信号和之前定义的私有槽</li>
+<li>添加 <code>_subscribeButtonClicked</code> 私有槽的实现，调用 <code>QMessageBox</code> 的 
+<a 
+    href="https://doc.qt.io/qt-6/zh/qmessagebox.html#information"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    information
+</a>
+ 函数，<br>
+弹出一个对话框展示订阅链接文本框的值</li>
+</ol>
+<p>在 <strong>订阅链接文本框</strong> 输入任意内容（例如：https://test.xml）后，点击 <strong>订阅按钮</strong>，应该可以看到如下图内容：</p>
+<p><img src="/images/202604/re-0-qt-app-5/5-2.webp" alt="5-2" title="订阅链接文本框的值"></p>
+<h1 id="结语">
+<a class="header-anchor" href="#%e7%bb%93%e8%af%ad"></a>
+结语
+</h1><p>至此，2 个简单的信号和槽的使用已经展示完成 (｡･∀･)ﾉﾞ</p>
+<p>后续的博客中还会陆续展示自定义组件和自定义信号。</p>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><p>本文源码可以在 
+<a 
+    href="https://github.com/rujax/re-0-qt-app-code/tree/main/5"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    此处
+</a>
+ 找到。</p></p>
+  </blockquote>
+
+</div>
+    <footer class="article-footer"><blockquote class="article-copyright"><p><strong><span class="icon-user icon"></span>本文作者：</strong>Rujax</p><p>
+      <strong><span class="icon-link icon"></span>本文链接：</strong><a href="https://rujax.github.io/posts/202604/re-0-qt-app-5/">https://rujax.github.io/posts/202604/re-0-qt-app-5/</a>
+    </p><p><strong><span class="icon-pencil icon"></span>本文标题：</strong>从零开始的 Qt 应用开发（5）：信号和槽</p><p><strong><span class="icon-calendar icon"></span>本文发布时间：</strong>2026-04-29 16:13:08</p><p>
+      
+      <strong><span class="icon-copyright icon"></span>本文版权：</strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" rel="noopener nofollow noreferrer" target="_blank"><span class="icon-creative-commons"></span>BY-NC-SA</a> 许可协议。转载请注明出处！
+    </p>
+    <span class="icon-creative-commons article-copyright-bg"></span></blockquote>
+<div class="share-wrapper"><a href="https://www.facebook.com/sharer/sharer.php?u=https://rujax.github.io/posts/202604/re-0-qt-app-5/" target="_blank" rel="noopener noreferrer" title="从零开始的 Qt 应用开发（5）：信号和槽">
+      <div class="share-icon icon icon-facebook"></div>
+    </a><a href="https://twitter.com/intent/tweet?url=https://rujax.github.io/posts/202604/re-0-qt-app-5/&amp;text=%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84%20Qt%20%e5%ba%94%e7%94%a8%e5%bc%80%e5%8f%91%ef%bc%885%ef%bc%89%ef%bc%9a%e4%bf%a1%e5%8f%b7%e5%92%8c%e6%a7%bd&amp;via=https://rujax.github.io/" target="_blank" rel="noopener noreferrer" title="从零开始的 Qt 应用开发（5）：信号和槽">
+      <div class="share-icon icon icon-twitter"></div>
+    </a><a href="https://www.linkedin.com/shareArticle?url=https://rujax.github.io/posts/202604/re-0-qt-app-5/&amp;title=%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84%20Qt%20%e5%ba%94%e7%94%a8%e5%bc%80%e5%8f%91%ef%bc%885%ef%bc%89%ef%bc%9a%e4%bf%a1%e5%8f%b7%e5%92%8c%e6%a7%bd&amp;summary=%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%ef%bc%8c%e5%bc%80%e5%8f%91%e4%b8%80%e4%b8%aa%e5%9f%ba%e4%ba%8e%20Qt6%20%e7%9a%84%e7%ae%80%e5%8d%95%e5%ba%94%e7%94%a8&amp;mini=true&amp;ro=true" target="_blank" rel="noopener noreferrer" title="从零开始的 Qt 应用开发（5）：信号和槽">
+      <div class="share-icon icon icon-linkedin"></div>
+    </a><a href="https://www.reddit.com/submit?url=https://rujax.github.io/posts/202604/re-0-qt-app-5/&amp;title=%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84%20Qt%20%e5%ba%94%e7%94%a8%e5%bc%80%e5%8f%91%ef%bc%885%ef%bc%89%ef%bc%9a%e4%bf%a1%e5%8f%b7%e5%92%8c%e6%a7%bd" target="_blank" rel="noopener noreferrer" title="从零开始的 Qt 应用开发（5）：信号和槽">
+      <div class="share-icon icon icon-reddit"></div>
+    </a><a href="https://service.weibo.com/share/share.php?url=https://rujax.github.io/posts/202604/re-0-qt-app-5/&amp;appkey=&amp;title=%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84%20Qt%20%e5%ba%94%e7%94%a8%e5%bc%80%e5%8f%91%ef%bc%885%ef%bc%89%ef%bc%9a%e4%bf%a1%e5%8f%b7%e5%92%8c%e6%a7%bd&amp;pic=&amp;ralateUid=" target="_blank" rel="noopener noreferrer" title="从零开始的 Qt 应用开发（5）：信号和槽">
+      <div class="share-icon icon icon-weibo"></div>
+    </a><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://rujax.github.io/posts/202604/re-0-qt-app-5/&amp;title=%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84%20Qt%20%e5%ba%94%e7%94%a8%e5%bc%80%e5%8f%91%ef%bc%885%ef%bc%89%ef%bc%9a%e4%bf%a1%e5%8f%b7%e5%92%8c%e6%a7%bd&amp;desc=%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%ef%bc%8c%e5%bc%80%e5%8f%91%e4%b8%80%e4%b8%aa%e5%9f%ba%e4%ba%8e%20Qt6%20%e7%9a%84%e7%ae%80%e5%8d%95%e5%ba%94%e7%94%a8&amp;source=https://rujax.github.io/" target="_blank" rel="noopener noreferrer" title="从零开始的 Qt 应用开发（5）：信号和槽">
+      <div class="share-icon icon icon-qq"></div>
+    </a><a href="javascript:;"  title="从零开始的 Qt 应用开发（5）：信号和槽">
+      <div class="share-icon icon icon-weixin"><div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hugo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div></div>
+    </a></div><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-category-link"
+        href="/categories/%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84-qt-%e5%ba%94%e7%94%a8%e5%bc%80%e5%8f%91"
+        data-aos="zoom-in"
+      >从零开始的 Qt 应用开发</a>
+    </li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/qt"
+        rel="tag"
+        >Qt</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="/images/covers/posts/iuno-18.webp"
+              data-sizes="auto"
+              alt="从零开始的 Qt 应用开发（4）：样式"
+              class="lazyload"
+            /><a
+          href="/posts/202604/re-0-qt-app-4/"
+          aria-label="前一篇:从零开始的 Qt 应用开发（4）：样式"
+          title="前一篇:从零开始的 Qt 应用开发（4）：样式"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">从零开始的 Qt 应用开发（4）：样式</h3>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">万物，皆可为引</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="giscus">
+            
+          </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment giscus-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
         </div><footer id="footer" aria-label="Site footer">
   <div style="width: 100%; overflow: hidden">
     <div class="footer-line"></div>
@@ -380,7 +601,37 @@
             <div class="arrow-up"></div>
           </div><div id="mask" class="hide"></div>
       </div><nav id="mobile-nav" aria-label="Mobile navigation">
-  <div class="sidebar-wrap"><div class="sidebar-author">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ol>
+    <li><a href="#信号和槽">信号和槽</a>
+      <ol>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#优点">优点</a></li>
+        <li><a href="#使用">使用</a></li>
+      </ol>
+    </li>
+    <li><a href="#编程">编程</a>
+      <ol>
+        <li><a href="#订阅链接文本框">订阅链接文本框</a>
+          <ol>
+            <li><a href="#mainwindowcpp">mainwindow.cpp</a></li>
+          </ol>
+        </li>
+        <li><a href="#订阅按钮">订阅按钮</a>
+          <ol>
+            <li><a href="#mainwindowh">mainwindow.h</a></li>
+            <li><a href="#mainwindowcpp-1">mainwindow.cpp</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#结语">结语</a></li>
+  </ol>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img
     data-src="/avatar/avatar.webp"
     data-sizes="auto"
@@ -425,7 +676,10 @@
         href="/archives"
         aria-label="归档"
       ></a><div class='sidebar-menu-icon icon '><img src="/images/lunar.webp" alt="archives icon" class="" style="height: 1em;"></div><div class="sidebar-menu-link">归档</div>
-    </div></div></div></nav>
+    </div></div></div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
 </div><div id="aplayer" theme="var(--color-link)"></div><script
     src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
     
@@ -475,9 +729,9 @@
   <div><script data-pjax>
         window.REIMU_POST = {
           author: "Rujax",
-          title: "Git",
-          url: "https:\/\/rujax.github.io\/tags\/git\/",
-          description: "",
+          title: "从零开始的 Qt 应用开发（5）：信号和槽",
+          url: "https:\/\/rujax.github.io\/posts\/202604\/re-0-qt-app-5\/",
+          description: "从零开始，开发一个基于 Qt6 的简单应用",
           cover: "https:\/\/rujax.github.io\/images\/iuno-main.webp",
         };
       </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax ></script><script src="/js/tabs.js" integrity="" crossorigin="anonymous" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {

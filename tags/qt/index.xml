@@ -12,12 +12,48 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Sat, 25 Apr 2026 20:05:50 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 29 Apr 2026 16:13:08 +0800</lastBuildDate>
     
     
     <atom:link href="https://rujax.github.io/tags/qt/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
+    
+    
+
+    <item>
+      <title>从零开始的 Qt 应用开发（5）：信号和槽</title>
+      <link>https://rujax.github.io/posts/202604/re-0-qt-app-5/</link>
+      <pubDate>Wed, 29 Apr 2026 16:13:08 &#43;0800</pubDate>
+      <author>rujax.c@gmail.com (Rujax)</author>
+      <guid>https://rujax.github.io/posts/202604/re-0-qt-app-5/</guid>
+      <description>
+        <![CDATA[<h1>从零开始的 Qt 应用开发（5）：信号和槽</h1><p>作者：Rujax（rujax.c@gmail.com）</p>
+        
+          <h1 id="信号和槽">
+<a class="header-anchor" href="#%e4%bf%a1%e5%8f%b7%e5%92%8c%e6%a7%bd"></a>
+信号和槽
+</h1><h2 id="简介">
+<a class="header-anchor" href="#%e7%ae%80%e4%bb%8b"></a>
+简介
+</h2><p><code>Qt</code> 使用一套名为 
+<a 
+    href="https://doc.qt.io/qt-6/signalsandslots.html"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    信号和槽
+</a>
+ 的技术来实现组件之间的通信。</p>
+<p>简而言之：<br>
+当某个事件（例如：按钮点击）发生时就会发出该组件定义的信号，然后与这个信号建立连接的槽就会被调用。</p>
+        
+        <hr><p>本文2026-04-29首发于<a href='https://rujax.github.io/'>Rujax's blog</a>，最后修改于2026-04-29</p>]]>
+      </description>
+      
+        <category>从零开始的 Qt 应用开发</category>
+      
+    </item>
     
     
 

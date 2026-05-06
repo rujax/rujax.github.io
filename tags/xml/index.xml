@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XML on Rujax&#39;s blog</title>
+    <link>https://rujax.github.io/tags/xml/</link>
+    <description>Recent content from Rujax&#39;s blog</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    
+    <managingEditor>rujax.c@gmail.com (Rujax)</managingEditor>
+    <webMaster>rujax.c@gmail.com (Rujax)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Wed, 06 May 2026 13:57:56 +0800</lastBuildDate>
+    
+    
+    <atom:link href="https://rujax.github.io/tags/xml/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>从零开始的 Qt 应用开发（6）：网络和XML</title>
+      <link>https://rujax.github.io/posts/202605/re-0-qt-app-6/</link>
+      <pubDate>Wed, 06 May 2026 13:57:56 &#43;0800</pubDate>
+      <author>rujax.c@gmail.com (Rujax)</author>
+      <guid>https://rujax.github.io/posts/202605/re-0-qt-app-6/</guid>
+      <description>
+        <![CDATA[<h1>从零开始的 Qt 应用开发（6）：网络和XML</h1><p>作者：Rujax（rujax.c@gmail.com）</p>
+        
+          <h1 id="目标">
+<a class="header-anchor" href="#%e7%9b%ae%e6%a0%87"></a>
+目标
+</h1><p>本文的目标是通过使用 <code>Qt</code> 的网络模块 
+<a 
+    href="https://doc.qt.io/qt-6/qtnetwork-index.html"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    Qt Network
+</a>
+ 从订阅链接获取返回的 
+<a 
+    href="https://zh.wikipedia.org/zh-cn/XML"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    XML
+</a>
+ 数据后，<br>
+再使用 
+<a 
+    href="https://doc.qt.io/qt-6/qtxml-index.html"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    Qt XML
+</a>
+ 模块将内容解析后全部打印出来。</p>
+<h2 id="使用-qt-network">
+<a class="header-anchor" href="#%e4%bd%bf%e7%94%a8-qt-network"></a>
+使用 Qt Network
+</h2><h3 id="cmakeliststxt">
+<a class="header-anchor" href="#cmakeliststxt"></a>
+CMakeLists.txt
+</h3><p>打开 <code>CMakeLists.txt</code> 文件，添加如下高亮代码：</p>
+        
+        <hr><p>本文2026-05-06首发于<a href='https://rujax.github.io/'>Rujax's blog</a>，最后修改于2026-05-06</p>]]>
+      </description>
+      
+        <category>从零开始的 Qt 应用开发</category>
+      
+    </item>
+    
+  </channel>
+</rss>

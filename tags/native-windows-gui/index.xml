@@ -12,12 +12,48 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Wed, 13 May 2026 13:34:56 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 20 May 2026 22:49:56 +0800</lastBuildDate>
     
     
     <atom:link href="https://rujax.github.io/tags/native-windows-gui/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
+    
+    
+
+    <item>
+      <title>查看图片4个通道的应用 RGBAViewer</title>
+      <link>https://rujax.github.io/posts/202605/rgba-viewer/</link>
+      <pubDate>Wed, 20 May 2026 22:49:56 &#43;0800</pubDate>
+      <author>rujax.c@gmail.com (Rujax)</author>
+      <guid>https://rujax.github.io/posts/202605/rgba-viewer/</guid>
+      <description>
+        <![CDATA[<h1>查看图片4个通道的应用 RGBAViewer</h1><p>作者：Rujax（rujax.c@gmail.com）</p>
+        
+          <h1 id="起因">
+<a class="header-anchor" href="#%e8%b5%b7%e5%9b%a0"></a>
+起因
+</h1><p>继上篇写了一个批量将 DDS 图片转换为其他格式的应用后，又遇到了新的需求：<strong>分别查看图片4个通道里的内容</strong>。</p>
+<h2 id="rgba">
+<a class="header-anchor" href="#rgba"></a>
+RGBA
+</h2><p>在部分图片格式中，存在3个颜色（红、绿、蓝）空间和透明通道，<br>
+取它们的英文首字母 Red、Green、Blue、Alpha 得到简称：
+<a 
+    href="https://en.wikipedia.org/wiki/RGBA_color_model"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    RGBA
+</a>
+。</p>
+        
+        <hr><p>本文2026-05-20首发于<a href='https://rujax.github.io/'>Rujax's blog</a>，最后修改于2026-05-20</p>]]>
+      </description>
+      
+        <category>锚定未知</category>
+      
+    </item>
     
     
 

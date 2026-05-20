@@ -8,9 +8,10 @@
   name="viewport"
   content="width=device-width, initial-scale=1, shrink-to-fit=no"
 /><title>
-  Git | Rujax
+  查看图片4个通道的应用 RGBAViewer | Rujax
 </title>
-<meta name="description" content="来，捕获月亮吧~"/><script>
+<meta name="description" content="新写了一个应用来查看图片的4个通道"/>
+    <meta name="keywords" content="Rust,应用,开发,native,windows,gui,rgbaviewer" /><script>
   window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"https://rujax.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (⊙…⊙)\",\"zh-cn\":\"复制失败 (⊙…⊙)\"},\"success\":{\"en\":\"Copy successfully (★^O^★)\",\"zh-cn\":\"复制成功 (★^O^★)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_a0oqhord1y\",\"outdate\":{\"daysago\":180,\"enable\":true,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\"}}}");
   
 </script>
@@ -21,20 +22,20 @@
     type="font/woff2"
     crossorigin="anonymous"
   /><link rel="stylesheet" href="/css/loader.min.065aed82b24a386b4876c1b25a82897328b7a31ce3248eafdd8df0b1bf6548fc.css" /><meta property="og:type" content="website" />
-  <meta property="og:title" content="Git | Rujax" />
+  <meta property="og:title" content="查看图片4个通道的应用 RGBAViewer | Rujax" />
   <meta
     property="og:description"
-    content="来，捕获月亮吧~"
+    content="新写了一个应用来查看图片的4个通道"
   />
-  <meta property="og:url" content="https://rujax.github.io/tags/git/" />
+  <meta property="og:url" content="https://rujax.github.io/posts/202605/rgba-viewer/" />
   <meta
     property="og:site_name"
     content="Rujax&#39;s blog"
   />
   <meta property="og:image" content="https://rujax.github.io/images/iuno-main.webp" />
   <meta property="article:author" content="Rujax" />
-  <meta property="article:published_time" content="2026-04-25T20:05:50&#43;08:00" />
-  <meta property="article:modified_time" content="2026-04-25T20:05:50&#43;08:00" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://rujax.github.io/images/iuno-main.webp" /><link rel="alternate" type="application/rss+xml" href="https://rujax.github.io/tags/git/index.xml" title="Rujax's blog">
+  <meta property="article:published_time" content="2026-05-20T22:49:56&#43;08:00" />
+  <meta property="article:modified_time" content="2026-05-20T22:49:56&#43;08:00" /><meta property="article:tag" content="Rust, native-windows-gui, RGBAViewer" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://rujax.github.io/images/iuno-main.webp" />
 <link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.32f2ae7a00f67e89d9e4c4d48a2f5fc7c60b27a86db0de916c91211ba476f2b2.css" /><link
     rel="preload"
     as="style"
@@ -105,20 +106,35 @@
       </a><a class="main-nav-link-wrap" href="/archives"><div class='main-nav-icon icon '><img src="/images/lunar.webp" alt="archives icon" class="" style="height: 1em;"></div><span class="main-nav-link">归档</span>
       </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
   </nav>
-  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-rss-link" class="nav-icon" href="/tags/git/index.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a></nav></div>
-<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/iuno-main.webp" alt="Git"><div id="header-outer">
+  <nav id="sub-nav" aria-label="Secondary navigation"></nav></div>
+<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/iuno-main.webp" alt="查看图片4个通道的应用 RGBAViewer"><div id="header-outer">
     <div id="header-title"><span id="logo">
-            <h1 data-aos="slide-up">标签</h1>
-          </span><h2 id="subtitle-wrap" data-aos="slide-down"><span id="subtitle">Git</span></h2></div>
+            <h1 data-aos="slide-up">查看图片4个通道的应用 RGBAViewer</h1>
+          </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
   </div>
 </header><div id="content"
           aria-label="Page content"
           class="sidebar-left"
-            ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container "><div class="sidebar-wrapper">
+            ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
     <div
       class="sidebar-wrap"
       data-aos="fade-up"
-    ><div class="sidebar-author">
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ol>
+    <li><a href="#起因">起因</a>
+      <ol>
+        <li><a href="#rgba">RGBA</a></li>
+        <li><a href="#材质贴图">材质贴图</a></li>
+      </ol>
+    </li>
+    <li><a href="#rgbaviewer">RGBAViewer</a></li>
+    <li><a href="#结语">结语</a></li>
+  </ol>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img
     data-src="/avatar/avatar.webp"
     data-sizes="auto"
@@ -163,186 +179,380 @@
         href="/archives"
         aria-label="归档"
       ></a><div class='sidebar-menu-icon icon '><img src="/images/lunar.webp" alt="archives icon" class="" style="height: 1em;"></div><div class="sidebar-menu-link">归档</div>
-    </div></div></div>
-  </div><div class="sidebar-widget"><div class="widget-wrapper">
-    <div
-      class="widget-wrap"
-      data-aos="fade-up"
-    >
-      <div style="display: flex; justify-content: space-between;">
-        <h3 class="widget-title">分类</h3></div>
-      <div class="widget">
-        <ul class="category-list"><li class="category-list-item">
-                <a class="category-list-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84-qt-%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/" 
-                  title="从零开始的 Qt 应用开发"
-                  >从零开始的 Qt 应用开发</a
-                >
-              </li><li class="category-list-item">
-                <a class="category-list-link" href="/categories/%E9%94%9A%E5%AE%9A%E6%9C%AA%E7%9F%A5/" 
-                  title="锚定未知"
-                  >锚定未知</a
-                >
-              </li></ul>
-      </div>
-    </div>
-  </div><div class="widget-wrapper">
-    <div
-      class="widget-wrap"
-      data-aos="fade-up"
-    >
-      <div style="display: flex; justify-content: space-between;">
-        <h3 class="widget-title">标签</h3><a class="widget-link" href="/tags/">查看更多</a></div>
-      <div class="widget">
-        <ul class="tag-list" itemprop="keywords"><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/cwebp/"
-                  aria-label="标签: Cwebp"
-                  title="Cwebp"
-                >
-                  Cwebp
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/ffmpeg/"
-                  aria-label="标签: FFmpeg"
-                  title="FFmpeg"
-                >
-                  FFmpeg
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/git/"
-                  aria-label="标签: Git"
-                  title="Git"
-                >
-                  Git
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/go/"
-                  aria-label="标签: Go"
-                  title="Go"
-                >
-                  Go
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/hugo/"
-                  aria-label="标签: Hugo"
-                  title="Hugo"
-                >
-                  Hugo
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/native-windows-gui/"
-                  aria-label="标签: Native-Windows-Gui"
-                  title="Native-Windows-Gui"
-                >
-                  Native-Windows-Gui
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/png/"
-                  aria-label="标签: PNG"
-                  title="PNG"
-                >
-                  PNG
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/qdebug/"
-                  aria-label="标签: QDebug"
-                  title="QDebug"
-                >
-                  QDebug
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/qt/"
-                  aria-label="标签: Qt"
-                  title="Qt"
-                >
-                  Qt
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/rgbaviewer/"
-                  aria-label="标签: RGBAViewer"
-                  title="RGBAViewer"
-                >
-                  RGBAViewer
-                </a>
-              </li></ul>
-      </div>
-    </div>
-  </div><div class="widget-wrapper">
-    <div
-      class="widget-wrap"
-      data-aos="fade-up"
-    >
-      <h3 class="widget-title">最新文章</h3>
-      <div class="widget">
-        <ul><li>
-              <a href="/posts/202605/rgba-viewer/" title="查看图片4个通道的应用 RGBAViewer">查看图片4个通道的应用 RGBAViewer</a>
-            </li><li>
-              <a href="/posts/202605/try-native-windows-gui/" title="Native Windows GUI 初体验">Native Windows GUI 初体验</a>
-            </li><li>
-              <a href="/posts/202605/re-0-qt-app-6/" title="从零开始的 Qt 应用开发（6）：网络和XML">从零开始的 Qt 应用开发（6）：网络和XML</a>
-            </li><li>
-              <a href="/posts/202604/re-0-qt-app-5/" title="从零开始的 Qt 应用开发（5）：信号和槽">从零开始的 Qt 应用开发（5）：信号和槽</a>
-            </li><li>
-              <a href="/posts/202604/re-0-qt-app-4/" title="从零开始的 Qt 应用开发（4）：样式">从零开始的 Qt 应用开发（4）：样式</a>
-            </li></ul>
-      </div>
-    </div>
-  </div></div></div></aside>
-<section id="main" aria-label="Main content"><div
-    class="archives-outer-wrap"
+    </div></div></div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
     data-aos="fade-up"
   >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2026-05-20 22:49:56 &#43;0800 CST" itemprop="datePublished"
+      >2026-05-20</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2026-05-20</time
+    >
+  </span></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote
+          class="alert-blockquote warning"
+          id="outdate-blockquote"
+          style="display: none;"
+        >
+          <p class="alert-heading">WARNING</p>
+          <p></p>
+        </blockquote><h1 id="起因">
+<a class="header-anchor" href="#%e8%b5%b7%e5%9b%a0"></a>
+起因
+</h1><p>继上篇写了一个批量将 DDS 图片转换为其他格式的应用后，又遇到了新的需求：<strong>分别查看图片4个通道里的内容</strong>。</p>
+<h2 id="rgba">
+<a class="header-anchor" href="#rgba"></a>
+RGBA
+</h2><p>在部分图片格式中，存在3个颜色（红、绿、蓝）空间和透明通道，<br>
+取它们的英文首字母 Red、Green、Blue、Alpha 得到简称：
+<a 
+    href="https://en.wikipedia.org/wiki/RGBA_color_model"
     
-    <section class="archives-wrap" data-aos="fade-up">
-    <div class="archive-year-wrap">
-      <span class="archive-year">2026</span>
-    </div>
-    <ul><li class="archive-article">
-          <div class="archive-article-date">
-            <span>
-              <time
-                class="dt-published"
-                datetime="2026-04-25 20:05:50 &#43;0800 CST"
-                itemprop="datePublished"
-                >2026-04-25</time
-              >
-            </span>
-          </div><a class="archive-article-title" href="/posts/202604/re-0-qt-app-4/"
-              >从零开始的 Qt 应用开发（4）：样式</a
-            ></li><li class="archive-article">
-          <div class="archive-article-date">
-            <span>
-              <time
-                class="dt-published"
-                datetime="2026-04-19 13:37:20 &#43;0800 CST"
-                itemprop="datePublished"
-                >2026-04-19</time
-              >
-            </span>
-          </div><a class="archive-article-title" href="/posts/202604/re-0-qt-app-3/"
-              >从零开始的 Qt 应用开发（3）：UI</a
-            ></li></ul>
-  </section></div><nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up"><span class="page-number current">1</span></nav>
-</section>
+     target="_blank" rel="noopener noreferrer"
+>
+    RGBA
+</a>
+。</p>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><p>实际使用，通常也将3个颜色空间叫做 <strong>通道</strong>，方便理解。例如：<strong>红色通道</strong> 或 <strong>R 通道</strong>。</p></p>
+  </blockquote>
+
+<h2 id="材质贴图">
+<a class="header-anchor" href="#%e6%9d%90%e8%b4%a8%e8%b4%b4%e5%9b%be"></a>
+材质贴图
+</h2><p>在游戏的模型材质贴图中，通常为了减少贴图的数量，贴图师会充分利用贴图的4个通道，<br>
+将模型所需的内容放入不同的通道，使用时再将各个通道的内容分离出来使用。</p>
+<p>以下面这张 
+<a 
+    href="https://en.wikipedia.org/wiki/Normal_mapping"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    法线贴图
+</a>
+ 举例说明：</p>
+<p><img src="/images/202605/rgba-viewer/normal.webp" alt="Normal Map" title="法线贴图"></p>
+<p>没有接触过3D模型的人，第一眼看到这张图一定是一头雾水的（笑</p>
+<p>将4个通道全部分离成4张图片再看一看：</p>
+<div class="gallery-wall" id="photoWall-29ee114d2"></div>
+<script>
+  (function() {
+    const imageUrls = JSON.parse("[\"/images/202605/rgba-viewer/normal-red.webp\",\"/images/202605/rgba-viewer/normal-green.webp\",\"/images/202605/rgba-viewer/normal-blue.webp\",\"/images/202605/rgba-viewer/normal-alpha.webp\"]");
+    let images = [];
+    const wallId = '#photoWall-29ee114d2';
+    let resizeTimer;
+    let lastWidth = 0;
+    
+    function init() {
+      createInitialDOM();
+      loadImages();
+      const wall = _$(wallId);
+      if (wall && window.ResizeObserver) {
+        const observer = new ResizeObserver((entries) => {
+          const newWidth = entries[0].contentRect.width;
+          if (Math.abs(newWidth - lastWidth) > 1) {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(renderPhotoWall, 250);
+          }
+        });
+        observer.observe(wall);
+      } else {
+        window.addEventListener('resize', handleResize);
+      }
+    }
+    
+    function createInitialDOM() {
+      const wall = _$(wallId);
+      if (!wall || !imageUrls.length) return;
+      
+      wall.style.opacity = '0';
+      wall.style.pointerEvents = 'none';
+      
+      imageUrls.forEach((url) => {
+        images.push({
+          width: 800,
+          height: 600,
+          aspectRatio: 4/3,
+          url: url,
+          loaded: false
+        });
+      });
+      
+      renderPhotoWall();
+    }
+    
+    function loadImages() {
+      const loadPromises = imageUrls.map((url, index) => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = () => {
+            if (images[index]) {
+              images[index].width = img.naturalWidth;
+              images[index].height = img.naturalHeight;
+              images[index].aspectRatio = img.naturalWidth / img.naturalHeight;
+              images[index].loaded = true;
+            }
+            resolve();
+          };
+          img.onerror = () => {
+            if (images[index]) {
+              images[index].loaded = true;
+            }
+            resolve();
+          };
+          img.src = url;
+        });
+      });
+      
+      Promise.all(loadPromises)
+        .then(() => {
+          const wall = _$(wallId);
+          if (wall) {
+            wall.style.opacity = '1';
+            wall.style.pointerEvents = 'auto';
+            wall.style.transition = 'opacity 0.3s ease';
+          }
+          renderPhotoWall();
+        })
+        .catch((error) => console.error("图片加载失败:", error));
+    }
+    
+    function renderPhotoWall() {
+      const wall = _$(wallId);
+      
+      if (!images.length || !wall) return;
+      
+      const screenWidth = wall.offsetWidth || window.innerWidth - 40;
+      lastWidth = screenWidth;
+      
+      wall.innerHTML = "";
+      const rowHeight = 200;
+      const gap = 10;
+      const maxPerRow = 4;
+      
+      let row = [];
+      let rowWidth = 0;
+      const rows = [];
+      
+      images.forEach((img) => {
+        const scaledWidth = rowHeight * img.aspectRatio;
+        
+        if (rowWidth + scaledWidth <= screenWidth && row.length < maxPerRow) {
+          row.push(img);
+          rowWidth += scaledWidth + gap;
+        } else {
+          if (row.length) rows.push(row);
+          row = [img];
+          rowWidth = scaledWidth + gap;
+        }
+      });
+      
+      if (row.length) rows.push(row);
+      
+      rows.forEach((row) => {
+        const rowDiv = document.createElement("div");
+        rowDiv.style.cssText = `display: flex; gap: ${gap}px; width: 100%`;
+        
+        row.forEach((img) => {
+          const item = document.createElement("div");
+          item.className = "photo-item";
+          const flex = row.length === 1 ? '1' : img.aspectRatio;
+          item.style.cssText = `flex: ${flex}; height: ${rowHeight}px`;
+          
+          const imgEl = document.createElement("img");
+          imgEl.alt = "Gallery Image";
+          imgEl.style.cssText = "width: 100%; height: 100%; object-fit: cover";
+          imgEl.className = "lazyload";
+          imgEl.dataset.src = img.url;
+          imgEl.dataset.sizes = "auto";
+
+          const link = document.createElement("a");
+          link.href = img.url;
+          link.dataset.pswpWidth = img.width;
+          link.dataset.pswpHeight = img.height;
+          link.target = "_blank";
+          link.className = "article-gallery-item";
+          link.style.cssText = "width: 100%; height: 100%";
+          link.appendChild(imgEl);
+          
+          item.appendChild(link);
+          rowDiv.appendChild(item);
+        });
+        
+        wall.appendChild(rowDiv);
+      });
+    }
+    
+    function handleResize() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(renderPhotoWall, 250);
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script><link rel="preload" as="style" href="/css/gallery.min.43b19c254fc1e9d2fcbf30d14544d5c92d1d0ab4dc7a4ba35042649d6f36d6e3.css" onload="this.onload=null;this.rel='stylesheet'" />
+<p>通常情况下，法线贴图的 <strong>RGB</strong> 通道分别对应法线的 <strong>XYZ</strong> 坐标。<br>
+由于材质贴图是一张平面2D图，因此实际上只用到了 <strong>R</strong> 和 <strong>G</strong> 2个通道，这样就给了在 <strong>B</strong> 和 <strong>A</strong> 通道的操作空间。</p>
+<p>比如这张法线贴图，<strong>B</strong> 通道存放的其实是模型中金属区域的金属度，<br>
+而 <strong>A</strong> 通道存放的是模型中金属区域的粗糙度。</p>
+<p>但是，在没有看到分离成各个通道的图片之前，谁又能想到这些呢 ╮(╯_╰)╭</p>
+<p>刚得知这一切的我，恍然大悟！<br>
+同时也深感查看每个通道内容的重要性。</p>
+<p>于是，我萌发了实现一个查看各个通道并保存通道内容应用的想法。</p>
+<h1 id="rgbaviewer">
+<a class="header-anchor" href="#rgbaviewer"></a>
+RGBAViewer
+</h1><p>简单介绍一下我写的这个应用吧。</p>
+<p><img src="/images/202605/rgba-viewer/rgba-viewer-1.webp" alt="RGBAViewer 1" title="RGBAViewer 窗口"></p>
+<p>主打一个简洁明了（这也是我写应用的一贯风格 &lt; (￣︶￣)&gt;</p>
+<p>拖拽图片到左边区域后，点击每个颜色的通道，可以在右边区域查看各通道内容：</p>
+<p><img src="/images/202605/rgba-viewer/rgba-viewer-2.webp" alt="RGBAViewer 2" title="RGBAViewer 通道"></p>
+<p>如果还想保存通道内容的话，可以点击右侧：<strong>保存当前通道</strong> 按钮或者 <strong>保存全部通道</strong> 按钮。</p>
+
+  <blockquote class="alert-blockquote tip">
+    <p class="alert-heading">
+      Tip
+    </p>
+    <p><p>保存的图片会生成到原始图像同一目录下，文件名会根据通道添加 <strong>-red</strong> 等后缀。<br>
+例如：法线贴图文件名为：<strong>normal.png</strong>，红色通道的文件名为：<strong>normal-red.png</strong>。</p>
+<p>此外，应用还支持 <strong>启用灰度</strong> 模式。<br>
+启用状态下，保存的文件名会在通道名后附加 <strong>-grayscale</strong> 后缀，例如：<strong>normal-red-grayscale.png</strong>。</p></p>
+  </blockquote>
+
+<h1 id="结语">
+<a class="header-anchor" href="#%e7%bb%93%e8%af%ad"></a>
+结语
+</h1><p>最后，放上应用吧：
+<a 
+    href="/files/202605/rgba-viewer/RGBAViewer-v0.0.1.7z"
+    
+    
+>
+    RGBAViewer
+</a>
+ (｡･∀･)ﾉﾞ</p>
+</div>
+    <footer class="article-footer"><blockquote class="article-copyright"><p><strong><span class="icon-user icon"></span>本文作者：</strong>Rujax</p><p>
+      <strong><span class="icon-link icon"></span>本文链接：</strong><a href="https://rujax.github.io/posts/202605/rgba-viewer/">https://rujax.github.io/posts/202605/rgba-viewer/</a>
+    </p><p><strong><span class="icon-pencil icon"></span>本文标题：</strong>查看图片4个通道的应用 RGBAViewer</p><p><strong><span class="icon-calendar icon"></span>本文发布时间：</strong>2026-05-20 22:49:56</p><p>
+      
+      <strong><span class="icon-copyright icon"></span>本文版权：</strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" rel="noopener nofollow noreferrer" target="_blank"><span class="icon-creative-commons"></span>BY-NC-SA</a> 许可协议。转载请注明出处！
+    </p>
+    <span class="icon-creative-commons article-copyright-bg"></span></blockquote>
+<div class="share-wrapper"><a href="https://www.facebook.com/sharer/sharer.php?u=https://rujax.github.io/posts/202605/rgba-viewer/" target="_blank" rel="noopener noreferrer" title="查看图片4个通道的应用 RGBAViewer">
+      <div class="share-icon icon icon-facebook"></div>
+    </a><a href="https://twitter.com/intent/tweet?url=https://rujax.github.io/posts/202605/rgba-viewer/&amp;text=%e6%9f%a5%e7%9c%8b%e5%9b%be%e7%89%874%e4%b8%aa%e9%80%9a%e9%81%93%e7%9a%84%e5%ba%94%e7%94%a8%20RGBAViewer&amp;via=https://rujax.github.io/" target="_blank" rel="noopener noreferrer" title="查看图片4个通道的应用 RGBAViewer">
+      <div class="share-icon icon icon-twitter"></div>
+    </a><a href="https://www.linkedin.com/shareArticle?url=https://rujax.github.io/posts/202605/rgba-viewer/&amp;title=%e6%9f%a5%e7%9c%8b%e5%9b%be%e7%89%874%e4%b8%aa%e9%80%9a%e9%81%93%e7%9a%84%e5%ba%94%e7%94%a8%20RGBAViewer&amp;summary=%e6%96%b0%e5%86%99%e4%ba%86%e4%b8%80%e4%b8%aa%e5%ba%94%e7%94%a8%e6%9d%a5%e6%9f%a5%e7%9c%8b%e5%9b%be%e7%89%87%e7%9a%844%e4%b8%aa%e9%80%9a%e9%81%93&amp;mini=true&amp;ro=true" target="_blank" rel="noopener noreferrer" title="查看图片4个通道的应用 RGBAViewer">
+      <div class="share-icon icon icon-linkedin"></div>
+    </a><a href="https://www.reddit.com/submit?url=https://rujax.github.io/posts/202605/rgba-viewer/&amp;title=%e6%9f%a5%e7%9c%8b%e5%9b%be%e7%89%874%e4%b8%aa%e9%80%9a%e9%81%93%e7%9a%84%e5%ba%94%e7%94%a8%20RGBAViewer" target="_blank" rel="noopener noreferrer" title="查看图片4个通道的应用 RGBAViewer">
+      <div class="share-icon icon icon-reddit"></div>
+    </a><a href="https://service.weibo.com/share/share.php?url=https://rujax.github.io/posts/202605/rgba-viewer/&amp;appkey=&amp;title=%e6%9f%a5%e7%9c%8b%e5%9b%be%e7%89%874%e4%b8%aa%e9%80%9a%e9%81%93%e7%9a%84%e5%ba%94%e7%94%a8%20RGBAViewer&amp;pic=&amp;ralateUid=" target="_blank" rel="noopener noreferrer" title="查看图片4个通道的应用 RGBAViewer">
+      <div class="share-icon icon icon-weibo"></div>
+    </a><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://rujax.github.io/posts/202605/rgba-viewer/&amp;title=%e6%9f%a5%e7%9c%8b%e5%9b%be%e7%89%874%e4%b8%aa%e9%80%9a%e9%81%93%e7%9a%84%e5%ba%94%e7%94%a8%20RGBAViewer&amp;desc=%e6%96%b0%e5%86%99%e4%ba%86%e4%b8%80%e4%b8%aa%e5%ba%94%e7%94%a8%e6%9d%a5%e6%9f%a5%e7%9c%8b%e5%9b%be%e7%89%87%e7%9a%844%e4%b8%aa%e9%80%9a%e9%81%93&amp;source=https://rujax.github.io/" target="_blank" rel="noopener noreferrer" title="查看图片4个通道的应用 RGBAViewer">
+      <div class="share-icon icon icon-qq"></div>
+    </a><a href="javascript:;"  title="查看图片4个通道的应用 RGBAViewer">
+      <div class="share-icon icon icon-weixin"><div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hugo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div></div>
+    </a></div><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-category-link"
+        href="/categories/%e9%94%9a%e5%ae%9a%e6%9c%aa%e7%9f%a5"
+        data-aos="zoom-in"
+      >锚定未知</a>
+    </li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/rust"
+        rel="tag"
+        >Rust</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/native-windows-gui"
+        rel="tag"
+        >native-windows-gui</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/rgbaviewer"
+        rel="tag"
+        >RGBAViewer</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="/images/covers/posts/iuno-10.webp"
+              data-sizes="auto"
+              alt="Native Windows GUI 初体验"
+              class="lazyload"
+            /><a
+          href="/posts/202605/try-native-windows-gui/"
+          aria-label="前一篇:Native Windows GUI 初体验"
+          title="前一篇:Native Windows GUI 初体验"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">Native Windows GUI 初体验</h3>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">万物，皆可为引</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="giscus">
+            
+          </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment giscus-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
         </div><footer id="footer" aria-label="Site footer">
   <div style="width: 100%; overflow: hidden">
     <div class="footer-line"></div>
@@ -389,7 +599,22 @@
             <div class="arrow-up"></div>
           </div><div id="mask" class="hide"></div>
       </div><nav id="mobile-nav" aria-label="Mobile navigation">
-  <div class="sidebar-wrap"><div class="sidebar-author">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ol>
+    <li><a href="#起因">起因</a>
+      <ol>
+        <li><a href="#rgba">RGBA</a></li>
+        <li><a href="#材质贴图">材质贴图</a></li>
+      </ol>
+    </li>
+    <li><a href="#rgbaviewer">RGBAViewer</a></li>
+    <li><a href="#结语">结语</a></li>
+  </ol>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img
     data-src="/avatar/avatar.webp"
     data-sizes="auto"
@@ -434,7 +659,10 @@
         href="/archives"
         aria-label="归档"
       ></a><div class='sidebar-menu-icon icon '><img src="/images/lunar.webp" alt="archives icon" class="" style="height: 1em;"></div><div class="sidebar-menu-link">归档</div>
-    </div></div></div></nav>
+    </div></div></div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
 </div><div id="aplayer" theme="var(--color-link)"></div><script
     src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
     
@@ -484,9 +712,9 @@
   <div><script data-pjax>
         window.REIMU_POST = {
           author: "Rujax",
-          title: "Git",
-          url: "https:\/\/rujax.github.io\/tags\/git\/",
-          description: "",
+          title: "查看图片4个通道的应用 RGBAViewer",
+          url: "https:\/\/rujax.github.io\/posts\/202605\/rgba-viewer\/",
+          description: "新写了一个应用来查看图片的4个通道",
           cover: "https:\/\/rujax.github.io\/images\/iuno-main.webp",
         };
       </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax ></script><script src="/js/tabs.js" integrity="" crossorigin="anonymous" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {

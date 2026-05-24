@@ -12,7 +12,7 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Wed, 20 May 2026 22:49:56 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 24 May 2026 23:18:56 +0800</lastBuildDate>
     
     
     <atom:link href="https://rujax.github.io/categories/%E9%94%9A%E5%AE%9A%E6%9C%AA%E7%9F%A5/index.xml" rel="self" type="application/rss&#43;xml" />
@@ -48,7 +48,47 @@ RGBA
 </a>
 。</p>
         
-        <hr><p>本文2026-05-20首发于<a href='https://rujax.github.io/'>Rujax's blog</a>，最后修改于2026-05-20</p>]]>
+        <hr><p>本文2026-05-20首发于<a href='https://rujax.github.io/'>Rujax's blog</a>，最后修改于2026-05-24</p>]]>
+      </description>
+      
+        <category>锚定未知</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>使用 Tauri 重写 RGBAViewer</title>
+      <link>https://rujax.github.io/posts/202605/rewrite-rgba-viewer-with-tauri/</link>
+      <pubDate>Sun, 24 May 2026 21:00:44 &#43;0800</pubDate>
+      <author>rujax.c@gmail.com (Rujax)</author>
+      <guid>https://rujax.github.io/posts/202605/rewrite-rgba-viewer-with-tauri/</guid>
+      <description>
+        <![CDATA[<h1>使用 Tauri 重写 RGBAViewer</h1><p>作者：Rujax（rujax.c@gmail.com）</p>
+        
+          <h1 id="起因">
+<a class="header-anchor" href="#%e8%b5%b7%e5%9b%a0"></a>
+起因
+</h1><a href="/posts/202605/rgba-viewer/" title="查看图片4个通道的应用 RGBAViewer" target="_blank">查看图片4个通道的应用 RGBAViewer</a>
+<p>在写完上篇文章之后，有几个问题一直困扰着我：</p>
+<ol>
+<li>在应用中嵌入了 <code>manifest.xml</code> 文件，通过设置 
+<a 
+    href="https://learn.microsoft.com/en-us/windows/win32/hidpi/setting-the-default-dpi-awareness-for-a-process"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    DPI awareness
+</a>
+，使得应用在我有缩放的屏幕上可以不模糊，<br>
+并且在屏幕分辨率发生变化时，可以自适应布局</li>
+<li>因为框架的限制，有些功能无法实现，比如：在原始图像的区域添加一个 <strong>打开图片</strong> 的按钮</li>
+<li>还是因为框架的限制，能够支持的图片格式比预期要少一些</li>
+<li>一些想要的动效无法实现</li>
+</ol>
+<p>于是乎，我又翻起了之前未被我采用的方案。</p>
+        
+        <hr><p>本文2026-05-24首发于<a href='https://rujax.github.io/'>Rujax's blog</a>，最后修改于2026-05-24</p>]]>
       </description>
       
         <category>锚定未知</category>

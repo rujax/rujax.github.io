@@ -8,9 +8,10 @@
   name="viewport"
   content="width=device-width, initial-scale=1, shrink-to-fit=no"
 /><title>
-  标签 | Rujax
+  使用 Tauri 重写 RGBAViewer | Rujax
 </title>
-<meta name="description" content="来，捕获月亮吧~"/><script>
+<meta name="description" content="使用 Tauri &#43; Solid JS &#43; Tailwind CSS 和其他技术重写了 RGBAViewer"/>
+    <meta name="keywords" content="rewrite,rgba,viewer,tauri,solidjs,tailwind,daisyui,typescript,pnpm,vite" /><script>
   window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"https://rujax.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (⊙…⊙)\",\"zh-cn\":\"复制失败 (⊙…⊙)\"},\"success\":{\"en\":\"Copy successfully (★^O^★)\",\"zh-cn\":\"复制成功 (★^O^★)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_a0oqhord1y\",\"outdate\":{\"daysago\":180,\"enable\":true,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\"}}}");
   
 </script>
@@ -21,12 +22,12 @@
     type="font/woff2"
     crossorigin="anonymous"
   /><link rel="stylesheet" href="/css/loader.min.065aed82b24a386b4876c1b25a82897328b7a31ce3248eafdd8df0b1bf6548fc.css" /><meta property="og:type" content="website" />
-  <meta property="og:title" content="标签 | Rujax" />
+  <meta property="og:title" content="使用 Tauri 重写 RGBAViewer | Rujax" />
   <meta
     property="og:description"
-    content="来，捕获月亮吧~"
+    content="使用 Tauri &#43; Solid JS &#43; Tailwind CSS 和其他技术重写了 RGBAViewer"
   />
-  <meta property="og:url" content="https://rujax.github.io/tags/" />
+  <meta property="og:url" content="https://rujax.github.io/posts/202605/rewrite-rgba-viewer-with-tauri/" />
   <meta
     property="og:site_name"
     content="Rujax&#39;s blog"
@@ -34,7 +35,7 @@
   <meta property="og:image" content="https://rujax.github.io/images/iuno-main.webp" />
   <meta property="article:author" content="Rujax" />
   <meta property="article:published_time" content="2026-05-24T21:00:44&#43;08:00" />
-  <meta property="article:modified_time" content="2026-05-24T23:18:56&#43;08:00" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://rujax.github.io/images/iuno-main.webp" /><link rel="alternate" type="application/rss+xml" href="https://rujax.github.io/tags/index.xml" title="Rujax's blog">
+  <meta property="article:modified_time" content="2026-05-24T21:00:44&#43;08:00" /><meta property="article:tag" content="Rust, RGBAViewer, Tauri" /><meta name="twitter:card" content="summary" /><meta name="twitter:image" content="https://rujax.github.io/images/iuno-main.webp" />
 <link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.32f2ae7a00f67e89d9e4c4d48a2f5fc7c60b27a86db0de916c91211ba476f2b2.css" /><link
     rel="preload"
     as="style"
@@ -105,20 +106,41 @@
       </a><a class="main-nav-link-wrap" href="/archives"><div class='main-nav-icon icon '><img src="/images/lunar.webp" alt="archives icon" class="" style="height: 1em;"></div><span class="main-nav-link">归档</span>
       </a><a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
   </nav>
-  <nav id="sub-nav" aria-label="Secondary navigation"><a id="nav-rss-link" class="nav-icon" href="/tags/index.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a></nav></div>
-<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/iuno-main.webp" alt="Tags"><div id="header-outer">
+  <nav id="sub-nav" aria-label="Secondary navigation"></nav></div>
+<header id="header" aria-label="Site header"><picture></picture><img  fetchpriority="high" src="/images/iuno-main.webp" alt="使用 Tauri 重写 RGBAViewer"><div id="header-outer">
     <div id="header-title"><span id="logo">
-            <h1 data-aos="slide-up">标签</h1>
+            <h1 data-aos="slide-up">使用 Tauri 重写 RGBAViewer</h1>
           </span><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
   </div>
 </header><div id="content"
           aria-label="Page content"
           class="sidebar-left"
-            ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container "><div class="sidebar-wrapper">
+            ><aside id="sidebar" aria-label="Sidebar"><div class="sidebar-wrapper-container sticky"><div class="sidebar-wrapper">
     <div
       class="sidebar-wrap"
       data-aos="fade-up"
-    ><div class="sidebar-author">
+    ><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ol>
+    <li><a href="#起因">起因</a>
+      <ol>
+        <li><a href="#tauri">Tauri</a></li>
+        <li><a href="#其他技术栈">其他技术栈</a></li>
+      </ol>
+    </li>
+    <li><a href="#rgbaviewer-新版本介绍">RGBAViewer 新版本介绍</a>
+      <ol>
+        <li><a href="#主窗口">主窗口</a></li>
+        <li><a href="#原始图像">原始图像</a></li>
+        <li><a href="#核心功能">核心功能</a></li>
+      </ol>
+    </li>
+    <li><a href="#结语">结语</a></li>
+  </ol>
+</nav>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img
     data-src="/avatar/avatar.webp"
     data-sizes="auto"
@@ -163,370 +185,307 @@
         href="/archives"
         aria-label="归档"
       ></a><div class='sidebar-menu-icon icon '><img src="/images/lunar.webp" alt="archives icon" class="" style="height: 1em;"></div><div class="sidebar-menu-link">归档</div>
-    </div></div></div>
-  </div><div class="sidebar-widget"><div class="widget-wrapper">
-    <div
-      class="widget-wrap"
-      data-aos="fade-up"
-    >
-      <div style="display: flex; justify-content: space-between;">
-        <h3 class="widget-title">分类</h3></div>
-      <div class="widget">
-        <ul class="category-list"><li class="category-list-item">
-                <a class="category-list-link" href="/categories/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84-qt-%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/" 
-                  title="从零开始的 Qt 应用开发"
-                  >从零开始的 Qt 应用开发</a
-                >
-              </li><li class="category-list-item">
-                <a class="category-list-link" href="/categories/%E9%94%9A%E5%AE%9A%E6%9C%AA%E7%9F%A5/" 
-                  title="锚定未知"
-                  >锚定未知</a
-                >
-              </li></ul>
-      </div>
-    </div>
-  </div><div class="widget-wrapper">
-    <div
-      class="widget-wrap"
-      data-aos="fade-up"
-    >
-      <div style="display: flex; justify-content: space-between;">
-        <h3 class="widget-title">标签</h3><a class="widget-link" href="/tags/">查看更多</a></div>
-      <div class="widget">
-        <ul class="tag-list" itemprop="keywords"><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/cwebp/"
-                  aria-label="标签: Cwebp"
-                  title="Cwebp"
-                >
-                  Cwebp
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/ffmpeg/"
-                  aria-label="标签: FFmpeg"
-                  title="FFmpeg"
-                >
-                  FFmpeg
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/git/"
-                  aria-label="标签: Git"
-                  title="Git"
-                >
-                  Git
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/go/"
-                  aria-label="标签: Go"
-                  title="Go"
-                >
-                  Go
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/hugo/"
-                  aria-label="标签: Hugo"
-                  title="Hugo"
-                >
-                  Hugo
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/native-windows-gui/"
-                  aria-label="标签: Native-Windows-Gui"
-                  title="Native-Windows-Gui"
-                >
-                  Native-Windows-Gui
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/png/"
-                  aria-label="标签: PNG"
-                  title="PNG"
-                >
-                  PNG
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/qdebug/"
-                  aria-label="标签: QDebug"
-                  title="QDebug"
-                >
-                  QDebug
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/qt/"
-                  aria-label="标签: Qt"
-                  title="Qt"
-                >
-                  Qt
-                </a>
-              </li><li class="tag-item">
-                <a
-                  class="tag-link"
-                  href="/tags/rgbaviewer/"
-                  aria-label="标签: RGBAViewer"
-                  title="RGBAViewer"
-                >
-                  RGBAViewer
-                </a>
-              </li></ul>
-      </div>
-    </div>
-  </div><div class="widget-wrapper">
-    <div
-      class="widget-wrap"
-      data-aos="fade-up"
-    >
-      <h3 class="widget-title">最新文章</h3>
-      <div class="widget">
-        <ul><li>
-              <a href="/posts/202605/rewrite-rgba-viewer-with-tauri/" title="使用 Tauri 重写 RGBAViewer">使用 Tauri 重写 RGBAViewer</a>
-            </li><li>
-              <a href="/posts/202605/rgba-viewer/" title="查看图片4个通道的应用 RGBAViewer">查看图片4个通道的应用 RGBAViewer</a>
-            </li><li>
-              <a href="/posts/202605/try-native-windows-gui/" title="Native Windows GUI 初体验">Native Windows GUI 初体验</a>
-            </li><li>
-              <a href="/posts/202605/re-0-qt-app-6/" title="从零开始的 Qt 应用开发（6）：网络和XML">从零开始的 Qt 应用开发（6）：网络和XML</a>
-            </li><li>
-              <a href="/posts/202604/re-0-qt-app-5/" title="从零开始的 Qt 应用开发（5）：信号和槽">从零开始的 Qt 应用开发（5）：信号和槽</a>
-            </li></ul>
-      </div>
-    </div>
-  </div></div></div></aside>
-<section id="main" aria-label="Main content"><div
-    class="archives-outer-wrap"
+    </div></div></div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div><div class="sidebar-widget"></div></div></aside>
+<section id="main" aria-label="Main content"><article
+  class="h-entry article"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
     data-aos="fade-up"
   >
-    <div
-      class="
-        tag-wrap
-      "
-    ><div
-          class="
-            archives-tag-list-item
-          "
-          data-aos="zoom-in"
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link icon-calendar"
+    data-aos="zoom-in"
+  >
+    <time datetime="2026-05-24 21:00:44 &#43;0800 CST" itemprop="datePublished"
+      >2026-05-24</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2026-05-24</time
+    >
+  </span></div>
+</div><div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><blockquote
+          class="alert-blockquote warning"
+          id="outdate-blockquote"
+          style="display: none;"
         >
-          <a
-            class="
-              archives-tag-list-link
-            "
-            href="/tags/rgbaviewer/"
-          >
-            RGBAViewer
-          </a>
-        </div><div
-          class="
-            archives-tag-list-item
-          "
-          data-aos="zoom-in"
-        >
-          <a
-            class="
-              archives-tag-list-link
-            "
-            href="/tags/rust/"
-          >
-            Rust
-          </a>
-        </div><div
-          class="
-            archives-tag-list-item
-          "
-          data-aos="zoom-in"
-        >
-          <a
-            class="
-              archives-tag-list-link
-            "
-            href="/tags/tauri/"
-          >
-            Tauri
-          </a>
-        </div><div
-          class="
-            archives-tag-list-item
-          "
-          data-aos="zoom-in"
-        >
-          <a
-            class="
-              archives-tag-list-link
-            "
-            href="/tags/native-windows-gui/"
-          >
-            Native-Windows-Gui
-          </a>
-        </div><div
-          class="
-            archives-tag-list-item
-          "
-          data-aos="zoom-in"
-        >
-          <a
-            class="
-              archives-tag-list-link
-            "
-            href="/tags/qdebug/"
-          >
-            QDebug
-          </a>
-        </div><div
-          class="
-            archives-tag-list-item
-          "
-          data-aos="zoom-in"
-        >
-          <a
-            class="
-              archives-tag-list-link
-            "
-            href="/tags/qt/"
-          >
-            Qt
-          </a>
-        </div><div
-          class="
-            archives-tag-list-item
-          "
-          data-aos="zoom-in"
-        >
-          <a
-            class="
-              archives-tag-list-link
-            "
-            href="/tags/xml/"
-          >
-            XML
-          </a>
-        </div><div
-          class="
-            archives-tag-list-item
-          "
-          data-aos="zoom-in"
-        >
-          <a
-            class="
-              archives-tag-list-link
-            "
-            href="/tags/git/"
-          >
-            Git
-          </a>
-        </div><div
-          class="
-            archives-tag-list-item
-          "
-          data-aos="zoom-in"
-        >
-          <a
-            class="
-              archives-tag-list-link
-            "
-            href="/tags/go/"
-          >
-            Go
-          </a>
-        </div><div
-          class="
-            archives-tag-list-item
-          "
-          data-aos="zoom-in"
-        >
-          <a
-            class="
-              archives-tag-list-link
-            "
-            href="/tags/webp/"
-          >
-            WebP
-          </a>
-        </div><div
-          class="
-            archives-tag-list-item
-          "
-          data-aos="zoom-in"
-        >
-          <a
-            class="
-              archives-tag-list-link
-            "
-            href="/tags/webpmux/"
-          >
-            Webpmux
-          </a>
-        </div><div
-          class="
-            archives-tag-list-item
-          "
-          data-aos="zoom-in"
-        >
-          <a
-            class="
-              archives-tag-list-link
-            "
-            href="/tags/cwebp/"
-          >
-            Cwebp
-          </a>
-        </div><div
-          class="
-            archives-tag-list-item
-          "
-          data-aos="zoom-in"
-        >
-          <a
-            class="
-              archives-tag-list-link
-            "
-            href="/tags/ffmpeg/"
-          >
-            FFmpeg
-          </a>
-        </div><div
-          class="
-            archives-tag-list-item
-          "
-          data-aos="zoom-in"
-        >
-          <a
-            class="
-              archives-tag-list-link
-            "
-            href="/tags/png/"
-          >
-            PNG
-          </a>
-        </div><div
-          class="
-            archives-tag-list-item
-          "
-          data-aos="zoom-in"
-        >
-          <a
-            class="
-              archives-tag-list-link
-            "
-            href="/tags/hugo/"
-          >
-            Hugo
-          </a>
-        </div></div>
-  </div></section>
+          <p class="alert-heading">WARNING</p>
+          <p></p>
+        </blockquote><h1 id="起因">
+<a class="header-anchor" href="#%e8%b5%b7%e5%9b%a0"></a>
+起因
+</h1><div class="post-link-card-wrap">
+	<div class="post-link-card">
+		<a
+			href="/posts/202605/rgba-viewer/"
+			title="查看图片4个通道的应用 RGBAViewer"></a><div class="post-link-card-cover-wrap">
+				<img
+					src="/images/covers/posts/iuno-card.webp"
+					class="no-lightbox"
+					title="查看图片4个通道的应用 RGBAViewer"
+					alt="查看图片4个通道的应用 RGBAViewer"
+				/>
+			</div><div class="post-link-card-item-wrap">
+			<div class="post-link-card-title">查看图片4个通道的应用 RGBAViewer</div>
+			<div class="post-link-card-excerpt">新写了一个应用来查看图片的4个通道</div>
+		</div>
+	</div>
+</div>
+
+<p>在写完上篇文章之后，有几个问题一直困扰着我：</p>
+<ol>
+<li>在应用中嵌入了 <code>manifest.xml</code> 文件，通过设置 
+<a 
+    href="https://learn.microsoft.com/en-us/windows/win32/hidpi/setting-the-default-dpi-awareness-for-a-process"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    DPI awareness
+</a>
+，使得应用在我有缩放的屏幕上可以不模糊，<br>
+并且在屏幕分辨率发生变化时，可以自适应布局</li>
+<li>因为框架的限制，有些功能无法实现，比如：在原始图像的区域添加一个 <strong>打开图片</strong> 的按钮</li>
+<li>还是因为框架的限制，能够支持的图片格式比预期要少一些</li>
+<li>一些想要的动效无法实现</li>
+</ol>
+<p>于是乎，我又翻起了之前未被我采用的方案。</p>
+<h2 id="tauri">
+<a class="header-anchor" href="#tauri"></a>
+Tauri
+</h2><p>重新开始审视每个方案后，我先关注的是 <code>Release</code> 版本应用程序的 
+<a 
+    href="https://v2.tauri.app/zh-cn/concept/size/"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    文件大小
+</a>
+。</p>
+<p>搜索了下，AI 回答了我：</p>
+<p><img src="/images/202605/rewrite-rgba-viewer-with-tauri/tauri-app-size.webp" alt="Tauri App Size" title="使用 Tauri 实现的应用程序大小"></p>
+<p>竟然跟我开始预想的不一样 (´⊙ω⊙`)</p>
+<p>看来，还是当年 Electron 1.0 给我留下的不好印象还是太深了，<br>
+让我误以为这类使用 Web 开发作为前端的桌面应用都是体积很大的（笑</p>
+<h2 id="其他技术栈">
+<a class="header-anchor" href="#%e5%85%b6%e4%bb%96%e6%8a%80%e6%9c%af%e6%a0%88"></a>
+其他技术栈
+</h2><p>通过 Tauri 官网的 
+<a 
+    href="https://v2.tauri.app/start/create-project/"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    快速开始
+</a>
+，陆陆续续确定了其他技术栈：</p>
+<ul>
+<li>前端语言：
+<a 
+    href="https://www.typescriptlang.org/"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    TypeScript
+</a>
+</li>
+<li>前端构建工具：
+<a 
+    href="https://vite.dev/"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    Vite
+</a>
+</li>
+<li>包管理器：
+<a 
+    href="https://pnpm.io/"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    pnpm
+</a>
+</li>
+<li>UI 模板：
+<a 
+    href="https://www.solidjs.com/"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    Solid
+</a>
+</li>
+<li>CSS 样式框架：
+<a 
+    href="https://tailwindcss.com/"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    Tailwind CSS
+</a>
+</li>
+<li>CSS 组件库：
+<a 
+    href="https://daisyui.com/"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    daisyUI
+</a>
+</li>
+</ul>
+<p>Web 前端开发需要用到的工具还是一如既往得多啊 ∑(￣□￣;)</p>
+<h1 id="rgbaviewer-新版本介绍">
+<a class="header-anchor" href="#rgbaviewer-%e6%96%b0%e7%89%88%e6%9c%ac%e4%bb%8b%e7%bb%8d"></a>
+RGBAViewer 新版本介绍
+</h1><h2 id="主窗口">
+<a class="header-anchor" href="#%e4%b8%bb%e7%aa%97%e5%8f%a3"></a>
+主窗口
+</h2><p><img src="/images/202605/rewrite-rgba-viewer-with-tauri/rgba-viewer-window.webp" alt="RGBAViewer Window" title="RGBAViewer 主窗口"></p>
+<p>新增加的特性：</p>
+<ol>
+<li>标题栏采用由红自绿再蓝的渐变风格</li>
+<li>图片增加 <code>BMP/JPG/DDS/TGA</code> 格式支持</li>
+<li>加载原始图像增加 <strong>打开图片</strong> 按钮</li>
+<li>右下角保存图片按钮合并为按钮组</li>
+</ol>
+<h2 id="原始图像">
+<a class="header-anchor" href="#%e5%8e%9f%e5%a7%8b%e5%9b%be%e5%83%8f"></a>
+原始图像
+</h2><p><img src="/images/202605/rewrite-rgba-viewer-with-tauri/rgba-viewer-remove.webp" alt="RGBAViewer Remove" title="RGBAViewer 移除图片"></p>
+<p>新增加的特性：</p>
+<ul>
+<li>加载原始图像后，鼠标悬浮新增 <strong>移除图片</strong> 按钮</li>
+</ul>
+<h2 id="核心功能">
+<a class="header-anchor" href="#%e6%a0%b8%e5%bf%83%e5%8a%9f%e8%83%bd"></a>
+核心功能
+</h2><p>无变化。</p>
+<h1 id="结语">
+<a class="header-anchor" href="#%e7%bb%93%e8%af%ad"></a>
+结语
+</h1><p>通过使用 Tauri 等新的技术栈重写应用，让我对于 Rust 的理解和运用更加得心应手啦 (｡･∀･)ﾉﾞ</p>
+
+  <blockquote class="alert-blockquote note">
+    <p class="alert-heading">
+      Note
+    </p>
+    <p><p>基于 Tauri 和其他技术重写的版本：
+<a 
+    href="/files/202605/rewrite-rgba-viewer-with-tauri/RGBAViewer-v0.0.2.7z"
+    
+    
+>
+    RGBAViewer v0.0.2
+</a>
+</p></p>
+  </blockquote>
+
+</div>
+    <footer class="article-footer"><blockquote class="article-copyright"><p><strong><span class="icon-user icon"></span>本文作者：</strong>Rujax</p><p>
+      <strong><span class="icon-link icon"></span>本文链接：</strong><a href="https://rujax.github.io/posts/202605/rewrite-rgba-viewer-with-tauri/">https://rujax.github.io/posts/202605/rewrite-rgba-viewer-with-tauri/</a>
+    </p><p><strong><span class="icon-pencil icon"></span>本文标题：</strong>使用 Tauri 重写 RGBAViewer</p><p><strong><span class="icon-calendar icon"></span>本文发布时间：</strong>2026-05-24 21:00:44</p><p>
+      
+      <strong><span class="icon-copyright icon"></span>本文版权：</strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" rel="noopener nofollow noreferrer" target="_blank"><span class="icon-creative-commons"></span>BY-NC-SA</a> 许可协议。转载请注明出处！
+    </p>
+    <span class="icon-creative-commons article-copyright-bg"></span></blockquote>
+<div class="share-wrapper"><a href="https://www.facebook.com/sharer/sharer.php?u=https://rujax.github.io/posts/202605/rewrite-rgba-viewer-with-tauri/" target="_blank" rel="noopener noreferrer" title="使用 Tauri 重写 RGBAViewer">
+      <div class="share-icon icon icon-facebook"></div>
+    </a><a href="https://twitter.com/intent/tweet?url=https://rujax.github.io/posts/202605/rewrite-rgba-viewer-with-tauri/&amp;text=%e4%bd%bf%e7%94%a8%20Tauri%20%e9%87%8d%e5%86%99%20RGBAViewer&amp;via=https://rujax.github.io/" target="_blank" rel="noopener noreferrer" title="使用 Tauri 重写 RGBAViewer">
+      <div class="share-icon icon icon-twitter"></div>
+    </a><a href="https://www.linkedin.com/shareArticle?url=https://rujax.github.io/posts/202605/rewrite-rgba-viewer-with-tauri/&amp;title=%e4%bd%bf%e7%94%a8%20Tauri%20%e9%87%8d%e5%86%99%20RGBAViewer&amp;summary=%e4%bd%bf%e7%94%a8%20Tauri%20&#43;%20Solid%20JS%20&#43;%20Tailwind%20CSS%20%e5%92%8c%e5%85%b6%e4%bb%96%e6%8a%80%e6%9c%af%e9%87%8d%e5%86%99%e4%ba%86%20RGBAViewer&amp;mini=true&amp;ro=true" target="_blank" rel="noopener noreferrer" title="使用 Tauri 重写 RGBAViewer">
+      <div class="share-icon icon icon-linkedin"></div>
+    </a><a href="https://www.reddit.com/submit?url=https://rujax.github.io/posts/202605/rewrite-rgba-viewer-with-tauri/&amp;title=%e4%bd%bf%e7%94%a8%20Tauri%20%e9%87%8d%e5%86%99%20RGBAViewer" target="_blank" rel="noopener noreferrer" title="使用 Tauri 重写 RGBAViewer">
+      <div class="share-icon icon icon-reddit"></div>
+    </a><a href="https://service.weibo.com/share/share.php?url=https://rujax.github.io/posts/202605/rewrite-rgba-viewer-with-tauri/&amp;appkey=&amp;title=%e4%bd%bf%e7%94%a8%20Tauri%20%e9%87%8d%e5%86%99%20RGBAViewer&amp;pic=&amp;ralateUid=" target="_blank" rel="noopener noreferrer" title="使用 Tauri 重写 RGBAViewer">
+      <div class="share-icon icon icon-weibo"></div>
+    </a><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://rujax.github.io/posts/202605/rewrite-rgba-viewer-with-tauri/&amp;title=%e4%bd%bf%e7%94%a8%20Tauri%20%e9%87%8d%e5%86%99%20RGBAViewer&amp;desc=%e4%bd%bf%e7%94%a8%20Tauri%20&#43;%20Solid%20JS%20&#43;%20Tailwind%20CSS%20%e5%92%8c%e5%85%b6%e4%bb%96%e6%8a%80%e6%9c%af%e9%87%8d%e5%86%99%e4%ba%86%20RGBAViewer&amp;source=https://rujax.github.io/" target="_blank" rel="noopener noreferrer" title="使用 Tauri 重写 RGBAViewer">
+      <div class="share-icon icon icon-qq"></div>
+    </a><a href="javascript:;"  title="使用 Tauri 重写 RGBAViewer">
+      <div class="share-icon icon icon-weixin"><div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hugo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div></div>
+    </a></div><ul class="article-category-list"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-category-link"
+        href="/categories/%e9%94%9a%e5%ae%9a%e6%9c%aa%e7%9f%a5"
+        data-aos="zoom-in"
+      >锚定未知</a>
+    </li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/rust"
+        rel="tag"
+        >Rust</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/rgbaviewer"
+        rel="tag"
+        >RGBAViewer</a
+      >
+    </li><li class="article-tag-list-item" data-aos="zoom-in">
+      <a
+        class="article-tag-list-link"
+        href="/tags/tauri"
+        rel="tag"
+        >Tauri</a
+      >
+    </li></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    aria-label="Article navigation"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap left"><img
+              data-src="/images/covers/posts/iuno-12.webp"
+              data-sizes="auto"
+              alt="查看图片4个通道的应用 RGBAViewer"
+              class="lazyload"
+            /><a
+          href="/posts/202605/rgba-viewer/"
+          aria-label="前一篇:查看图片4个通道的应用 RGBAViewer"
+          title="前一篇:查看图片4个通道的应用 RGBAViewer"
+        ></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">查看图片4个通道的应用 RGBAViewer</h3>
+      </div></nav></article><section id="comments" data-aos="fade-up">
+<div class="comment-header"><h2 class="comment-title">万物，皆可为引</h2>
+  <div class="comment-selector">
+    <div class="comment-selector-wrap"><div class="selector-item" data-selector="giscus">
+            
+          </div></div>
+  </div>
+</div>
+
+<div class="comment-content"><div class="comment giscus-comment" data-aos="fade-up"
+     >
+    </div></div>
+</section></section>
         </div><footer id="footer" aria-label="Site footer">
   <div style="width: 100%; overflow: hidden">
     <div class="footer-line"></div>
@@ -573,7 +532,28 @@
             <div class="arrow-up"></div>
           </div><div id="mask" class="hide"></div>
       </div><nav id="mobile-nav" aria-label="Mobile navigation">
-  <div class="sidebar-wrap"><div class="sidebar-author">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class">
+  <nav id="TableOfContents">
+  <ol>
+    <li><a href="#起因">起因</a>
+      <ol>
+        <li><a href="#tauri">Tauri</a></li>
+        <li><a href="#其他技术栈">其他技术栈</a></li>
+      </ol>
+    </li>
+    <li><a href="#rgbaviewer-新版本介绍">RGBAViewer 新版本介绍</a>
+      <ol>
+        <li><a href="#主窗口">主窗口</a></li>
+        <li><a href="#原始图像">原始图像</a></li>
+        <li><a href="#核心功能">核心功能</a></li>
+      </ol>
+    </li>
+    <li><a href="#结语">结语</a></li>
+  </ol>
+</nav>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img
     data-src="/avatar/avatar.webp"
     data-sizes="auto"
@@ -618,7 +598,10 @@
         href="/archives"
         aria-label="归档"
       ></a><div class='sidebar-menu-icon icon '><img src="/images/lunar.webp" alt="archives icon" class="" style="height: 1em;"></div><div class="sidebar-menu-link">归档</div>
-    </div></div></div></nav>
+    </div></div></div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
 </div><div id="aplayer" theme="var(--color-link)"></div><script
     src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
     
@@ -668,9 +651,9 @@
   <div><script data-pjax>
         window.REIMU_POST = {
           author: "Rujax",
-          title: "Tags",
-          url: "https:\/\/rujax.github.io\/tags\/",
-          description: "",
+          title: "使用 Tauri 重写 RGBAViewer",
+          url: "https:\/\/rujax.github.io\/posts\/202605\/rewrite-rgba-viewer-with-tauri\/",
+          description: "使用 Tauri \u002b Solid JS \u002b Tailwind CSS 和其他技术重写了 RGBAViewer",
           cover: "https:\/\/rujax.github.io\/images\/iuno-main.webp",
         };
       </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax ></script><script src="/js/tabs.js" integrity="" crossorigin="anonymous" data-pjax defer></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const initPswp = (gallery, children) => {

@@ -241,7 +241,7 @@
 
 <p>在写完上篇文章之后，有几个问题一直困扰着我：</p>
 <ol>
-<li>在应用中嵌入了 <code>manifest.xml</code> 文件，通过设置 
+<li>为了让应用在有缩放的屏幕上不模糊，我嵌入了 <code>manifest.xml</code> 文件并设置了 
 <a 
     href="https://learn.microsoft.com/en-us/windows/win32/hidpi/setting-the-default-dpi-awareness-for-a-process"
     
@@ -249,8 +249,8 @@
 >
     DPI awareness
 </a>
-，使得应用在我有缩放的屏幕上可以不模糊，<br>
-并且在屏幕分辨率发生变化时，可以自适应布局</li>
+，<br>
+但是在屏幕分辨率发生变化时，布局无法自适应缩放，会乱掉</li>
 <li>因为框架的限制，有些功能无法实现，比如：在原始图像的区域添加一个 <strong>打开图片</strong> 的按钮</li>
 <li>还是因为框架的限制，能够支持的图片格式比预期要少一些</li>
 <li>一些想要的动效无法实现</li>
@@ -462,7 +462,7 @@ RGBAViewer 新版本介绍
     aria-label="Article navigation"
     data-aos="fade-up"
   ><div class="article-nav-link-wrap left"><img
-              data-src="/images/covers/posts/iuno-12.webp"
+              data-src="/images/covers/posts/iuno-10.webp"
               data-sizes="auto"
               alt="查看图片4个通道的应用 RGBAViewer"
               class="lazyload"

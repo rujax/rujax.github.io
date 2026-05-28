@@ -12,12 +12,58 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Sun, 24 May 2026 23:18:56 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 28 May 2026 23:12:56 +0800</lastBuildDate>
     
     
     <atom:link href="https://rujax.github.io/categories/%E9%94%9A%E5%AE%9A%E6%9C%AA%E7%9F%A5/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
+    
+    
+
+    <item>
+      <title>Native Windows GUI 初体验</title>
+      <link>https://rujax.github.io/posts/202605/try-native-windows-gui/</link>
+      <pubDate>Wed, 13 May 2026 13:34:56 &#43;0800</pubDate>
+      <author>rujax.c@gmail.com (Rujax)</author>
+      <guid>https://rujax.github.io/posts/202605/try-native-windows-gui/</guid>
+      <description>
+        <![CDATA[<h1>Native Windows GUI 初体验</h1><p>作者：Rujax（rujax.c@gmail.com）</p>
+        
+          <h1 id="起因">
+<a class="header-anchor" href="#%e8%b5%b7%e5%9b%a0"></a>
+起因
+</h1><p>最近在做 <code>Mod</code> 时，需要批量将 
+<a 
+    href="https://en.wikipedia.org/wiki/DirectDraw_Surface"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    DDS
+</a>
+ 格式的图片转变为 
+<a 
+    href="https://en.wikipedia.org/wiki/PNG"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    PNG
+</a>
+ 格式。<br>
+找了一圈，竟然没有找到合适好用的应用。<br>
+考虑了一下，不如自己撸一个简单的吧。</p>
+<h1 id="选型">
+<a class="header-anchor" href="#%e9%80%89%e5%9e%8b"></a>
+选型
+</h1><p>因为应用的功能比较单一，所以不打算使用 <code>Qt</code> 来实现。<br>
+正好也看看其他桌面应用框架发展到什么程度了。</p>
+        
+        <hr><p>本文2026-05-13首发于<a href='https://rujax.github.io/'>Rujax's blog</a>，最后修改于2026-05-28</p>]]>
+      </description>
+      
+        <category>锚定未知</category>
+      
+    </item>
     
     
 
@@ -89,52 +135,6 @@ RGBA
 <p>于是乎，我又翻起了之前未被我采用的方案。</p>
         
         <hr><p>本文2026-05-24首发于<a href='https://rujax.github.io/'>Rujax's blog</a>，最后修改于2026-05-24</p>]]>
-      </description>
-      
-        <category>锚定未知</category>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>Native Windows GUI 初体验</title>
-      <link>https://rujax.github.io/posts/202605/try-native-windows-gui/</link>
-      <pubDate>Wed, 13 May 2026 13:34:56 &#43;0800</pubDate>
-      <author>rujax.c@gmail.com (Rujax)</author>
-      <guid>https://rujax.github.io/posts/202605/try-native-windows-gui/</guid>
-      <description>
-        <![CDATA[<h1>Native Windows GUI 初体验</h1><p>作者：Rujax（rujax.c@gmail.com）</p>
-        
-          <h1 id="起因">
-<a class="header-anchor" href="#%e8%b5%b7%e5%9b%a0"></a>
-起因
-</h1><p>最近在做 <code>Mod</code> 时，需要批量将 
-<a 
-    href="https://en.wikipedia.org/wiki/DirectDraw_Surface"
-    
-     target="_blank" rel="noopener noreferrer"
->
-    DDS
-</a>
- 格式的图片转变为 
-<a 
-    href="https://en.wikipedia.org/wiki/PNG"
-    
-     target="_blank" rel="noopener noreferrer"
->
-    PNG
-</a>
- 格式。<br>
-找了一圈，竟然没有找到合适好用的应用。<br>
-考虑了一下，不如自己撸一个简单的吧。</p>
-<h1 id="选型">
-<a class="header-anchor" href="#%e9%80%89%e5%9e%8b"></a>
-选型
-</h1><p>因为应用的功能比较单一，所以不打算使用 <code>Qt</code> 来实现。<br>
-正好也看看其他桌面应用框架发展到什么程度了。</p>
-        
-        <hr><p>本文2026-05-13首发于<a href='https://rujax.github.io/'>Rujax's blog</a>，最后修改于2026-05-13</p>]]>
       </description>
       
         <category>锚定未知</category>

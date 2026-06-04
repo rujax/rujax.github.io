@@ -12,12 +12,38 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Thu, 28 May 2026 23:12:56 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 04 Jun 2026 13:50:14 +0800</lastBuildDate>
     
     
     <atom:link href="https://rujax.github.io/categories/%E9%94%9A%E5%AE%9A%E6%9C%AA%E7%9F%A5/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
+    
+    
+
+    <item>
+      <title>将 RGBAViewer 升级成了 RGBATool</title>
+      <link>https://rujax.github.io/posts/202606/rgba-tool/</link>
+      <pubDate>Thu, 04 Jun 2026 13:50:14 &#43;0800</pubDate>
+      <author>rujax.c@gmail.com (Rujax)</author>
+      <guid>https://rujax.github.io/posts/202606/rgba-tool/</guid>
+      <description>
+        <![CDATA[<h1>将 RGBAViewer 升级成了 RGBATool</h1><p>作者：Rujax（rujax.c@gmail.com）</p>
+        
+          <h1 id="起因">
+<a class="header-anchor" href="#%e8%b5%b7%e5%9b%a0"></a>
+起因
+</h1><p>在完成 RGBAViewer 工具的重写之后，实际做 Mod 时又出现了新的需求：</p>
+<blockquote>
+<p>在绘制材质贴图时，由于某些贴图的透明通道存放的其他内容，需要先分离成2张图：1张色彩图，1张 Alpha 图，<br>
+在色彩图上绘制完成后，再和之前分离出来的 Alpha 图合并成一张图。</p>
+        
+        <hr><p>本文2026-06-04首发于<a href='https://rujax.github.io/'>Rujax's blog</a>，最后修改于2026-06-04</p>]]>
+      </description>
+      
+        <category>锚定未知</category>
+      
+    </item>
     
     
 

@@ -12,12 +12,54 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Wed, 06 May 2026 13:57:56 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 09 Jun 2026 17:54:53 +0800</lastBuildDate>
     
     
     <atom:link href="https://rujax.github.io/tags/qt/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
+    
+    
+
+    <item>
+      <title>从零开始的 Qt 应用开发（7）：自定义组件</title>
+      <link>https://rujax.github.io/posts/202606/re-0-qt-app-7/</link>
+      <pubDate>Tue, 09 Jun 2026 17:54:53 &#43;0800</pubDate>
+      <author>rujax.c@gmail.com (Rujax)</author>
+      <guid>https://rujax.github.io/posts/202606/re-0-qt-app-7/</guid>
+      <description>
+        <![CDATA[<h1>从零开始的 Qt 应用开发（7）：自定义组件</h1><p>作者：Rujax（rujax.c@gmail.com）</p>
+        
+          <h1 id="前言">
+<a class="header-anchor" href="#%e5%89%8d%e8%a8%80"></a>
+前言
+</h1><p>距离 
+<a 
+    href="/posts/202605/re-0-qt-app-6/"
+    
+    
+>
+    上一篇
+</a>
+，已经过去了一个月有余。<br>
+这一个月时间，一直在研究使用 Tauri（Web 前端 + Rust） 构建桌面应用来着（笑</p>
+<p>正如这篇文章《
+<a 
+    href="https://36kr.com/p/3741068813172743"
+    
+     target="_blank" rel="noopener noreferrer"
+>
+    前微软架构师怒揭Windows GUI混乱：14次转向、17条路线，一群聪明人做出了愚蠢的决定
+</a>
+》所说，<br>
+Windows 桌面应用框架是非常非常混乱的，到底应该选择什么框架，根本还是取决于自己最不可替代的需求是什么。</p>
+        
+        <hr><p>本文2026-06-09首发于<a href='https://rujax.github.io/'>Rujax's blog</a>，最后修改于2026-06-09</p>]]>
+      </description>
+      
+        <category>从零开始的 Qt 应用开发</category>
+      
+    </item>
     
     
 

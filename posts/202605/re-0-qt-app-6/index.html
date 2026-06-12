@@ -167,7 +167,7 @@
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">14</div>
+    <div>文章</div><div class="sidebar-state-number">15</div>
   </div>
   <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
     <div>分类</div>
@@ -177,7 +177,7 @@
   </a>
   <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
     <div>标签</div>
-    <div class="sidebar-state-number">16</div>
+    <div class="sidebar-state-number">17</div>
   </a>
 </div>
 <div class="sidebar-social" ><div class="icon-github sidebar-social-icon">
@@ -335,7 +335,7 @@ mainwindow.h
     QNetworkReply
 </a>
 </li>
-<li>声明一个  <code>QNetworkAccessManager</code> 的指针变量</li>
+<li>声明一个 <code>QNetworkAccessManager</code> 的指针变量</li>
 <li>声明一个私有槽，目标是为了和 <code>QNetworkAccessManager</code> 的 
 <a 
     href="https://doc.qt.io/qt-6/qnetworkaccessmanager.html#finished"
@@ -363,7 +363,7 @@ include 和 QNetworkAccessManager 实例化
 </span></span><span class="line"><span class="cl"><span class="nc">MainWindow</span><span class="p">::</span><span class="nf">MainWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span><span class="p">)</span> <span class="o">:</span> <span class="nf">QMainWindow</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nf">setWindowTitle</span><span class="p">(</span><span class="s">&#34;RSSReader&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line hl"><span class="cl">    <span class="n">_manager</span> <span class="o">=</span> <span class="kr">new</span> <span class="nf">QNetworkAccessManager</span><span class="p">(</span><span class="kp">this</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="p">...</span>
@@ -554,7 +554,7 @@ include 和 QNetworkAccessManager 实例化
 </h3><p>在订阅链接单行编辑组件内输入 <code>https://rujax.github.io/index.xml</code> 后，点击 <strong>订阅按钮</strong>，<br>
 查看底部 <strong>应用程序输出</strong>，应该可以看到如下内容：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">feed link text: &#34;https://rujax.github.io/index.xml&#34;
-</span></span><span class="line"><span class="cl">content: &#34;&lt;?xml version=\&#34;1.0\&#34; encoding=\&#34;utf-8\&#34; standalone=\&#34;yes\&#34;?&gt;\n&lt;rss version=\&#34;2.0\&#34; xmlns:atom=\&#34;http://www.w3.org/2005/Atom\&#34;&gt;\n  &lt;channel&gt;\n    &lt;title&gt;Rujax&amp;#39;s blog&lt;/title&gt;\n    &lt;link&gt;https://rujax.github.io/&lt;/link&gt;\n    &lt;description&gt;Recent content from Rujax&amp;#39;s blog&lt;/description&gt;\n   
+</span></span><span class="line"><span class="cl">content: &#34;&lt;?xml version=\&#34;1.0\&#34; encoding=\&#34;utf-8\&#34; standalone=\&#34;yes\&#34;?&gt;\n&lt;rss version=\&#34;2.0\&#34; xmlns:atom=\&#34;http://www.w3.org/2005/Atom\&#34;&gt;\n  &lt;channel&gt;\n    &lt;title&gt;Rujax&amp;#39;s blog&lt;/title&gt;\n    &lt;link&gt;https://rujax.github.io/&lt;/link&gt;\n    &lt;description&gt;Recent content from Rujax&amp;#39;s blog&lt;/description&gt;\n
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">...
 </span></span></code></pre></div><p>接下来就是解析这些返回的内容。</p>
@@ -785,9 +785,7 @@ mainwindow.cpp
     isWhitespace()
 </a>
  方法<br>
-判断当前元素的文本是否是字符，同时字符是否不全是空格
-<ol>
-<li>调用 
+判断当前元素的文本是否是字符，同时字符是否不全是空格 1. 调用 
 <a 
     href="https://doc.qt.io/qt-6/qdebug.html#qDebugx"
     
@@ -803,8 +801,7 @@ mainwindow.cpp
 >
     QDebug
 </a>
- 对象 <code>debug</code></li>
-<li>调用 
+ 对象 <code>debug</code> 2. 调用 
 <a 
     href="https://doc.qt.io/qt-6/qdebug.html#noquote"
     
@@ -812,8 +809,7 @@ mainwindow.cpp
 >
     noquote()
 </a>
- 方法后输出索引和元素名称（输出的字符串不显示双引号）</li>
-<li>调用 
+ 方法后输出索引和元素名称（输出的字符串不显示双引号）3. 调用 
 <a 
     href="https://doc.qt.io/qt-6/qdebug.html#quote"
     
@@ -822,8 +818,6 @@ mainwindow.cpp
     quote()
 </a>
  方法后输出元素文本（输出的字符串恢复显示双引号）</li>
-</ol>
-</li>
 <li>调用 <code>QXmlStreamReader</code> 的 
 <a 
     href="https://doc.qt.io/qt-6/qxmlstreamreader.html#hasError"
@@ -966,7 +960,7 @@ mainwindow.cpp
     aria-label="Article navigation"
     data-aos="fade-up"
   ><div class="article-nav-link-wrap left"><img
-              data-src="/images/covers/posts/iuno-1.webp"
+              data-src="/images/covers/posts/iuno-2.webp"
               data-sizes="auto"
               alt="从零开始的 Qt 应用开发（5）：信号和槽"
               class="lazyload"
@@ -978,7 +972,7 @@ mainwindow.cpp
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">从零开始的 Qt 应用开发（5）：信号和槽</h3>
       </div><div class="article-nav-link-wrap right"><img
-              data-src="/images/covers/posts/iuno-19.webp"
+              data-src="/images/covers/posts/iuno-9.webp"
               data-sizes="auto"
               alt="Native Windows GUI 初体验"
               class="lazyload"
@@ -1025,10 +1019,10 @@ mainwindow.cpp
         >
       </div><div>
         <span class="icon-brush"
-          >&nbsp;17.0k</span
+          >&nbsp;20.8k</span
         >
         &nbsp;|&nbsp;
-        <span class="icon-coffee">&nbsp;00:39</span>
+        <span class="icon-coffee">&nbsp;00:47</span>
       </div><div>
         <span class="icon-eye"></span>
         <span id="busuanzi_container_site_pv">
@@ -1096,7 +1090,7 @@ mainwindow.cpp
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">14</div>
+    <div>文章</div><div class="sidebar-state-number">15</div>
   </div>
   <a class="sidebar-state-category" href="/categories/" aria-label="sidebar-state-category-link">
     <div>分类</div>
@@ -1106,7 +1100,7 @@ mainwindow.cpp
   </a>
   <a class="sidebar-state-tag" href="/tags/" aria-label="sidebar-state-tag-link">
     <div>标签</div>
-    <div class="sidebar-state-number">16</div>
+    <div class="sidebar-state-number">17</div>
   </a>
 </div>
 <div class="sidebar-social" ><div class="icon-github sidebar-social-icon">

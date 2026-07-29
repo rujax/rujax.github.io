@@ -12,12 +12,37 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Tue, 09 Jun 2026 17:54:53 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 29 Jul 2026 20:11:26 +0800</lastBuildDate>
     
     
     <atom:link href="https://rujax.github.io/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
+    
+    
+
+    <item>
+      <title>使用 Tauri &#43; Web 前端实现入侵协议小游戏</title>
+      <link>https://rujax.github.io/posts/202607/breach-protocol/</link>
+      <pubDate>Wed, 29 Jul 2026 20:11:26 &#43;0800</pubDate>
+      <author>rujax.c@gmail.com (Rujax)</author>
+      <guid>https://rujax.github.io/posts/202607/breach-protocol/</guid>
+      <description>
+        <![CDATA[<h1>使用 Tauri + Web 前端实现入侵协议小游戏</h1><p>作者：Rujax（rujax.c@gmail.com）</p>
+        
+          <h1 id="起因">
+<a class="header-anchor" href="#%e8%b5%b7%e5%9b%a0"></a>
+起因
+</h1><p>前一阵在玩鸣潮和边缘行者的联动时，接触到了《入侵协议》这个小游戏。<br>
+我没有玩过赛博朋克2077的本体游戏，因此初次尝试还觉得有点意思。</p>
+<p>玩着玩着突然灵机一动：“要不试试用 Tauri + Web 前端实现这个小游戏！”</p>
+        
+        <hr><p>本文2026-07-29首发于<a href='https://rujax.github.io/'>Rujax's blog</a>，最后修改于2026-07-29</p>]]>
+      </description>
+      
+        <category>锚定未知</category>
+      
+    </item>
     
     
 
@@ -349,61 +374,6 @@ CMakeLists.txt
 将几张图依次替换产生滚动的视觉效果。</p>
         
         <hr><p>本文2026-04-21首发于<a href='https://rujax.github.io/'>Rujax's blog</a>，最后修改于2026-04-21</p>]]>
-      </description>
-      
-        <category>锚定未知</category>
-      
-    </item>
-    
-    
-
-    <item>
-      <title>修复 Hugo v0.156.0 后开始废弃的方法警告</title>
-      <link>https://rujax.github.io/posts/202604/fix-hugo-v0.156.0-warnings/</link>
-      <pubDate>Wed, 08 Apr 2026 22:44:37 &#43;0800</pubDate>
-      <author>rujax.c@gmail.com (Rujax)</author>
-      <guid>https://rujax.github.io/posts/202604/fix-hugo-v0.156.0-warnings/</guid>
-      <description>
-        <![CDATA[<h1>修复 Hugo v0.156.0 后开始废弃的方法警告</h1><p>作者：Rujax（rujax.c@gmail.com）</p>
-        
-          <h1 id="问题">
-<a class="header-anchor" href="#%e9%97%ae%e9%a2%98"></a>
-问题
-</h1><p>我的博客是基于 
-<a 
-    href="https://gohugo.io/"
-    
-     target="_blank" rel="noopener noreferrer"
->
-    Hugo
-</a>
- 框架和 
-<a 
-    href="https://github.com/D-Sketon/hugo-theme-reimu"
-    
-     target="_blank" rel="noopener noreferrer"
->
-    Reimu
-</a>
- 主题搭建的。<br>
-其中 <code>Hugo</code> 使用的是 <code>v0.159.2</code> 版本，每次启动服务时，都能看到提示方法或字段已废弃的警告：</p>
-
-  <blockquote class="alert-blockquote warning">
-    <p class="alert-heading">
-      Warning
-    </p>
-    <p><p>WARN  deprecated: .Site.Languages was deprecated in Hugo v0.156.0 and will be removed in a future release. See 
-<a 
-    href="https://discourse.gohugo.io/t/56732"
-    
-     target="_blank" rel="noopener noreferrer"
->
-    https://discourse.gohugo.io/t/56732
-</a>
-.<br>
-WARN  deprecated: .Site.Data was deprecated in Hugo v0.156.0 and will be removed in a future release. Use hugo.Data instead.</p>
-        
-        <hr><p>本文2026-04-08首发于<a href='https://rujax.github.io/'>Rujax's blog</a>，最后修改于2026-04-19</p>]]>
       </description>
       
         <category>锚定未知</category>
